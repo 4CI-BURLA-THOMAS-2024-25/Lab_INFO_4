@@ -1,0 +1,10 @@
+Consegnare la cartella Negozio_12_09_Cognome contenente le classi:
+
+Prodotto (Main_prodotto per testare l'oggetto prodotto)
+Carrello(Main_carrello)
+Cliente
+Negozio
+Scontrino
+Grassetto obiettivi minimi, da fare per la prossima volta, grassetto corsivo facoltativo molto consigliato a chi fa solo obiettivi minimi)
+
+Buon lavoro!

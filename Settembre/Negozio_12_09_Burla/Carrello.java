@@ -43,7 +43,7 @@ public class Carrello{
         return null;
     }
     //get prodotto come stringa
-    public String getProdottoPerNome(String nome){
+    public String getProdottoStringa(String nome){
         Prodotto prodotto = null;
         boolean trovato = false;
         int i = 0;
@@ -59,12 +59,24 @@ public class Carrello{
         }
         return "Nessun prodotto corrispondente";
     }
+    //numero di prodotti
+    public int numeroProdotti(){
+        return this.prodotti.size();
+    }
+    //get arraylist di prodotti
+    public ArrayList <Prodotto> getProdotti(){
+        ArrayList <Prodotto> out = new ArrayList <Prodotto>();
+        for(int i = 0; i < prodotti.size(); i++){
+            out.add(prodotti.get(i));
+        }
+        return out;
+    }
     //toString
     public String toString(){
         Prodotto prodotto = null;
         String out = "Nel carrello ci sono i seguenti prodotti:";
         for(int i = 0; i < this.prodotti.size(); i++){
-            prodotto = prodotti.get(i);
+            prodotto = this.prodotti.get(i);
             out += "\n" + (i + 1) + ". " + prodotto.toString();
         }
         return out;
