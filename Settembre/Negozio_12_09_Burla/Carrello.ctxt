@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Carrello
+comment1.params=
+comment1.target=Carrello()
+comment2.params=prodotto
+comment2.target=Carrello(Prodotto)
+comment3.params=prodotto
+comment3.target=void\ setProdotto(Prodotto)
+comment4.params=nome
+comment4.target=Prodotto\ getProdotto(java.lang.String)
+comment5.params=nome
+comment5.target=java.lang.String\ getProdottoPerNome(java.lang.String)
+comment6.params=
+comment6.target=java.lang.String\ toString()
+numComments=7

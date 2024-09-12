@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Prodotto
+comment0.text=\r\n\ Prodotti\ del\ negozio\:\r\n\ \ \ \ \ -costo\r\n\ \ \ \ \ -nome\r\n\ \ \ \ \ -prezzo\r\n\ \r\n\ @author\ Thomas\ Burla\ \r\n\ @version\ 1.0\r\n
+comment1.params=
+comment1.target=Prodotto()
+comment2.params=costo\ nome\ barcode
+comment2.target=Prodotto(double,\ java.lang.String,\ long)
+comment3.params=costo
+comment3.target=void\ setCosto(double)
+comment4.params=
+comment4.target=double\ getCosto()
+comment5.params=nome
+comment5.target=void\ setNome(java.lang.String)
+comment6.params=
+comment6.target=java.lang.String\ getNome()
+comment7.params=barcode
+comment7.target=void\ setBarcode(long)
+comment8.params=
+comment8.target=long\ getBarcode()
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=10
