@@ -97,4 +97,24 @@ public class Cliente {
     public long getNum_cell(){
         return this.num_cell;
     }
+    //set carrello
+    public void setCarrello(Carrello carrello){
+        if(carrello != null){
+            this.carrelli.add(carrello);
+        }
+    }
+    //get carrello, come puntatore, in base al suo numero nella fila
+    public Carrello getCarrello(int posizione){
+        if(posizione <= this.carrelli.size()){
+            return this.carrelli.get(posizione - 1);
+        }
+        return null;
+    }
+    //get carrello, come stringa, in base al suo numero nella fila
+    public String getCarrelloStringa(int posizione){
+        if(posizione <= this.carrelli.size()){
+            return (this.carrelli.get(posizione - 1)).toString();
+        }
+        return null;
+    }
 }
