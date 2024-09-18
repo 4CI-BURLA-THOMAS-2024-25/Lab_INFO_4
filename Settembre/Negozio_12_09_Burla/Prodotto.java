@@ -27,7 +27,7 @@ public class Prodotto{
             this.costo = 0.0; 
         }
         //nome
-        if((nome != null) && (nome != " ")){
+        if((nome != null) && (!(nome.equals(" ")))){
             this.nome = nome;
         }else{
             this.nome = "-";
@@ -51,7 +51,7 @@ public class Prodotto{
     }
     //set nome
     public void setNome(String nome){
-        if((nome != null) && (nome != " ")){
+        if((nome != null) && (!(nome.equals(" ")))){
             this.nome =nome;
         }
     }
