@@ -117,4 +117,17 @@ public class Cliente {
         }
         return null;
     }
+    //toString
+    public String toString(){
+        Carrello carrello = null;
+        String out = "Il cliente si chiama " + this.nome + " " + this.cognome;
+        out += ", la sua email è: " +  this.email;
+        out += " , il suo numero di cellulare è: " + this.num_cell;
+        out += " e i seguenti sono i suoi carrelli: ";
+        for(int i = 0; i < this.carrelli.size(); i++){
+            carrello = this.carrelli.get(i);
+            out += "\nCARRELLO " + (i + 1) + " --> " + carrello.toString();
+        }
+        return out;
+    }
 }
