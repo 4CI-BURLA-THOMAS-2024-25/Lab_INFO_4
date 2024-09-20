@@ -71,6 +71,21 @@ public class Carrello{
         }
         return out;
     }
+    //rimuovi prodotto, dato il nome
+    public boolean rimuoviProdotto(String nome){
+        Prodotto prodotto = null;
+        boolean trovato = false;
+        int i = 0;
+        while((trovato == false) && (i < (this.prodotti).size())){
+            prodotto = (this.prodotti).get(i);
+            if((prodotto.getNome()).equalsIgnoreCase(nome)){
+                this.prodotti.remove(i);
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
     //toString
     public String toString(){
         Prodotto prodotto = null;
