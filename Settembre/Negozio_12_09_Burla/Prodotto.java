@@ -52,7 +52,7 @@ public class Prodotto{
     //set nome
     public void setNome(String nome){
         if((nome != null) && (!(nome.equals(" ")))){
-            this.nome =nome;
+            this.nome = nome;
         }
     }
     //get nome

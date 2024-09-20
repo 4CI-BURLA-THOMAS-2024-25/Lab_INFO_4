@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Scontrino
+comment1.params=
+comment1.target=Scontrino()
+comment2.params=carrello
+comment2.target=Scontrino(Carrello)
+comment3.params=carrello
+comment3.target=void\ setCarrello(Carrello)
+comment4.params=numeroCarrello
+comment4.target=Carrello\ getCarrello(int)
+comment5.params=numeroCarrello
+comment5.target=java.lang.String\ getCarrelloStringa(int)
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment7.params=
+comment7.target=double\ getTotale()
+numComments=8
