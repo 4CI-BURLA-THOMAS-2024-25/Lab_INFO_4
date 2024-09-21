@@ -9,18 +9,18 @@ public class Persona{
     protected String nome;
     protected String cognome;
     protected String email;
-    protected String cod_fiscale;
-    protected String n_cell;
+    protected String codFiscale;
+    protected String numCell;
     //costruttore senza parametri
     public Persona(){
         this.nome = "-";
         this.cognome = "-";
         this.email = "-";
-        this.cod_fiscale = "-";
-        this.n_cell = "-";
+        this.codFiscale = "-";
+        this.numCell = "-";
     }
     //costruttore con parametri
-    public Persona(String nome, String cognome, String email, String cod_fiscale, String n_cell){
+    public Persona(String nome, String cognome, String email, String codFiscale, String numCell){
         //nome
         if((nome != null) && (!(nome.equalsIgnoreCase(" ")))){
             this.nome = nome;
@@ -33,13 +33,13 @@ public class Persona{
         if((email != null) && (!(email.equalsIgnoreCase(" ")))){
             this.email = email;
         }
-        //cod_fiscale
-        if((cod_fiscale != null) && (!(cod_fiscale.equalsIgnoreCase(" ")))){
-            this.cod_fiscale = cod_fiscale;
+        //codice fiscale
+        if((codFiscale != null) && (!(codFiscale.equalsIgnoreCase(" ")))){
+            this.codFiscale = codFiscale;
         }
-        //n_cell
-        if((n_cell != null) && (!(n_cell.equalsIgnoreCase(" ")))){
-            this.n_cell = n_cell;
+        //numero di cellulare
+        if((numCell != null) && (!(numCell.equalsIgnoreCase(" ")))){
+            this.numCell = numCell;
         }
     }
     //set nome
@@ -57,5 +57,47 @@ public class Persona{
         if((cognome != null) && (!(cognome.equalsIgnoreCase(" ")))){
             this.cognome = cognome;
         }
+    }
+    //get cognome
+    public String getCognome(){
+        return this.cognome;
+    }
+    //set email
+    public void setEmail(String email){
+        if((email != null) && (!(email.equalsIgnoreCase(" ")))){
+            this.email = email;
+        }
+    }
+    //get email
+    public String getEmail(){
+        return this.email;
+    }
+    //set codice fiscale
+    public void setcodFiscale(String codFiscale){
+        if((codFiscale != null) && (!(codFiscale.equalsIgnoreCase(" ")))){
+            this.codFiscale = codFiscale;
+        }    
+    }
+    //get codice fiscale
+    public String getcodFiscale(){
+        return this.codFiscale;
+    }
+    //set numero di cellullare
+    public void setNumCell(String numCell){
+        if((numCell != null) && (!(numCell.equalsIgnoreCase(" ")))){
+            this.numCell = numCell;
+        }
+    }
+    //get numero di cellulare
+    public String getNumCell(){
+        return this.numCell;
+    }
+    //toString
+    public String toString(){
+        String out = "La persona si chiama " + this.nome + " " +  this.cognome;
+        out += ", la sua email è: |" + this.email;
+        out += "|, il suo numero di cellulare è: |" + this.numCell;
+        out += "| e il suo codice fiscale è: |" + this.codFiscale + "|.";
+        return out;
     }
 }
