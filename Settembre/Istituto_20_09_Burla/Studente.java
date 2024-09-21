@@ -7,6 +7,7 @@
  * @version 1.0
  */
 public class Studente extends Persona{
+    //variabili d'istanza
     private int matricola;
     //costruttore senza parametri
     public Studente(){
