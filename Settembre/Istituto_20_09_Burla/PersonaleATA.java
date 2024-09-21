@@ -34,8 +34,8 @@ public class PersonaleATA extends Persona{
             this.stipendio = stipendio;
         }
         //mansione
+        this.mansioni = new ArrayList <String> ();
         if((mansione != null) && (!(mansione.equalsIgnoreCase(" ")))){
-            this.mansioni = new ArrayList <String> ();
             this.mansioni.add(mansione);
         }
     }
