@@ -15,7 +15,9 @@ public class Studente extends Persona{
     }
     //costruttore con parametri
     public Studente(String nome, String cognome, String email, String codFiscale, String numCell, int matricola){
+        //variabili classe persona
         super(nome, cognome, email, codFiscale, numCell);
+        //matricola
         if(matricola > 0){
             this.matricola = matricola;
         }
@@ -82,7 +84,7 @@ public class Studente extends Persona{
     }
     //toString
     public String toString(){
-        String out = "Lo studente si chiama " + this.nome + " " +  this.cognome;
+        String out = "Lo/a studente/ssa si chiama " + this.nome + " " +  this.cognome;
         out += ", la sua email è: |" + this.email;
         out += "|, il suo numero di cellulare è: |" + this.numCell;
         out += "|, il suo codice fiscale è: |" + this.codFiscale;
