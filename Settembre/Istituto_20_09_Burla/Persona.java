@@ -1,5 +1,10 @@
 /**
- * classe "padre", che contiene variabili d'istanza comuni ad altre classi del progetto
+ * classe "padre", che contiene variabili d'istanza comuni ad altre classi del progetto:
+    -nome
+    -cognome
+    -email
+    -codFiscale
+    -numCell
  * 
  * @author Thomas Burla
  * @version 1.0
