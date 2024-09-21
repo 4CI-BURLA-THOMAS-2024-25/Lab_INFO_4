@@ -10,6 +10,7 @@
  */
 import java.util.ArrayList;
 public class PersonaleATA extends Persona{
+    //variabili d'istanza
     private int piano;
     private double stipendio;
     private ArrayList <String> mansioni;
