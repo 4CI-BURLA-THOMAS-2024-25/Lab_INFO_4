@@ -43,7 +43,18 @@ public class Scuola {
     }
     //aggiungi classe
     public boolean addClasse(Classe classe){
+        boolean esiste = false;
+        int i = 0;
+        Classe classeCerca = null;
         if(classe != null){
+            while((esiste == false) &&(i < this.classi.size())){
+                classeCerca = this.classi.get(i);
+                if(classeCerca == classe){
+                    esiste = true;
+                    return false;
+                }
+                i++;
+            }
             this.classi.add(classe);
             return true;
         }
