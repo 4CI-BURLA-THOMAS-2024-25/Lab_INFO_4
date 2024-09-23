@@ -38,79 +38,95 @@ public class Insegnante extends Persona{
         }
     }
     //set nome
-    public void setNome(String nome){
+    public boolean setNome(String nome){
         if((nome != null) && (!(nome.equalsIgnoreCase(" ")))){
             this.nome = nome;
+            return true;
         }
+        return false;
     }
     //get nome
     public String getNome(){
         return this.nome;
     }
     //set cognome
-    public void setCognome(String cognome){
+    public boolean setCognome(String cognome){
         if((cognome != null) && (!(cognome.equalsIgnoreCase(" ")))){
             this.cognome = cognome;
+            return true;
         }
+        return false;
     }
     //get cognome
     public String getCognome(){
         return this.cognome;
     }
     //set email
-    public void setEmail(String email){
+    public boolean setEmail(String email){
         if((email != null) && (!(email.equalsIgnoreCase(" ")))){
             this.email = email;
+            return true;
         }
+        return false;
     }
     //get email
     public String getEmail(){
         return this.email;
     }
     //set codice fiscale
-    public void setcodFiscale(String codFiscale){
+    public boolean setcodFiscale(String codFiscale){
         if((codFiscale != null) && (!(codFiscale.equalsIgnoreCase(" ")))){
             this.codFiscale = codFiscale;
-        }    
+            return true;
+        }   
+        return false; 
     }
     //get codice fiscale
     public String getcodFiscale(){
         return this.codFiscale;
     }
     //set numero di cellullare
-    public void setNumCell(String numCell){
+    public boolean setNumCell(String numCell){
         if((numCell != null) && (!(numCell.equalsIgnoreCase(" ")))){
             this.numCell = numCell;
+            return true;
         }
+        return false;
     }
     //get numero di cellulare
     public String getNumCell(){
         return this.numCell;
     }
     //set corso
-    public void setCorso(String corso){
+    public boolean setCorso(String corso){
         if((corso != null) && (!(corso.equalsIgnoreCase(" ")))){
             this.corso = corso;
+            return true;
         }
+        return false;
     }
     //get corso
     public String getCorso(){
         return this.corso;
     }
     //set stipendio
-    public void setStipendio(double stipendio){
+    public boolean setStipendio(double stipendio){
         if(stipendio > 0.0){
             this.stipendio = stipendio;
+            return true;
         }
+        return false;
     }
     public double getStipendio(){
         return this.stipendio;
     }
     //assegna nuova classe
-    public void addClasse(Classe classe){
+    public boolean addClasse(Classe classe){
         if(classe != null){
             this.classi.add(classe);
+            return true;
         }
+        return false;
     }
     //cerca classe tra quelle assegnate e ottieni info toString
     public String getClasseStringa(String nome){
