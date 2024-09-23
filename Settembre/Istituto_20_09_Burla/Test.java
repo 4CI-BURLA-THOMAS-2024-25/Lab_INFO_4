@@ -70,7 +70,7 @@ public class Test {
                             JOptionPane.showMessageDialog(null, "ERRORE! Mansione già presente!", "Errore", JOptionPane.ERROR_MESSAGE);
                         }
                     }while(mansioneOK == false);
-                    aggiungiMansione = JOptionPane.showConfirmDialog(null, "Ci sono altre mansioni da aggiungere a " + personaleATA.getNome() + " " + personaleATA.getCognome() + "?", "Aggiungi mansioni", JOptionPane.YES_NO_OPTION)
+                    aggiungiMansione = JOptionPane.showConfirmDialog(null, "Ci sono altre mansioni da aggiungere a " + personaleATA.getNome() + " " + personaleATA.getCognome() + "?", "Aggiungi mansioni", JOptionPane.YES_NO_OPTION);
                 }while(aggiungiMansione == JOptionPane.YES_OPTION);
                 aggiungiATA = JOptionPane.showConfirmDialog(null, "Ci sono altre persone che fanno parte del Personale ATA da aggiungere?", "Aggiungi Personale ATA", JOptionPane.YES_NO_OPTION);
             }while(aggiungiATA == JOptionPane.YES_OPTION);
