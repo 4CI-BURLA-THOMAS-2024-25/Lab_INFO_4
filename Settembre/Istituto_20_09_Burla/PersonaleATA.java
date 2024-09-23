@@ -163,7 +163,12 @@ public class PersonaleATA extends Persona{
         out += ", le è stato assegnato il piano numero " + this.piano;
         out += " e svolge le seguenti mansioni:";
         for(int i = 0; i < this.mansioni.size(); i++){
-            out += " " + this.mansioni.get(i) + ",";
+            out += " " + this.mansioni.get(i);
+            if(i < (this.mansioni.size() - 1)){
+                out += ",";
+            }else{
+                out += ".";
+            }
         }
         return out;
     }
