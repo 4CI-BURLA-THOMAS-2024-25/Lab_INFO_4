@@ -186,8 +186,7 @@ public class Insegnante extends Persona{
         out += "e insegna nelle seguenti classi:";
         for(int i = 0; i < this.classi.size(); i++){
             classe = this.classi.get(i);
-            out += "\n--------------------------------------------------------------------------------";
-            out += "\n" + classe.toString();
+            out += " " + classe.getNome();
         }
         return out;
     }   
