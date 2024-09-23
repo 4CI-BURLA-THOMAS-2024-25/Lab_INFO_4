@@ -11,13 +11,15 @@ public class Classe{
     //variabili d'istanza
     private ArrayList <Studente> studenti;
     private ArrayList <Insegnante> insegnanti;
+    private String nome;
     //costruttore senza parametri
     public Classe(){
         this.studenti = new ArrayList <Studente> ();
         this.insegnanti = new ArrayList <Insegnante> ();
+        this.nome = "-";
     }
     //costruttore con parametri
-    public Classe(Studente studente, Insegnante insegnante){
+    public Classe(Studente studente, Insegnante insegnante, String nome){
         //alloco liste
         this.studenti = new ArrayList <Studente> ();
         this.insegnanti = new ArrayList <Insegnante> ();
@@ -28,6 +30,10 @@ public class Classe{
         //insegnante
         if(insegnante != null){
             this.insegnanti.add(insegnante);
+        }
+        //nome
+        if((nome != null) && (!(nome.equalsIgnoreCase(" ")))){
+            this.nome = nome;
         }
     }
     //aggiungi studente
@@ -136,11 +142,21 @@ public class Classe{
     public int getNumeroInsegnanti(){
         return this.insegnanti.size();
     }
+    //set nome
+    public void setNome(String nome){
+        if((nome != null) && (!(nome.equalsIgnoreCase(" ")))){
+            this.nome = nome;
+        }
+    }
+    //get nome
+    public String getNome(){
+        return this.nome;
+    }
     //toString
     public String toString(){
         Studente studente = null;
         Insegnante insegnante = null;
-        String out = "Nella classe ci sono i seguenti studenti:";
+        String out = "Nella classe " + this.nome + " ci sono i seguenti studenti:";
         for(int i = 0; i < this.studenti.size(); i++){
             studente = this.studenti.get(i);
             out += "\n" + (i + 1) + ". " + studente.toString();
