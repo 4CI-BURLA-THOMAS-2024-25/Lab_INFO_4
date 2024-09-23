@@ -125,7 +125,18 @@ public class PersonaleATA extends Persona{
     }
     //aggiungi mansione
     public boolean addMansione(String mansione){
+        boolean esiste = false;
+        int i = 0;
+        String mansioneCerca = null;
         if((mansione != null) && (!(mansione.equalsIgnoreCase(" ")))){
+            while((esiste == false) && (i < this.mansioni.size())){
+                mansioneCerca = this.mansioni.get(i);
+                if(mansioneCerca.equalsIgnoreCase(mansione)){
+                    esiste = true;
+                    return false;
+                }
+                i++;
+            }
             this.mansioni.add(mansione);
             return true;
         }
