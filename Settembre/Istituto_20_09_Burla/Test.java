@@ -31,6 +31,9 @@ public class Test {
         int piano;
         //matricola dello studente da aggiungere alla classe
         int matricola;
+        //variabile per verificare che l'aggiunta dello studente alla classe sia andata a buon fine
+        boolean studenteOK;
+        //variabili scuola
         String codiceMeccanografico;
         String nomeScuola;
         //arraylist che contiene tutte le scuole da gestire
@@ -99,7 +102,15 @@ public class Test {
                             JOptionPane.showMessageDialog(null, "ERRORE! Numero di matricola non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                         }
                     }while(matricola <= 0);
+                    //creo studente e assegno i valori alle variabili d'istanza
                     Studente studente = new Studente(nomeScuola, cognome, email, codFiscale, numCell, matricola);
+                    //aggiugno studente alla classe
+                    do{
+                        studenteOK = classe.addStudente(studente);
+                        if(studenteOK == false){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Studente già presente!", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while(studenteOK == false);
                     //chiedo se ci sono altri studenti da aggiungere alla classe
                     aggiungiStudenti = JOptionPane.showConfirmDialog(null, "Ci sono altri studenti da aggiungere alla classe?", "Aggiungi studente", JOptionPane.YES_NO_OPTION);
                 }while(aggiungiStudenti == JOptionPane.YES_OPTION);
