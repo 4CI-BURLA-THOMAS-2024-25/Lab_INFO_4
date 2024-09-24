@@ -33,6 +33,10 @@ public class Test {
         int matricola;
         //variabile per verificare che l'aggiunta dello studente alla classe sia andata a buon fine
         boolean studenteOK;
+        //disciplina insegnata dall'insegnante
+        String corso;
+        //variabile per verificare che l'aggiunta dell'insegnante alla classe sia andata a buon fine
+        boolean insegnanteOK;
         //variabili scuola
         String codiceMeccanografico;
         String nomeScuola;
@@ -114,10 +118,76 @@ public class Test {
                     //chiedo se ci sono altri studenti da aggiungere alla classe
                     aggiungiStudenti = JOptionPane.showConfirmDialog(null, "Ci sono altri studenti da aggiungere alla classe?", "Aggiungi studente", JOptionPane.YES_NO_OPTION);
                 }while(aggiungiStudenti == JOptionPane.YES_OPTION);
-
-
-
-                //agiungo classe alla scuola
+                //ciclo per aggiungere insegnanti alla classe
+                do{
+                    //chiedo nome dell'insegnante e lo controllo
+                    do{
+                        nome = JOptionPane.showInputDialog(null, "Inserire il nome dell'insegnante da aggiungere alla classe", "Aggiungi nome", JOptionPane.QUESTION_MESSAGE);
+                        //messaggio di errore
+                        if((nome == null) || (nome.equalsIgnoreCase(" "))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Nome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((nome == null) || (nome.equalsIgnoreCase(" ")));
+                    //chiedo cognome dell'insegnante e lo controllo
+                    do{
+                        cognome = JOptionPane.showInputDialog(null, "Inserire il cognome dell'insegnante", "Aggiungi cognome", JOptionPane.QUESTION_MESSAGE);
+                        //messaggio di errore
+                        if((cognome == null) || (cognome.equalsIgnoreCase(" "))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Cognome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((cognome == null) || (cognome.equalsIgnoreCase(" ")));
+                    //chiedo email dell'insegnante e la controllo
+                    do{
+                        email = JOptionPane.showInputDialog(null, "Inserire email dell'insegnante", "Aggiungi email", JOptionPane.QUESTION_MESSAGE);
+                        //messaggio di errore
+                        if((email == null) || (email.equalsIgnoreCase(" "))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Email non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((email == null) || (email.equalsIgnoreCase(" ")));
+                    //chiedo codice fiscale dell'insegnante e lo "controllo"
+                    do{
+                        codFiscale = JOptionPane.showInputDialog(null, "Inserire il codice fiscale dell'insegnante", "Aggiungi codice fiscale", JOptionPane.QUESTION_MESSAGE);
+                        //messaggio di errore
+                        if((codFiscale == null) || (codFiscale.equalsIgnoreCase(" "))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Codice fiscale non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((codFiscale == null) || (codFiscale.equalsIgnoreCase(" ")));
+                    //chiedo numero di cellulare dell'insegnante e lo controllo
+                    do{
+                        numCell = JOptionPane.showInputDialog(null, "Inserire il numero di telefono dell'insegnante", "Aggiungi numero di telefono", JOptionPane.QUESTION_MESSAGE);
+                        //messaggio di errore
+                        if((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000"))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Numero di telefono non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000")));
+                    //chiedo la disciplina insegnata e la controllo
+                    do{
+                        corso = JOptionPane.showInputDialog(null, "Inserire la disciplina innsegnata", "Aggiungi disciplina", JOptionPane.QUESTION_MESSAGE);
+                        if((corso == null) || (corso.equalsIgnoreCase(" "))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Disciplina non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((corso == null) || (corso.equalsIgnoreCase(" ")));
+                    //chiedo stipendio dell'insegnante e lo controllo
+                    do{
+                        stipendio = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire lo stipendio all'ora dell'insegnante", "Aggiungi stipendio orario", JOptionPane.QUESTION_MESSAGE));
+                        //messaggio di errore
+                        if(stipendio <= 0.0){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Stipendio non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while(stipendio <= 0.0);
+                    //creo insegnante e assegno i valori alle variabili d'istanza
+                    Insegnante insegnante = new Insegnante(nome, cognome, email, codFiscale, numCell, corso, stipendio, null);
+                    //aggiugno insegnante alla classe
+                    do{
+                        insegnanteOK = classe.addInsegnante(insegnante);
+                        if(insegnanteOK == false){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Insegnante già presente!", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while(insegnanteOK == false);
+                    //chiedo se ci sono altri insegnanti da aggiungere alla classe
+                    aggiungiInsegnanti = JOptionPane.showConfirmDialog(null, "Ci sono altri insegnanti da aggiungere alla classe?", "Aggiungi insegnante", JOptionPane.YES_NO_OPTION);
+                }while(aggiungiInsegnanti == JOptionPane.YES_OPTION);
+                //aggiungo classe alla scuola
                 scuola.addClasse(classe);
                 //chiedo se ci sono altre classi da aggiungere
                 aggiungiClassi = JOptionPane.showConfirmDialog(null, "Ci sono altre classi da aggiungere alla scuola?", "Aggiungi classi", JOptionPane.YES_NO_OPTION);
