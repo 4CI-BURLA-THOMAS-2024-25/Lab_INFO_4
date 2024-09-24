@@ -29,6 +29,8 @@ public class Test {
         boolean mansioneOK;
         //piano su cui lavora la persona del personale ata
         int piano;
+        //matricola dello studente da aggiungere alla classe
+        int matricola;
         String codiceMeccanografico;
         String nomeScuola;
         //arraylist che contiene tutte le scuole da gestire
@@ -50,29 +52,116 @@ public class Test {
                 Classe classe = new Classe(null, null, nome);
                 //ciclo per aggiungere studenti alla classe
                 do{
+                    //chiedo nome dello studente e lo controllo
+                    do{
+                        nome = JOptionPane.showInputDialog(null, "Inserire il nome dello studente da aggiungere alla classe", "Aggiungi nome", JOptionPane.QUESTION_MESSAGE);
+                        //messaggio di errore
+                        if((nome == null) || (nome.equalsIgnoreCase(" "))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Nome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((nome == null) || (nome.equalsIgnoreCase(" ")));
+                    //chiedo cognome dello studente e lo controllo
+                    do{
+                        cognome = JOptionPane.showInputDialog(null, "Inserire il cognome dello studente", "Aggiungi cognome", JOptionPane.QUESTION_MESSAGE);
+                        //messaggio di errore
+                        if((cognome == null) || (cognome.equalsIgnoreCase(" "))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Cognome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((cognome == null) || (cognome.equalsIgnoreCase(" ")));
+                    //chiedo email dello studente e la controllo
+                    do{
+                        email = JOptionPane.showInputDialog(null, "Inserire email dello studente", "Aggiungi email", JOptionPane.QUESTION_MESSAGE);
+                        //messaggio di errore
+                        if((email == null) || (email.equalsIgnoreCase(" "))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Email non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((email == null) || (email.equalsIgnoreCase(" ")));
+                    //chiedo codice fiscale dello studente e lo "controllo"
+                    do{
+                        codFiscale = JOptionPane.showInputDialog(null, "Inserire il codice fiscale dello studente", "Aggiungi codice fiscale", JOptionPane.QUESTION_MESSAGE);
+                        //messaggio di errore
+                        if((codFiscale == null) || (codFiscale.equalsIgnoreCase(" "))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Codice fiscale non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((codFiscale == null) || (codFiscale.equalsIgnoreCase(" ")));
+                    //chiedo numero di cellulare dello studente e lo controllo
+                    do{
+                        numCell = JOptionPane.showInputDialog(null, "Inserire il numero di telefono dello studente", "Aggiungi numero di telefono", JOptionPane.QUESTION_MESSAGE);
+                        //messaggio di errore
+                        if((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000"))){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Numero di telefono non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000")));
+                    //chiedo il numero di matricola dello studente e lo controllo
+                    do{
+                        matricola = Integer.parseInt(JOptionPane.showInputDialog(null, "Inserire il numero di matricola dello studente", "Aggiungi numero di matricola", JOptionPane.QUESTION_MESSAGE));
+                        if(matricola <= 0){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Numero di matricola non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while(matricola <= 0);
+                    //chiedo se ci sono altri studenti da aggiungere alla classe
+                    aggiungiStudenti = JOptionPane.showConfirmDialog(null, "Ci sono altri studenti da aggiungere alla classe?", "Aggiungi studente", JOptionPane.YES_NO_OPTION);
+                }while(aggiungiStudenti == JOptionPane.YES_OPTION);
 
-                }
 
 
+                //agiungo classe alla scuola
+                scuola.addClasse(classe);
                 //chiedo se ci sono altre classi da aggiungere
                 aggiungiClassi = JOptionPane.showConfirmDialog(null, "Ci sono altre classi da aggiungere alla scuola?", "Aggiungi classi", JOptionPane.YES_NO_OPTION);
             }while(aggiungiClassi == JOptionPane.YES_OPTION);
             //ciclo per aggiungere personale ata
             do{
-                //chiedo nome della persona
-                nome = JOptionPane.showInputDialog(null, "Inserire il nome della persona facente parte del gruppo Personale ATA" , "Aggiungi nome", JOptionPane.QUESTION_MESSAGE);
-                //chiedo cognome della persona
-                cognome = JOptionPane.showInputDialog(null, "Inserire il cognome della persona" , "Aggiungi cognome", JOptionPane.QUESTION_MESSAGE);
-                //chiedo email della persona
-                email = JOptionPane.showInputDialog(null, "Inserire email della persona" , "Aggiungi email", JOptionPane.QUESTION_MESSAGE);
-                //chiedo codice fiscale della persona
-                codFiscale = JOptionPane.showInputDialog(null, "Inserire il codice fiscale della persona", "Aggiungi codice fiscale", JOptionPane.QUESTION_MESSAGE);
-                //chiedo numero di cellulare della persona
-                numCell = JOptionPane.showInputDialog(null, "Inserire il numero di telefono della persona", "Aggiungi numero di telefono", JOptionPane.QUESTION_MESSAGE);
-                //chiedo stipendio della persona
-                stipendio = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire lo stipendio all'ora della persona" , "Aggiungi stipendio orario", JOptionPane.QUESTION_MESSAGE));
+                //chiedo nome della persona e lo controllo
+                do{
+                    nome = JOptionPane.showInputDialog(null, "Inserire il nome della persona facente parte del gruppo Personale ATA", "Aggiungi nome", JOptionPane.QUESTION_MESSAGE);
+                    //messaggio di errore
+                    if((nome == null) || (nome.equalsIgnoreCase(" "))){
+                        JOptionPane.showMessageDialog(null, "ERRORE! Nome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                    }
+                }while((nome == null) || (nome.equalsIgnoreCase(" ")));
+                //chiedo cognome della persona e lo controllo
+                do{
+                    cognome = JOptionPane.showInputDialog(null, "Inserire il cognome della persona", "Aggiungi cognome", JOptionPane.QUESTION_MESSAGE);
+                    //messaggio di errore
+                    if((cognome == null) || (cognome.equalsIgnoreCase(" "))){
+                        JOptionPane.showMessageDialog(null, "ERRORE! Cognome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                    }
+                }while((cognome == null) || (cognome.equalsIgnoreCase(" ")));
+                //chiedo email della persona e la controllo
+                do{
+                    email = JOptionPane.showInputDialog(null, "Inserire email della persona", "Aggiungi email", JOptionPane.QUESTION_MESSAGE);
+                    //messaggio di errore
+                    if((email == null) || (email.equalsIgnoreCase(" "))){
+                        JOptionPane.showMessageDialog(null, "ERRORE! Email non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+                    }
+                }while((email == null) || (email.equalsIgnoreCase(" ")));
+                //chiedo codice fiscale della persona e lo "controllo"
+                do{
+                    codFiscale = JOptionPane.showInputDialog(null, "Inserire il codice fiscale della persona", "Aggiungi codice fiscale", JOptionPane.QUESTION_MESSAGE);
+                    //messaggio di errore
+                    if((codFiscale == null) || (codFiscale.equalsIgnoreCase(" "))){
+                        JOptionPane.showMessageDialog(null, "ERRORE! Codice fiscale non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                    }
+                }while((codFiscale == null) || (codFiscale.equalsIgnoreCase(" ")));
+                //chiedo numero di cellulare della persona e lo controllo
+                do{
+                    numCell = JOptionPane.showInputDialog(null, "Inserire il numero di telefono della persona", "Aggiungi numero di telefono", JOptionPane.QUESTION_MESSAGE);
+                    //messaggio di errore
+                    if((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000"))){
+                        JOptionPane.showMessageDialog(null, "ERRORE! Numero di telefono non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                    }
+                }while((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000")));
+                //chiedo stipendio della persona e lo controllo
+                do{
+                    stipendio = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire lo stipendio all'ora della persona", "Aggiungi stipendio orario", JOptionPane.QUESTION_MESSAGE));
+                    //messaggio di errore
+                    if(stipendio <= 0.0){
+                        JOptionPane.showMessageDialog(null, "ERRORE! Stipendio non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                    }
+                }while(stipendio <= 0.0);
                 //chiedo il piano in cui lavora la persona
-                piano = Integer.parseInt(JOptionPane.showInputDialog(null, "Inserire il piano dell'edificio in cui lavora la persona" , "Aggiungi piano", JOptionPane.QUESTION_MESSAGE));
+                piano = Integer.parseInt(JOptionPane.showInputDialog(null, "Inserire il piano dell'edificio in cui lavora la persona", "Aggiungi piano", JOptionPane.QUESTION_MESSAGE));
                 //creo oggetto PersonaleATA
                 PersonaleATA personaleATA = new PersonaleATA(nome, cognome, email, codFiscale, numCell, piano, stipendio, null);
                 //ciclo per leggere le mansioni svolte
@@ -86,7 +175,7 @@ public class Test {
                         }
                     }while(mansioneOK == false);
                     //chiedo se ci sono altre mansioni da aggiungere
-                    aggiungiMansioni = JOptionPane.showConfirmDialog(null, "Ci sono altre mansioni da aggiungere a " + personaleATA.getNome() + " " + personaleATA.getCognome() + "?", "Aggiungi mansioni", JOptionPane.YES_NO_OPTION);
+                    aggiungiMansioni = JOptionPane.showConfirmDialog(null, "Ci sono altre mansioni da aggiungere a " + personaleATA.getNome() + " " + personaleATA.getCognome() + "?", "Aggiungi mansione", JOptionPane.YES_NO_OPTION);
                 }while(aggiungiMansioni == JOptionPane.YES_OPTION);
                 //aggiungo la persona alla scuola
                 scuola.addPersonaleATA(personaleATA);
