@@ -15,7 +15,12 @@ public class Test {
         //variabile utilizzata per il ciclo dell'aggiunta del personale ata
         int aggiungiATA;
         //variabile utilizzata per il ciclo dell'aggiunta delle mansioni del personale ata
-        int aggiungiMansione;
+        int aggiungiMansioni;
+        //variabile utilizzata per il ciclo dell'aggiunta degli studenti
+        int aggiungiStudenti;
+        //variabile utilizzata per il ciclo dell'aggiunta degli insegnanti
+        int aggiungiInsegnanti;
+
         //varibili utilizzate per passare parametri agli oggetti di tipo Persone (e classi che ereditano i suoi attributi)
         String nome, cognome, email, codFiscale, numCell;
         //variabile che contiene stipendio all'ora del lavoratore scolastico
@@ -36,10 +41,20 @@ public class Test {
             nomeScuola = JOptionPane.showInputDialog(null, "Inserire il nome della scuola", "Nome scuola", JOptionPane.QUESTION_MESSAGE);
             //chiedo il codice meccanografico della scuola
             codiceMeccanografico = JOptionPane.showInputDialog(null, "Inserire il codice meccanografico della scuola", "Inserisci codice meccanografico", JOptionPane.QUESTION_MESSAGE);
+            //creo oggetto scuola
+            Scuola scuola = new Scuola(null, null, codiceMeccanografico, nomeScuola);
             //ciclo per aggiungere classi
             do{
+                //chiedo nome della classe (numero + sezione)
+                nome = JOptionPane.showInputDialog(null, "Inserire il nome della classe, formato da un numero seguito dalla sezione, senza spazi", "Aggiungi nome", JOptionPane.QUESTION_MESSAGE);
+                Classe classe = new Classe(null, null, nome);
+                //ciclo per aggiungere studenti alla classe
+                do{
+
+                }
 
 
+                //chiedo se ci sono altre classi da aggiungere
                 aggiungiClassi = JOptionPane.showConfirmDialog(null, "Ci sono altre classi da aggiungere alla scuola?", "Aggiungi classi", JOptionPane.YES_NO_OPTION);
             }while(aggiungiClassi == JOptionPane.YES_OPTION);
             //ciclo per aggiungere personale ata
@@ -70,14 +85,18 @@ public class Test {
                             JOptionPane.showMessageDialog(null, "ERRORE! Mansione già presente!", "Errore", JOptionPane.ERROR_MESSAGE);
                         }
                     }while(mansioneOK == false);
-                    aggiungiMansione = JOptionPane.showConfirmDialog(null, "Ci sono altre mansioni da aggiungere a " + personaleATA.getNome() + " " + personaleATA.getCognome() + "?", "Aggiungi mansioni", JOptionPane.YES_NO_OPTION);
-                }while(aggiungiMansione == JOptionPane.YES_OPTION);
+                    //chiedo se ci sono altre mansioni da aggiungere
+                    aggiungiMansioni = JOptionPane.showConfirmDialog(null, "Ci sono altre mansioni da aggiungere a " + personaleATA.getNome() + " " + personaleATA.getCognome() + "?", "Aggiungi mansioni", JOptionPane.YES_NO_OPTION);
+                }while(aggiungiMansioni == JOptionPane.YES_OPTION);
+                //aggiungo la persona alla scuola
+                scuola.addPersonaleATA(personaleATA);
+                //chiedo se ci sono altre persone del personale ata
                 aggiungiATA = JOptionPane.showConfirmDialog(null, "Ci sono altre persone che fanno parte del Personale ATA da aggiungere?", "Aggiungi Personale ATA", JOptionPane.YES_NO_OPTION);
             }while(aggiungiATA == JOptionPane.YES_OPTION);
 
 
 
-            Scuola scuola = new Scuola(null, null, codiceMeccanografico, nomeScuola);
+            
             //chiedo se l'utente vuole aggiungere altre scuole
             aggiungiScuole = JOptionPane.showConfirmDialog(null, "Vuoi aggiungere un'altra scuola?", "Aggiungi scuola", JOptionPane.YES_NO_OPTION);
         }while(aggiungiScuole == JOptionPane.YES_OPTION);
