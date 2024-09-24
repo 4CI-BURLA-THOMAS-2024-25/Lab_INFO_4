@@ -99,6 +99,7 @@ public class Test {
                             JOptionPane.showMessageDialog(null, "ERRORE! Numero di matricola non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                         }
                     }while(matricola <= 0);
+                    Studente studente = new Studente(nomeScuola, cognome, email, codFiscale, numCell, matricola);
                     //chiedo se ci sono altri studenti da aggiungere alla classe
                     aggiungiStudenti = JOptionPane.showConfirmDialog(null, "Ci sono altri studenti da aggiungere alla classe?", "Aggiungi studente", JOptionPane.YES_NO_OPTION);
                 }while(aggiungiStudenti == JOptionPane.YES_OPTION);
