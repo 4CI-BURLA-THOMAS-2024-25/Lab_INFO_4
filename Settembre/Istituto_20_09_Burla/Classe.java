@@ -36,11 +36,24 @@ public class Classe{
             this.nome = nome;
         }
     }
-    //aggiungi studente
-    public void addStudente(Studente studente){
+    //aggiungi studente, controllando che non sia già presente
+    public boolean addStudente(Studente studente){
+        boolean esiste = false;
+        int i = 0;
+        Studente studenteCerca = null;
         if(studente != null){
+            while((esiste == false) && (i < this.studenti.size())){
+                studenteCerca = this.studenti.get(i);
+                if((studenteCerca.getNome() + studenteCerca.getCognome()).equalsIgnoreCase(studente.getNome() + studente.getCognome())){
+                    esiste = true;
+                    return false;
+                }
+                i++;
+            }
             this.studenti.add(studente);
+            return true;
         }
+        return false;
     }
     //get studente come oggetto, dati nome e cognome
     public Studente getStudente(String nome){
