@@ -102,11 +102,24 @@ public class Classe{
     public int getNumeroStudenti(){
         return this.studenti.size();
     }
-    //aggiungi insegnante
-    public void addInsegnante(Insegnante insegnante){
+    //aggiungi insegnante, controllando che non sia già presente
+    public boolean addInsegnante(Insegnante insegnante){
+        boolean esiste = false;
+        int j = 0;
+        Insegnante insegnanteCerca = null;
         if(insegnante != null){
+            while((esiste == false) && (j < this.insegnanti.size())){
+                insegnanteCerca = this.insegnanti.get(j);
+                if((insegnanteCerca.getNome() + insegnanteCerca.getCognome()).equalsIgnoreCase(insegnante.getNome() + insegnante.getCognome())){
+                    esiste = true;
+                    return false;
+                }
+                j++;
+            }
             this.insegnanti.add(insegnante);
+            return true;
         }
+        return false;
     }
     //get insegnante come oggetto, dati nome e cognome
     public Insegnante getInsegnate(String nome){
