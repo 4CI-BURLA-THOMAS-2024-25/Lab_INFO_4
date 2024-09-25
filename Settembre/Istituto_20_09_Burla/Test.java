@@ -14,6 +14,8 @@ public class Test {
         boolean scuolaTrovata;
         int c;
         Scuola scuolaCerca;
+        //variabile per tornare al menu
+        int menu = JOptionPane.YES_OPTION;
         //variabile utilizzata per il ciclo della visualizzazione delle info delle scuole
         int visualizzaScuole;
         //variabile utilizzata per il ciclo dell'aggiunta scuole
@@ -34,6 +36,8 @@ public class Test {
         double stipendio;
         //variabile per verificare che l'aggiunta della mansione sia andata a buon fine
         boolean mansioneOK;
+        //variabile per verificare che l'aggiunta del personale ata alla scuola sia andata a buon fine
+        boolean personaleATAOK;
         //piano su cui lavora la persona del personale ata
         int piano;
         //matricola dello studente da aggiungere alla classe
@@ -49,19 +53,31 @@ public class Test {
         String nomeScuola;
         //arraylist che contiene tutte le scuole da gestire
         ArrayList <Scuola> scuole = new ArrayList <Scuola> ();
-        //chiedo se l'utente vuole aggiungere scuole oppure visualizzare quelle già inserite
-        opzione = Integer.parseInt(JOptionPane.showInputDialog(null, "BENVENUTO! Con questo programma potrai creare e gestire un elenco di scuole. Digita: \n1 per inserire una nuova scuola; \n2 per visualizzare le informazioni di una scuola già esistente ", "Opzione", JOptionPane.PLAIN_MESSAGE));
-        //chiedo all'utente di digitare un numero a seconda dell'opzione desiderata e riepto la domanda se digitato un numero non valido
+        //chiedo all'utente di digitare un numero a seconda dell'opzione desiderata e ripeto la domanda se digitato un numero non valido
         do{
+            //chiedo se l'utente vuole aggiungere scuole oppure visualizzare quelle già inserite
+            opzione = Integer.parseInt(JOptionPane.showInputDialog(null, "BENVENUTO! Con questo programma potrai creare e gestire un elenco di scuole. Digita: \n1 per inserire una nuova scuola; \n2 per visualizzare le informazioni di una scuola già esistente ", "Opzione", JOptionPane.PLAIN_MESSAGE));
             //menu di scelta
             switch(opzione){
                 case 1:{
                     //ciclo per aggiungere scuole all'elenco finchè l'utente lo deisdera
                     do{
-                        //chiedo il nome della scuola
-                        nomeScuola = JOptionPane.showInputDialog(null, "Inserire il nome della scuola", "Nome scuola", JOptionPane.QUESTION_MESSAGE);
-                        //chiedo il codice meccanografico della scuola
-                        codiceMeccanografico = JOptionPane.showInputDialog(null, "Inserire il codice meccanografico della scuola", "Inserisci codice meccanografico", JOptionPane.QUESTION_MESSAGE);
+                        //chiedo il nome della scuola e lo controllo
+                        do{
+                            nomeScuola = JOptionPane.showInputDialog(null, "Inserire il nome della scuola", "Nome scuola", JOptionPane.QUESTION_MESSAGE);
+                            //messaggio di errore
+                            if((nomeScuola == null) || (nomeScuola.equalsIgnoreCase(" "))){
+                                JOptionPane.showMessageDialog(null, "ERRORE! Nome della scuola non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }while((nomeScuola == null) || (nomeScuola.equalsIgnoreCase(" ")));
+                        //chiedo il codice meccanografico della scuola e lo controllo
+                        do{
+                            codiceMeccanografico = JOptionPane.showInputDialog(null, "Inserire il codice meccanografico della scuola", "Inserisci codice meccanografico", JOptionPane.QUESTION_MESSAGE);
+                            //messaggio di errore
+                            if((codiceMeccanografico == null) || (codiceMeccanografico.equalsIgnoreCase(" "))){
+                                JOptionPane.showMessageDialog(null, "ERRORE! Codice meccanografico della scuola non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }while((codiceMeccanografico == null) || (codiceMeccanografico.equalsIgnoreCase(" ")));
                         //creo oggetto scuola
                         Scuola scuola = new Scuola(null, null, codiceMeccanografico, nomeScuola);
                         //ciclo per aggiungere classi
@@ -206,79 +222,90 @@ public class Test {
                         }while(aggiungiClassi == JOptionPane.YES_OPTION);
                         //ciclo per aggiungere personale ata
                         do{
-                            //chiedo nome della persona e lo controllo
+                            //ciclo per gestire l'aggiunta di personale ata già presente in lista
                             do{
-                                nome = JOptionPane.showInputDialog(null, "Inserire il nome della persona facente parte del gruppo Personale ATA", "Aggiungi nome", JOptionPane.QUESTION_MESSAGE);
-                                //messaggio di errore
-                                if((nome == null) || (nome.equalsIgnoreCase(" "))){
-                                    JOptionPane.showMessageDialog(null, "ERRORE! Nome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
-                                }
-                            }while((nome == null) || (nome.equalsIgnoreCase(" ")));
-                            //chiedo cognome della persona e lo controllo
-                            do{
-                                cognome = JOptionPane.showInputDialog(null, "Inserire il cognome della persona", "Aggiungi cognome", JOptionPane.QUESTION_MESSAGE);
-                                //messaggio di errore
-                                if((cognome == null) || (cognome.equalsIgnoreCase(" "))){
-                                    JOptionPane.showMessageDialog(null, "ERRORE! Cognome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
-                                }
-                            }while((cognome == null) || (cognome.equalsIgnoreCase(" ")));
-                            //chiedo email della persona e la controllo
-                            do{
-                                email = JOptionPane.showInputDialog(null, "Inserire email della persona", "Aggiungi email", JOptionPane.QUESTION_MESSAGE);
-                                //messaggio di errore
-                                if((email == null) || (email.equalsIgnoreCase(" "))){
-                                    JOptionPane.showMessageDialog(null, "ERRORE! Email non valida", "Errore", JOptionPane.ERROR_MESSAGE);
-                                }
-                            }while((email == null) || (email.equalsIgnoreCase(" ")));
-                            //chiedo codice fiscale della persona e lo "controllo"
-                            do{
-                                codFiscale = JOptionPane.showInputDialog(null, "Inserire il codice fiscale della persona", "Aggiungi codice fiscale", JOptionPane.QUESTION_MESSAGE);
-                                //messaggio di errore
-                                if((codFiscale == null) || (codFiscale.equalsIgnoreCase(" "))){
-                                    JOptionPane.showMessageDialog(null, "ERRORE! Codice fiscale non valido", "Errore", JOptionPane.ERROR_MESSAGE);
-                                }
-                            }while((codFiscale == null) || (codFiscale.equalsIgnoreCase(" ")));
-                            //chiedo numero di cellulare della persona e lo controllo
-                            do{
-                                numCell = JOptionPane.showInputDialog(null, "Inserire il numero di telefono della persona", "Aggiungi numero di telefono", JOptionPane.QUESTION_MESSAGE);
-                                //messaggio di errore
-                                if((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000"))){
-                                    JOptionPane.showMessageDialog(null, "ERRORE! Numero di telefono non valido", "Errore", JOptionPane.ERROR_MESSAGE);
-                                }
-                            }while((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000")));
-                            //chiedo stipendio della persona e lo controllo
-                            do{
-                                stipendio = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire lo stipendio all'ora della persona", "Aggiungi stipendio orario", JOptionPane.QUESTION_MESSAGE));
-                                //messaggio di errore
-                                if(stipendio <= 0.0){
-                                    JOptionPane.showMessageDialog(null, "ERRORE! Stipendio non valido", "Errore", JOptionPane.ERROR_MESSAGE);
-                                }
-                            }while(stipendio <= 0.0);
-                            //chiedo il piano in cui lavora la persona
-                            piano = Integer.parseInt(JOptionPane.showInputDialog(null, "Inserire il piano dell'edificio in cui lavora la persona", "Aggiungi piano", JOptionPane.QUESTION_MESSAGE));
-                            //creo oggetto PersonaleATA
-                            PersonaleATA personaleATA = new PersonaleATA(nome, cognome, email, codFiscale, numCell, piano, stipendio, null);
-                            //ciclo per leggere le mansioni svolte
-                            do{
-                                //ciclo che richiede la mansione nel caso in cui sia già stata aggiunta in precedenza
+                                //chiedo nome della persona e lo controllo
                                 do{
-                                    mansioneOK = personaleATA.addMansione(JOptionPane.showInputDialog(null, "Inserire mansione svolta", "Aggiungi mansione", JOptionPane.QUESTION_MESSAGE));
+                                    nome = JOptionPane.showInputDialog(null, "Inserire il nome della persona facente parte del gruppo Personale ATA", "Aggiungi nome", JOptionPane.QUESTION_MESSAGE);
                                     //messaggio di errore
-                                    if(mansioneOK == false){
-                                        JOptionPane.showMessageDialog(null, "ERRORE! Mansione già presente!", "Errore", JOptionPane.ERROR_MESSAGE);
+                                    if((nome == null) || (nome.equalsIgnoreCase(" "))){
+                                        JOptionPane.showMessageDialog(null, "ERRORE! Nome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                                     }
-                                }while(mansioneOK == false);
-                                //chiedo se ci sono altre mansioni da aggiungere
-                                aggiungiMansioni = JOptionPane.showConfirmDialog(null, "Ci sono altre mansioni da aggiungere a " + personaleATA.getNome() + " " + personaleATA.getCognome() + "?", "Aggiungi mansione", JOptionPane.YES_NO_OPTION);
-                            }while(aggiungiMansioni == JOptionPane.YES_OPTION);
-                            //aggiungo la persona alla scuola
-                            scuola.addPersonaleATA(personaleATA);
+                                }while((nome == null) || (nome.equalsIgnoreCase(" ")));
+                                //chiedo cognome della persona e lo controllo
+                                do{
+                                    cognome = JOptionPane.showInputDialog(null, "Inserire il cognome della persona", "Aggiungi cognome", JOptionPane.QUESTION_MESSAGE);
+                                    //messaggio di errore
+                                    if((cognome == null) || (cognome.equalsIgnoreCase(" "))){
+                                        JOptionPane.showMessageDialog(null, "ERRORE! Cognome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                }while((cognome == null) || (cognome.equalsIgnoreCase(" ")));
+                                //chiedo email della persona e la controllo
+                                do{
+                                    email = JOptionPane.showInputDialog(null, "Inserire email della persona", "Aggiungi email", JOptionPane.QUESTION_MESSAGE);
+                                    //messaggio di errore
+                                    if((email == null) || (email.equalsIgnoreCase(" "))){
+                                        JOptionPane.showMessageDialog(null, "ERRORE! Email non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                }while((email == null) || (email.equalsIgnoreCase(" ")));
+                                //chiedo codice fiscale della persona e lo "controllo"
+                                do{
+                                    codFiscale = JOptionPane.showInputDialog(null, "Inserire il codice fiscale della persona", "Aggiungi codice fiscale", JOptionPane.QUESTION_MESSAGE);
+                                    //messaggio di errore
+                                    if((codFiscale == null) || (codFiscale.equalsIgnoreCase(" "))){
+                                        JOptionPane.showMessageDialog(null, "ERRORE! Codice fiscale non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                }while((codFiscale == null) || (codFiscale.equalsIgnoreCase(" ")));
+                                //chiedo numero di cellulare della persona e lo controllo
+                                do{
+                                    numCell = JOptionPane.showInputDialog(null, "Inserire il numero di telefono della persona", "Aggiungi numero di telefono", JOptionPane.QUESTION_MESSAGE);
+                                    //messaggio di errore
+                                    if((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000"))){
+                                        JOptionPane.showMessageDialog(null, "ERRORE! Numero di telefono non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                }while((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000")));
+                                //chiedo stipendio della persona e lo controllo
+                                do{
+                                    stipendio = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire lo stipendio all'ora della persona", "Aggiungi stipendio orario", JOptionPane.QUESTION_MESSAGE));
+                                    //messaggio di errore
+                                    if(stipendio <= 0.0){
+                                        JOptionPane.showMessageDialog(null, "ERRORE! Stipendio non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                }while(stipendio <= 0.0);
+                                //chiedo il piano in cui lavora la persona
+                                piano = Integer.parseInt(JOptionPane.showInputDialog(null, "Inserire il piano dell'edificio in cui lavora la persona", "Aggiungi piano", JOptionPane.QUESTION_MESSAGE));
+                                //creo oggetto PersonaleATA
+                                PersonaleATA personaleATA = new PersonaleATA(nome, cognome, email, codFiscale, numCell, piano, stipendio, null);
+                                //ciclo per leggere le mansioni svolte
+                                do{
+                                    //ciclo che richiede la mansione nel caso in cui sia già stata aggiunta in precedenza
+                                    do{
+                                        mansioneOK = personaleATA.addMansione(JOptionPane.showInputDialog(null, "Inserire mansione svolta", "Aggiungi mansione", JOptionPane.QUESTION_MESSAGE));
+                                        //messaggio di errore
+                                        if(mansioneOK == false){
+                                            JOptionPane.showMessageDialog(null, "ERRORE! Mansione già presente!", "Errore", JOptionPane.ERROR_MESSAGE);
+                                        }
+                                    }while(mansioneOK == false);
+                                    //chiedo se ci sono altre mansioni da aggiungere
+                                    aggiungiMansioni = JOptionPane.showConfirmDialog(null, "Ci sono altre mansioni da aggiungere a " + personaleATA.getNome() + " " + personaleATA.getCognome() + "?", "Aggiungi mansione", JOptionPane.YES_NO_OPTION);
+                                }while(aggiungiMansioni == JOptionPane.YES_OPTION);
+                                //aggiungo la persona alla scuola
+                                personaleATAOK = scuola.addPersonaleATA(personaleATA);
+                                //messaggio di errore
+                                if(personaleATAOK == false){
+                                    JOptionPane.showMessageDialog(null, "ERRORE! Persona già inserita nella lista", "Errore", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }while(personaleATAOK == false);
                             //chiedo se ci sono altre persone del personale ata
                             aggiungiATA = JOptionPane.showConfirmDialog(null, "Ci sono altre persone che fanno parte del Personale ATA da aggiungere?", "Aggiungi Personale ATA", JOptionPane.YES_NO_OPTION);
                         }while(aggiungiATA == JOptionPane.YES_OPTION);
+                        //aggiungo scuola all'elenco di scuole
+                        scuole.add(scuola);
                         //chiedo se l'utente vuole aggiungere altre scuole
                         aggiungiScuole = JOptionPane.showConfirmDialog(null, "Vuoi aggiungere un'altra scuola?", "Aggiungi scuola", JOptionPane.YES_NO_OPTION);
                     }while(aggiungiScuole == JOptionPane.YES_OPTION);
+                    //chiedo se l'utente vuole tornare al menù
+                    menu = JOptionPane.showConfirmDialog(null, "Tornare al menù?", "Torna al menù", JOptionPane.YES_NO_OPTION);
                     break;
                 }
                 case 2:{
@@ -288,8 +315,8 @@ public class Test {
                         scuolaTrovata = false;
                         c = 0;
                         scuolaCerca = null;
-                        //inizializzo la variabile con lo stesso valore dato in return dalla finestra della JOptionPane nel caso in cui l'utente digitasse si: in questo modo, se non si trova una scuola corrispondente al codice indicato, anche la variabile sottoscritta garantisce la richiesta di un altro codice
-                        visualizzaScuole = 0;
+                        //inizializzo la variabile in modo tale da non ripetere la domanda per la ricerca. Se l'utente vuole cercare un'altra scuola, lo potrà fare solo se la prima scuola cercata è presente in lista. In questo modo, in caso di scuola cercata non presente, sarà rimandato al menù principale per poterla aggiungere
+                        visualizzaScuole = JOptionPane.NO_OPTION;
                         //chiedo codice meccanografico della scuola da cercare
                         codiceMeccanografico = JOptionPane.showInputDialog(null, "Inserire il codice meccanografico della scuola da cercare tra quelle aggiunte", "Cerca scuola", JOptionPane.PLAIN_MESSAGE);
                         //ciclo per trovare la scuola corrispondente, dato il codice meccanografico fornito
@@ -316,13 +343,15 @@ public class Test {
                             //messaggio di scuola non trovata
                             JOptionPane.showMessageDialog(null, "Scuola non trovata...cercare un'altra scuola oppure inserirla tramite l'opzione 1 del programma", "Info", JOptionPane.ERROR_MESSAGE);
                         }
-                    }while((scuolaTrovata == false) || (visualizzaScuole == JOptionPane.YES_OPTION));
+                    }while(visualizzaScuole == JOptionPane.YES_OPTION);
+                    //chiedo se l'utente vuole tornare al menù
+                    menu = JOptionPane.showConfirmDialog(null, "Tornare al menù?", "Torna al menù", JOptionPane.YES_NO_OPTION);
                     break;
                 }
                 default:{
                     JOptionPane.showMessageDialog(null, "ERRORE! Opzione non valida", "Errore", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        }while((opzione != 1) && (opzione != 2));
+        }while((opzione != 1) && (opzione != 2) || (menu == JOptionPane.YES_OPTION));
     }    
 }
