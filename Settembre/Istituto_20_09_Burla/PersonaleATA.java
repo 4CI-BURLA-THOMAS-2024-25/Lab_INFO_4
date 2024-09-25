@@ -170,7 +170,7 @@ public class PersonaleATA extends Persona{
         out += ", la sua email è: |" + this.email;
         out += "|, il suo numero di cellulare è: |" + this.numCell;
         out += "|, il suo codice fiscale è: |" + this.codFiscale;
-        out += "|, il suo stipendio all'ora è di " + this.stipendio + "euro";
+        out += "|, il suo stipendio all'ora è di " + this.stipendio + " euro";
         out += ", le è stato assegnato il piano numero " + this.piano;
         out += " e svolge le seguenti mansioni:";
         for(int i = 0; i < this.mansioni.size(); i++){
