@@ -188,7 +188,7 @@ public class Classe{
             out += "\n" + (i + 1) + ". " + studente.toString();
         }
         out += "\nNella classe vi sono inoltre i seguenti insegnanti:";
-        for(int j = 0; j < this.studenti.size(); j++){
+        for(int j = 0; j < this.insegnanti.size(); j++){
             insegnante = this.insegnanti.get(j);
             out += "\n" + (j + 1) + ". " + insegnante.toString();
         }
