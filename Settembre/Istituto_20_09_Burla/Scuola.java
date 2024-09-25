@@ -184,6 +184,7 @@ public class Scuola {
         PersonaleATA personaleATA2 = null;
         String out = "Nella scuola " + this.nome + " ci sono le seguenti classi con i relativi studenti e insegnanti:";
         for(int i = 0; i < this.classi.size(); i++){
+            out += "\n--------------------------------------------------------------------------------";
             classe = this.classi.get(i);
             out += "\n" + classe.toString();
         }
