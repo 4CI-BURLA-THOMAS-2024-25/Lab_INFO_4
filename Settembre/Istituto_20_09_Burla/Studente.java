@@ -101,7 +101,7 @@ public class Studente extends Persona{
         out += ", la sua email è: |" + this.email;
         out += "|, il suo numero di cellulare è: |" + this.numCell;
         out += "|, il suo codice fiscale è: |" + this.codFiscale;
-        out += "|, la sua matricola è: |" + this.matricola + "|.";
+        out += "| e la sua matricola è: |" + this.matricola + "|.";
         return out;
     }
 }
