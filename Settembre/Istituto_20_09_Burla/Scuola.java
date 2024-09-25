@@ -105,7 +105,18 @@ public class Scuola {
     }
     //aggiungi personale ata
     public boolean addPersonaleATA(PersonaleATA personaleATA){
+        PersonaleATA personaleATACerca = null;
+        int p = 0;
+        boolean esiste = false;
         if(personaleATA != null){
+            while((esiste == false) && (p < this.personaleATA.size())){
+                personaleATACerca = this.personaleATA.get(p);
+                if((personaleATACerca.getNome() + personaleATACerca.getCognome()).equalsIgnoreCase(personaleATA.getNome() + personaleATA.getCognome())){
+                    esiste = true;
+                    return false;
+                }
+                p++;
+            }
             this.personaleATA.add(personaleATA);
             return true;
         }
