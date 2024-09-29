@@ -1,0 +1,17 @@
+Nella scuola ITIS Marconi VR ci sono le seguenti classi con i relativi studenti e insegnanti:
+--------------------------------------------------------------------------------
+Nella classe 4CI ci sono i seguenti studenti:
+1. Lo/a studente/ssa si chiama Thomas Burla, la sua email è: |thomas@outlook.it|, il suo numero di cellulare è: |3804983275|, il suo codice fiscale è: |BURLATHOMAS| e la sua matricola è: |20164|.
+2. Lo/a studente/ssa si chiama Alessio Rossi, la sua email è: |ale@gmail.com|, il suo numero di cellulare è: |365256958|, il suo codice fiscale è: |ROSSIALESSIO| e la sua matricola è: |19563|.
+Nella classe vi sono inoltre i seguenti insegnanti:
+1. La persona si chiama Cinzia Marchesini, la sua email è: |cinzia@marconiverona.edu.it|, il suo numero di cellulare è: |3256548555|, il suo codice fiscale è: |MARCHESINICINZIA|, insegna la disciplina Informatica, il suo stipendio all'ora è di 5.99euroe insegna nelle seguenti classi:
+2. La persona si chiama Andrea Pizzeghella, la sua email è: |andrea@marconiverona.edu.it|, il suo numero di cellulare è: |3028569563|, il suo codice fiscale è: |PIZZEGHELLAANDREA|, insegna la disciplina Matematica, il suo stipendio all'ora è di 8.99euroe insegna nelle seguenti classi:
+In tutto, vi sono quindi 2 studenti e 2 insegnanti.
+--------------------------------------------------------------------------------
+Nella classe 2IL ci sono i seguenti studenti:
+1. Lo/a studente/ssa si chiama Leonardo Basile, la sua email è: |leonardo@gmail.com|, il suo numero di cellulare è: |3562569566|, il suo codice fiscale è: |BASILELEONARDO| e la sua matricola è: |20136|.
+Nella classe vi sono inoltre i seguenti insegnanti:
+1. La persona si chiama Elettra Lamborghini, la sua email è: |elettra@hotmail.com|, il suo numero di cellulare è: |3691042566|, il suo codice fiscale è: |LAMBORGHINIELETTRA|, insegna la disciplina Canto, il suo stipendio all'ora è di 12.99euroe insegna nelle seguenti classi:
+In tutto, vi sono quindi 1 studenti e 1 insegnanti.
+Inoltre, vi sono le seguenti persone che fanno parte del Personale ATA:
+La persona si chiama Alessandra Rossi, la sua email è: |alessandra@gmail.com|, il suo numero di cellulare è: |3569569988|, il suo codice fiscale è: |ROSSIALESSANDRA|, il suo stipendio all'ora è di 1.99 euro, le è stato assegnato il piano numero 0 e svolge le seguenti mansioni: bidella.
