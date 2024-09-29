@@ -72,7 +72,7 @@ public class Main{
             //chiedo all'utente di digitare un numero a seconda dell'opzione desiderata e ripeto la domanda se digitato un numero non valido
             do{
                 //chiedo se l'utente vuole aggiungere scuole oppure visualizzare quelle già inserite
-                opzione = Integer.parseInt(JOptionPane.showInputDialog(null, "BENVENUTO! Con questo programma potrai creare e gestire un elenco di scuole. Digita: \n1 per inserire una nuova scuola; \n2 per visualizzare le informazioni di una scuola gia� esistente ", "Opzione", JOptionPane.PLAIN_MESSAGE));
+                opzione = Integer.parseInt(JOptionPane.showInputDialog(null, "BENVENUTO! Con questo programma potrai creare e gestire un elenco di scuole. Digita: \n1 per inserire una nuova scuola; \n2 per visualizzare le informazioni di una scuola gia esistente ", "Opzione", JOptionPane.PLAIN_MESSAGE));
                 //menu di scelta
                 switch(opzione){
                     case 1:{
@@ -158,19 +158,19 @@ public class Main{
                                         do{
                                             //ciclo che chiede la materia e la controlla
                                             do{
-                                                materia = JOptionPane.showInputDialog(null, "Inserire la materia del voto che si vuole agiungere allo studente", "Aggiungi materia", JOptionPane.QUESTION_MESSAGE);
-                                                if((materia != null) && (!(materia.equalsIgnoreCase(""))) && (!(materia.equalsIgnoreCase(" ")))){
+                                                materia = JOptionPane.showInputDialog(null, "Inserire la materia del voto che si vuole aggiungere allo studente", "Aggiungi materia", JOptionPane.QUESTION_MESSAGE);
+                                                if((materia == null) || (materia.equalsIgnoreCase("")) || (materia.equalsIgnoreCase(" "))){
                                                     JOptionPane.showMessageDialog(null, "ERRORE! Voto gia presente", "Errore", JOptionPane.ERROR_MESSAGE);
                                                 }
-                                            }while((materia != null) && (!(materia.equalsIgnoreCase(""))) && (!(materia.equalsIgnoreCase(" "))));
+                                            }while((materia == null) || (materia.equalsIgnoreCase("")) || (materia.equalsIgnoreCase(" ")));
                                             //ciclo che chiede il valore del voto e lo controlla
                                             do{
                                                 valore = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire il valore del voto, in decimi, compreso tra 1 e 10" , "Aggiungi valore del voto voto", JOptionPane.QUESTION_MESSAGE));
                                                 //messaggio di errore
-                                                if((valore < 1) && (valore > 10)){
+                                                if((valore < 1) || (valore > 10)){
                                                     JOptionPane.showMessageDialog(null, "ERRORE! Valore non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                                                 }
-                                            }while((valore < 1) && (valore > 10));
+                                            }while((valore < 1) || (valore > 10));
                                             //ciclo che chiede la data del voto e la controlla
                                             do{
                                                 //chiedo giorno
