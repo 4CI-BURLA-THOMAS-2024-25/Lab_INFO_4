@@ -182,8 +182,8 @@ public class Insegnante extends Persona{
         out += "|, il suo numero di cellulare è: |" + this.numCell;
         out += "|, il suo codice fiscale è: |" + this.codFiscale;
         out += "|, insegna la disciplina " + this.corso;
-        out += ", il suo stipendio all'ora è di " + this.stipendio + "euro";
-        out += "e insegna nelle seguenti classi:";
+        out += ", il suo stipendio all'ora è di " + this.stipendio + " euro";
+        out += " e insegna nelle seguenti classi:";
         for(int i = 0; i < this.classi.size(); i++){
             classe = this.classi.get(i);
             out += " " + classe.getNome();

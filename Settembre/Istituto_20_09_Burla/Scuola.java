@@ -199,6 +199,7 @@ public class Scuola {
             classe = this.classi.get(i);
             out += "\n" + classe.toString();
         }
+        out += "\n--------------------------------------------------------------------------------";
         out += "\nInoltre, vi sono le seguenti persone che fanno parte del Personale ATA:";
         for(int t = 0; t < this.personaleATA.size(); t++){
             personaleATA2 = this.personaleATA.get(t);
