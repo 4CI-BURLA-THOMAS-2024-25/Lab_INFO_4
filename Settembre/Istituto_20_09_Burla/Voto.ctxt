@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Voto
+comment0.text=\r\n\ classe\ Voto\:\r\n\ \ \ \ -voto\r\n\ \ \ \ -materia\r\n\ \r\n\ @author\ Thomas\ Burla\ \r\n\ @version\ 1.0\r\n
+comment1.params=
+comment1.target=Voto()
+comment2.params=materia\ valore\ giorno\ mese\ anno
+comment2.target=Voto(java.lang.String,\ double,\ int,\ int,\ int)
+comment3.params=materia
+comment3.target=boolean\ setMateria(java.lang.String)
+comment4.params=
+comment4.target=java.lang.String\ getMateria()
+comment5.params=valore
+comment5.target=boolean\ setValore(double)
+comment6.params=
+comment6.target=double\ getValore()
+comment7.params=giorno\ mese\ anno
+comment7.target=boolean\ setData(int,\ int,\ int)
+comment8.params=
+comment8.target=int[]\ getData()
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=10

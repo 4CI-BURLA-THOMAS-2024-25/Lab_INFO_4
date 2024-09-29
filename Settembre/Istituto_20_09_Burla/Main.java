@@ -7,7 +7,7 @@
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.io.*;
-public class Test {
+public class Main{
     public static void main(String args[]){
         try{
             //variabile utilizzata dal menu di scelta iniziale
@@ -44,6 +44,12 @@ public class Test {
             int piano;
             //matricola dello studente da aggiungere alla classe
             int matricola;
+            //variabili di un voto da aggiungere allo student
+            String materia;
+            double valore;
+            int giorno, mese,anno;
+            //variabile per verificare che l'aggiunta del voto sia andata a buon fine
+            boolean votoOK;
             //variabile per verificare che l'aggiunta dello studente alla classe sia andata a buon fine
             boolean studenteOK;
             //disciplina insegnata dall'insegnante
@@ -62,7 +68,7 @@ public class Test {
             //chiedo all'utente di digitare un numero a seconda dell'opzione desiderata e ripeto la domanda se digitato un numero non valido
             do{
                 //chiedo se l'utente vuole aggiungere scuole oppure visualizzare quelle già inserite
-                opzione = Integer.parseInt(JOptionPane.showInputDialog(null, "BENVENUTO! Con questo programma potrai creare e gestire un elenco di scuole. Digita: \n1 per inserire una nuova scuola; \n2 per visualizzare le informazioni di una scuola già esistente ", "Opzione", JOptionPane.PLAIN_MESSAGE));
+                opzione = Integer.parseInt(JOptionPane.showInputDialog(null, "BENVENUTO! Con questo programma potrai creare e gestire un elenco di scuole. Digita: \n1 per inserire una nuova scuola; \n2 per visualizzare le informazioni di una scuola gia� esistente ", "Opzione", JOptionPane.PLAIN_MESSAGE));
                 //menu di scelta
                 switch(opzione){
                     case 1:{
@@ -140,6 +146,25 @@ public class Test {
                                             JOptionPane.showMessageDialog(null, "ERRORE! Numero di matricola non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                                         }
                                     }while(matricola <= 0);
+                                    //ciclo per leggere i voti di uno studente
+                                    do{
+                                        //ciclo che richiede il voto finche l'utente desidera inserirne
+                                        do{
+                                            //ciclo che richiede il voto nel caso in cui non fosse valido
+                                            do{
+                                                materia = JOptionPane.showInputDialog(null, "Inserire la materia del voto che si vuole agiungere allo studente", "Aggiungi materia", JOptionPane.QUESTION_MESSAGE);
+                                                if((materia != null) && (!(materia.equalsIgnoreCase(""))) && (!(materia.equalsIgnoreCase(" ")))){
+                                                    JOptionPane.showMessageDialog(null, "ERRORE! Voto gia presente", "Errore", JOptionPane.ERROR_MESSAGE);
+                                                }
+                                            }while((materia != null) && (!(materia.equalsIgnoreCase(""))) && (!(materia.equalsIgnoreCase(" "))));
+                                            
+                                            votoOK = studente.addVoto(voto);
+                                            //messaggio di errore
+                                            if(votoOK == false){
+                                                JOptionPane.showMessageDialog(null, "ERRORE! Voto già presente!", "Errore", JOptionPane.ERROR_MESSAGE);
+                                            }
+                                        }while(votoOK == false);
+                                    }while();
                                     //creo studente e assegno i valori alle variabili d'istanza
                                     Studente studente = new Studente(nome, cognome, email, codFiscale, numCell, matricola);
                                     //aggiugno studente alla classe
@@ -319,7 +344,7 @@ public class Test {
                             aggiungiScuole = JOptionPane.showConfirmDialog(null, "Vuoi aggiungere un'altra scuola?", "Aggiungi scuola", JOptionPane.YES_NO_OPTION);
                         }while(aggiungiScuole == JOptionPane.YES_OPTION);
                         //chiedo se l'utente vuole tornare al menù
-                        menu = JOptionPane.showConfirmDialog(null, "Tornare al menù?", "Torna al menù", JOptionPane.YES_NO_OPTION);
+                        menu = JOptionPane.showConfirmDialog(null, "Tornare al menu?", "Torna al menu", JOptionPane.YES_NO_OPTION);
                         break;
                     }
                     case 2:{
@@ -359,7 +384,7 @@ public class Test {
                             }
                         }while(visualizzaScuole == JOptionPane.YES_OPTION);
                         //chiedo se l'utente vuole tornare al menù
-                        menu = JOptionPane.showConfirmDialog(null, "Tornare al menù?", "Torna al menù", JOptionPane.YES_NO_OPTION);
+                        menu = JOptionPane.showConfirmDialog(null, "Tornare al menu?", "Torna al menu", JOptionPane.YES_NO_OPTION);
                         break;
                     }
                     default:{

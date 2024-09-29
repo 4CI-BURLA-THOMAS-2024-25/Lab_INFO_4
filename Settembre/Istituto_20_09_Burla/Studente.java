@@ -6,21 +6,28 @@
  * @author Thomas Burla
  * @version 1.0
  */
+import java.util.ArrayList;
 public class Studente extends Persona{
     //variabili d'istanza
     private int matricola;
+    private ArrayList <Voto> voti;
     //costruttore senza parametri
     public Studente(){
         super();
         this.matricola = 0;
+        this.voti =new ArrayList <Voto> ();
     }
     //costruttore con parametri
-    public Studente(String nome, String cognome, String email, String codFiscale, String numCell, int matricola){
+    public Studente(String nome, String cognome, String email, String codFiscale, String numCell, int matricola, Voto voto){
         //variabili classe persona
         super(nome, cognome, email, codFiscale, numCell);
         //matricola
         if(matricola > 0){
             this.matricola = matricola;
+        }
+        //voto
+        if((voto != null) && (voto.getValore() > 0)){
+            this.voti.add(voto);
         }
     }
     //set nome
@@ -94,6 +101,53 @@ public class Studente extends Persona{
     //get matricola
     public int getMatricola(){
         return this.matricola;
+    }
+    //add voto
+    public boolean addVoto(Voto voto){
+        Voto votoCerca =null;
+        boolean esiste =  false;
+        int v = 0;
+        if(voto != null){
+            while((esiste == false) && (v < this.voti.size())){
+                votoCerca = this.voti.get(v);
+                if(((votoCerca.getMateria()).equalsIgnoreCase(voto.getMateria())) && (votoCerca.getValore() == voto.getValore()) && (votoCerca.getData()[0] == voto.getData()[0]) && (votoCerca.getData()[1] == voto.getData()[1]) && (votoCerca.getData()[2] == voto.getData()[2])){
+                    esiste = true;
+                    return false;
+                }
+                v++;
+            }
+            this.voti.add(voto);
+            return true;
+        }
+        return false;
+    }
+    //get voto come oggetto Voto
+    public Voto getVoto(String materia, double valore, int giorno, int mese, int anno){
+        boolean trovato = true;
+        int v = 0;
+        Voto voto = null;
+        while((trovato == false) && (v < this.voti.size())){
+            voto = this.voti.get(v);
+            if((voto.getMateria()).equalsIgnoreCase(materia) && (voto.getValore() == valore) && (voto.getData()[0] == giorno) && (voto.getData()[1] == mese) && (voto.getData()[2] == anno)){
+                trovato = true;
+                return voto;
+            }
+        }
+        return null;
+    }
+    //get voto come stringa
+    public String getVotoStringa(String materia, double valore, int giorno, int mese, int anno){
+        boolean trovato = true;
+        int v = 0;
+        Voto voto = null;
+        while((trovato == false) && (v < this.voti.size())){
+            voto = this.voti.get(v);
+            if((voto.getMateria()).equalsIgnoreCase(materia) && (voto.getValore() == valore) && (voto.getData()[0] == giorno) && (voto.getData()[1] == mese) && (voto.getData()[2] == anno)){
+                trovato = true;
+                return voto.toString();
+            }
+        }
+        return "Nessun voto corrispondente alle informazioni fornite";
     }
     //toString
     public String toString(){

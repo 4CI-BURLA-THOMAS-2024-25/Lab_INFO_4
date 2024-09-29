@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=ControlloData
+comment0.text=\r\n\ classe\ che\ controlla\ l'ammissibilit\u00E0\ di\ una\ data\r\n\ \r\n\ @author\ Thomas\ Burla\ \r\n\ @version\ 1.0\r\n
+comment1.params=
+comment1.target=ControlloData()
+comment2.params=giorno\ mese\ anno
+comment2.target=ControlloData(int,\ int,\ int)
+comment3.params=giorno
+comment3.target=boolean\ setGiorno(int)
+comment4.params=
+comment4.target=int\ getGiorno()
+comment5.params=mese
+comment5.target=boolean\ setMese(int)
+comment6.params=
+comment6.target=int\ getMese()
+comment7.params=anno
+comment7.target=boolean\ setAnno(int)
+comment8.params=
+comment8.target=int\ getAnno()
+comment9.params=
+comment9.target=boolean\ controllaData()
+numComments=10
