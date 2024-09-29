@@ -32,6 +32,8 @@ public class Main{
             int aggiungiStudenti;
             //variabile utilizzata per il ciclo dell'aggiunta degli insegnanti
             int aggiungiInsegnanti;
+            //variabile utilizzata per il ciclo dell'aggiunta dei voti ad unoi studente
+            int aggiungiVoti;
             //varibili utilizzate per passare parametri agli oggetti di tipo Persone (e classi che ereditano i suoi attributi)
             String nome, cognome, email, codFiscale, numCell;
             //variabile che contiene stipendio all'ora del lavoratore scolastico
@@ -48,6 +50,8 @@ public class Main{
             String materia;
             double valore;
             int giorno, mese,anno;
+            //variabile utilizzata per il controllo della data
+            boolean dataOK;
             //variabile per verificare che l'aggiunta del voto sia andata a buon fine
             boolean votoOK;
             //variabile per verificare che l'aggiunta dello studente alla classe sia andata a buon fine
@@ -146,27 +150,53 @@ public class Main{
                                             JOptionPane.showMessageDialog(null, "ERRORE! Numero di matricola non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                                         }
                                     }while(matricola <= 0);
+                                    //creo studente e assegno i valori alle variabili d'istanza
+                                    Studente studente = new Studente(nome, cognome, email, codFiscale, numCell, matricola, null);
                                     //ciclo per leggere i voti di uno studente
                                     do{
                                         //ciclo che richiede il voto finche l'utente desidera inserirne
                                         do{
-                                            //ciclo che richiede il voto nel caso in cui non fosse valido
+                                            //ciclo che chiede la materia e la controlla
                                             do{
                                                 materia = JOptionPane.showInputDialog(null, "Inserire la materia del voto che si vuole agiungere allo studente", "Aggiungi materia", JOptionPane.QUESTION_MESSAGE);
                                                 if((materia != null) && (!(materia.equalsIgnoreCase(""))) && (!(materia.equalsIgnoreCase(" ")))){
                                                     JOptionPane.showMessageDialog(null, "ERRORE! Voto gia presente", "Errore", JOptionPane.ERROR_MESSAGE);
                                                 }
                                             }while((materia != null) && (!(materia.equalsIgnoreCase(""))) && (!(materia.equalsIgnoreCase(" "))));
-                                            
+                                            //ciclo che chiede il valore del voto e lo controlla
+                                            do{
+                                                valore = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire il valore del voto, in decimi, compreso tra 1 e 10" , "Aggiungi valore del voto voto", JOptionPane.QUESTION_MESSAGE));
+                                                //messaggio di errore
+                                                if((valore < 1) && (valore > 10)){
+                                                    JOptionPane.showMessageDialog(null, "ERRORE! Valore non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                                                }
+                                            }while((valore < 1) && (valore > 10));
+                                            //ciclo che chiede la data del voto e la controlla
+                                            do{
+                                                //chiedo giorno
+                                                giorno = Integer.parseInt(JOptionPane.showInputDialog(null, "Inserire il giorno in cui è stato registrato il voto", "Registra giorno", JOptionPane.QUESTION_MESSAGE));
+                                                //chiedo mese
+                                                mese = Integer.parseInt(JOptionPane.showInputDialog(null, "Inserire il mese in cui è stato registrato il voto", "Registra mese", JOptionPane.QUESTION_MESSAGE));
+                                                //chiedo anno
+                                                anno = Integer.parseInt(JOptionPane.showInputDialog(null, "Inserire l'anno in cui è stato registrato il voto", "Registra anno", JOptionPane.QUESTION_MESSAGE));
+                                                //controllo data
+                                                ControlloData controllodata = new ControlloData(giorno, mese, anno);
+                                                dataOK = controllodata.controllaData();
+                                                //messaggio di errore
+                                                if(dataOK == false){
+                                                    JOptionPane.showMessageDialog(null, "ERRORE! Data non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+                                                }
+                                            }while(dataOK == false);
+                                            Voto voto = new Voto(materia, valore, giorno, mese, anno);
                                             votoOK = studente.addVoto(voto);
                                             //messaggio di errore
                                             if(votoOK == false){
                                                 JOptionPane.showMessageDialog(null, "ERRORE! Voto già presente!", "Errore", JOptionPane.ERROR_MESSAGE);
                                             }
                                         }while(votoOK == false);
-                                    }while();
-                                    //creo studente e assegno i valori alle variabili d'istanza
-                                    Studente studente = new Studente(nome, cognome, email, codFiscale, numCell, matricola);
+                                        //chiedo all'utente se vuole aggiungere altri voti
+                                        aggiungiVoti = JOptionPane.showConfirmDialog(null, "Aggiungere altri voti allo studente?", "Aggiungi voto", JOptionPane.YES_NO_OPTION);
+                                    }while(aggiungiVoti == JOptionPane.YES_OPTION);
                                     //aggiugno studente alla classe
                                     do{
                                         studenteOK = classe.addStudente(studente);
@@ -335,7 +365,7 @@ public class Main{
                             //creo file di scrittura, se non esiste già
                             if(f.createNewFile() == true){
                                 //messaggio di creazione file
-                                JOptionPane.showMessageDialog(null, "Sto creando il file su cui salvare i dati della scuola...", "Creao file", JOptionPane.WARNING_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Sto creando il file su cui salvare i dati della scuola...", "Creo file", JOptionPane.WARNING_MESSAGE);
                             }
                             //scrivo su file
                             salvoScuola.println(scuola.toString());

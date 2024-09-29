@@ -1,5 +1,5 @@
 /**
- * classe che controlla l'ammissibilità di una data
+ * classe che controlla l'ammissibilita di una data
  * 
  * @author Thomas Burla 
  * @version 1.0
@@ -16,50 +16,29 @@ public class ControlloData{
     }
     //costruttore con parametri
     public ControlloData(int giorno, int mese, int anno){
-        //controllo che il giorno sia maggiore di 0
-        if(giorno > 0){
-            this.giorno = giorno;
-        }
-        //controllo che il mese sia compreso tra 1 e 12
-        if((mese > 0) || (mese <= 12)){
-            this.mese = mese;
-        }
-        //controllo che l'anno non sia negativo
-        if(anno >= 0){
-            this.anno = anno;
-        }
+        this.giorno = giorno;
+        this.mese = mese;
+        this.anno = anno;
     }
     //set giorno
-    public boolean setGiorno(int giorno){
-        if(giorno > 0){
-            this.giorno =giorno;
-            return true;
-        }
-        return false;
+    public void setGiorno(int giorno){
+      this.giorno = giorno;
     }
     //get giorno
     public int getGiorno(){
         return this.giorno;
     }
     //set mese
-    public boolean setMese(int mese){
-        if((mese > 0) || (mese <= 12)){
-            this.mese = mese;
-            return true;
-        }
-        return false;
+    public void setMese(int mese){
+      this.mese = mese;
     }
     //get mese
     public int getMese(){
         return this.mese;
     }
     //set anno
-    public boolean setAnno(int anno){
-        if(anno > 0){
-            this.anno = anno;
-            return true;
-        }
-        return false;
+    public void setAnno(int anno){
+      this.anno = anno;
     }
     //get anno
     public int getAnno(){

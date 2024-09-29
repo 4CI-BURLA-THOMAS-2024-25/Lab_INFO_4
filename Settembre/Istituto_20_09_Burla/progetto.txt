@@ -1,0 +1,21 @@
+Implementare il progetto Progetto_Istituto_26_09_Cognome
+
+Classe padre Persona
+
+Classi figlie
+
+Studente, Docente, Ata
+
+Classe Classe con la sezione, una lista di alunni e una lista di insegnanti
+
+Implementare la classe Voto con attributi il voto e la materia
+
+Implementare la classe Scuola con il nome, codice lista di classi
+
+Implementare la classe Main contenente il main che crea l'istituto Marconi, con la classe 4Ci contenete gli alunni, letti da un file di testo, i professori, file di testo, chiede i voti di un alunno letto in input e visualizza i voti più alti, visualizza tutti gli alunni della classe
+
+link utili
+
+https://www.html.it/articoli/creazione-eliminazione-lettura-e-scrittura-di-file-di-testo/
+
+https://www.html.it/pag/51352/ereditarieta-in-java/

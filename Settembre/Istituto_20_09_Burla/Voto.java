@@ -85,7 +85,7 @@ public class Voto{
     public String toString(){
         String out = "Il voto relativo alla disciplina " + this.materia;
         out += ", risalente alla data " + this.giorno + "/" + this.mese + "/" + this.anno;
-        out += "è: " + this.valore;
+        out += "e: " + this.valore;
         return out;
     }
 }

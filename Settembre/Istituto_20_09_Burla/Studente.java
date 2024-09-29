@@ -15,7 +15,7 @@ public class Studente extends Persona{
     public Studente(){
         super();
         this.matricola = 0;
-        this.voti =new ArrayList <Voto> ();
+        this.voti = new ArrayList <Voto> ();
     }
     //costruttore con parametri
     public Studente(String nome, String cognome, String email, String codFiscale, String numCell, int matricola, Voto voto){
@@ -26,7 +26,8 @@ public class Studente extends Persona{
             this.matricola = matricola;
         }
         //voto
-        if((voto != null) && (voto.getValore() > 0)){
+        this.voti = new ArrayList <Voto> ();
+        if((voto != null) && (voto.getValore() >= 1) && (voto.getValore() <= 10)){
             this.voti.add(voto);
         }
     }
@@ -107,7 +108,7 @@ public class Studente extends Persona{
         Voto votoCerca =null;
         boolean esiste =  false;
         int v = 0;
-        if(voto != null){
+        if((voto != null)  && (voto.getValore() >= 1) && (voto.getValore() <= 10)){
             while((esiste == false) && (v < this.voti.size())){
                 votoCerca = this.voti.get(v);
                 if(((votoCerca.getMateria()).equalsIgnoreCase(voto.getMateria())) && (votoCerca.getValore() == voto.getValore()) && (votoCerca.getData()[0] == voto.getData()[0]) && (votoCerca.getData()[1] == voto.getData()[1]) && (votoCerca.getData()[2] == voto.getData()[2])){
