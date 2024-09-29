@@ -125,7 +125,17 @@ public class Insegnante extends Persona{
     }
     //assegna nuova classe
     public boolean addClasse(String classe){
+        boolean trovato = false;
+        String classeCerca = null;
+        int i = 0;
         if((classe != null) && (!(classe.equalsIgnoreCase(" "))) && (!(classe.equalsIgnoreCase("")))){
+            while((trovato == false) && (i < this.classi.size())){
+                classeCerca = this.classi.get(i);
+                if(classeCerca.equalsIgnoreCase(classe)){
+                    trovato = true;
+                    return false;
+                }
+            }
             this.classi.add(classe.toUpperCase());
             return true;
         }
