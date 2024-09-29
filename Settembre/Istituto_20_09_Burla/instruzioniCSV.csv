@@ -1,0 +1,27 @@
+Scuola;;;;;;;
+<nomeScuola>;<codiceMeccanografico>;;;;;;
+;Classi;;;;;;
+;<nomeClasse(numero+sezione)>;;;;;;
+;;Studenti;;;;;
+;;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<matricola>
+;;;Voti;<materia>;<valoreVoto>;<data, nella forma gg/mm/aaaa>;
+;;;;…;…;…;…
+;;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<matricola>
+;;;Voti;<materia>;<valoreVoto>;<data, nella forma gg/mm/aaaa>;
+;;;…;…;…;…;…
+;;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<matricola>
+;;;Voti;<materia>;<valoreVoto>;<data, nella forma gg/mm/aaaa>;
+;;;…;…;…;…;…
+;;…;…;…;…;…;…
+;;Insegnanti;;;;;
+;;<nome>;<cognome>;<email>;<codiceFiscale>;<numeroCellulare>;
+;;<nome>;<cognome>;<email>;<codiceFiscale>;<numeroCellulare>;
+;;…;…;…;…;…;…
+;<nomeClasse(numero+sezione)>;;;;;;
+;;…;…;…;…;…;…
+;PersonaleATA;;;;;;
+;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<stipendio/h>;<piano>
+;;mansioni;…;…;…;;
+;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<stipendio/h>;<piano>
+;;mansioni;…;…;…;;
+;…;…;…;…;…;…;…
