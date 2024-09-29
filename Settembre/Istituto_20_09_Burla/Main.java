@@ -2,9 +2,9 @@
  * classe Test, main
  * 
  * @author Thomas Burla
- * @version 1.0
+ * @version 2.0
  */
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.JOptionPane;
 import java.io.*;
 public class Main{
@@ -58,6 +58,14 @@ public class Main{
             boolean studenteOK;
             //disciplina insegnata dall'insegnante
             String corso;
+            //lista degli insegnanti
+            ArrayList <Insegnante> insegnanti = new ArrayList <Insegnante> ();
+            //creo oggetto insegnate, che assegnero alla Classe dopo aver verificato che non sia già stato creato
+            Insegnante insegnante;
+            //variabili per verifica se un'insegnante è già stato inserito
+            boolean esisteInsegnante;
+            int ins;
+            Insegnante insegnanteCerca;
             //variabile per verificare che l'aggiunta dell'insegnante alla classe sia andata a buon fine
             boolean insegnanteOK;
             //variabili scuola
@@ -67,12 +75,16 @@ public class Main{
             File f = new File("scuole.txt");
             FileWriter fw = new FileWriter(f, true);
             PrintWriter salvoScuola = new PrintWriter(fw);
+            //nome del file da cui leggere le info sula scuola
+            String pathLeggo;
+            //separatore file csv di lettura
+            String separatore;
             //arraylist che contiene tutte le scuole da gestire
             ArrayList <Scuola> scuole = new ArrayList <Scuola> ();
             //chiedo all'utente di digitare un numero a seconda dell'opzione desiderata e ripeto la domanda se digitato un numero non valido
             do{
                 //chiedo se l'utente vuole aggiungere scuole oppure visualizzare quelle già inserite
-                opzione = Integer.parseInt(JOptionPane.showInputDialog(null, "BENVENUTO! Con questo programma potrai creare e gestire un elenco di scuole. Digita: \n1 per inserire una nuova scuola; \n2 per visualizzare le informazioni di una scuola gia esistente ", "Opzione", JOptionPane.PLAIN_MESSAGE));
+                opzione = Integer.parseInt(JOptionPane.showInputDialog(null, "BENVENUTO! Con questo programma potrai creare e gestire un elenco di scuole. Digita: \n1 per inserire una nuova scuola manualmente; \n2 per inserire una nuova scuola fornendo un file CSV correttamente formattato (vedi istruzioniCSV.csv); \n3 per visualizzare le informazioni di una scuola gia esistente;", "Opzione", JOptionPane.PLAIN_MESSAGE));
                 //menu di scelta
                 switch(opzione){
                     case 1:{
@@ -225,47 +237,67 @@ public class Main{
                                             JOptionPane.showMessageDialog(null, "ERRORE! Cognome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
                                         }
                                     }while((cognome == null) || (cognome.equalsIgnoreCase(" ")));
-                                    //chiedo email dell'insegnante e la controllo
-                                    do{
-                                        email = JOptionPane.showInputDialog(null, "Inserire email dell'insegnante", "Aggiungi email", JOptionPane.QUESTION_MESSAGE);
-                                        //messaggio di errore
-                                        if((email == null) || (email.equalsIgnoreCase(" "))){
-                                            JOptionPane.showMessageDialog(null, "ERRORE! Email non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+                                    //controllo se l'insegnate è già stato inserito per altre classi
+                                    esisteInsegnante = false;
+                                    insegnanteCerca =  null;
+                                    ins = 0;
+                                    //ciclo che cerca tra gli insegnanti già inseriti
+                                    while((esisteInsegnante == false) && (ins < insegnanti.size())){
+                                        insegnanteCerca = insegnanti.get(ins);
+                                        if((insegnanteCerca.getNome().equalsIgnoreCase(nome)) && (insegnanteCerca.getCognome().equalsIgnoreCase(cognome))){
+                                            esisteInsegnante = true;
+                                        }else{  
+                                            ins++;
                                         }
-                                    }while((email == null) || (email.equalsIgnoreCase(" ")));
-                                    //chiedo codice fiscale dell'insegnante e lo "controllo"
-                                    do{
-                                        codFiscale = JOptionPane.showInputDialog(null, "Inserire il codice fiscale dell'insegnante", "Aggiungi codice fiscale", JOptionPane.QUESTION_MESSAGE);
-                                        //messaggio di errore
-                                        if((codFiscale == null) || (codFiscale.equalsIgnoreCase(" "))){
-                                            JOptionPane.showMessageDialog(null, "ERRORE! Codice fiscale non valido", "Errore", JOptionPane.ERROR_MESSAGE);
-                                        }
-                                    }while((codFiscale == null) || (codFiscale.equalsIgnoreCase(" ")));
-                                    //chiedo numero di cellulare dell'insegnante e lo controllo
-                                    do{
-                                        numCell = JOptionPane.showInputDialog(null, "Inserire il numero di telefono dell'insegnante", "Aggiungi numero di telefono", JOptionPane.QUESTION_MESSAGE);
-                                        //messaggio di errore
-                                        if((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000"))){
-                                            JOptionPane.showMessageDialog(null, "ERRORE! Numero di telefono non valido", "Errore", JOptionPane.ERROR_MESSAGE);
-                                        }
-                                    }while((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000")));
-                                    //chiedo la disciplina insegnata e la controllo
-                                    do{
-                                        corso = JOptionPane.showInputDialog(null, "Inserire la disciplina innsegnata", "Aggiungi disciplina", JOptionPane.QUESTION_MESSAGE);
-                                        if((corso == null) || (corso.equalsIgnoreCase(" "))){
-                                            JOptionPane.showMessageDialog(null, "ERRORE! Disciplina non valida", "Errore", JOptionPane.ERROR_MESSAGE);
-                                        }
-                                    }while((corso == null) || (corso.equalsIgnoreCase(" ")));
-                                    //chiedo stipendio dell'insegnante e lo controllo
-                                    do{
-                                        stipendio = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire lo stipendio all'ora dell'insegnante", "Aggiungi stipendio orario", JOptionPane.QUESTION_MESSAGE));
-                                        //messaggio di errore
-                                        if(stipendio <= 0.0){
-                                            JOptionPane.showMessageDialog(null, "ERRORE! Stipendio non valido", "Errore", JOptionPane.ERROR_MESSAGE);
-                                        }
-                                    }while(stipendio <= 0.0);
-                                    //creo insegnante e assegno i valori alle variabili d'istanza
-                                    Insegnante insegnante = new Insegnante(nome, cognome, email, codFiscale, numCell, corso, stipendio, null);
+                                    }
+                                    //se l'insegnante esiste gia, aggiungo la classe al suo elenco classi
+                                    if(esisteInsegnante == true){
+                                        insegnante = insegnanti.get((ins));
+                                        insegnante.addClasse(classe.getNome());
+                                    //se l'insegnnate non esiste ancora, chiedo tutte le sue info
+                                    }else{
+                                        //chiedo email dell'insegnante e la controllo
+                                        do{
+                                            email = JOptionPane.showInputDialog(null, "Inserire email dell'insegnante", "Aggiungi email", JOptionPane.QUESTION_MESSAGE);
+                                            //messaggio di errore
+                                            if((email == null) || (email.equalsIgnoreCase(" "))){
+                                                JOptionPane.showMessageDialog(null, "ERRORE! Email non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+                                            }
+                                        }while((email == null) || (email.equalsIgnoreCase(" ")));
+                                        //chiedo codice fiscale dell'insegnante e lo "controllo"
+                                        do{
+                                            codFiscale = JOptionPane.showInputDialog(null, "Inserire il codice fiscale dell'insegnante", "Aggiungi codice fiscale", JOptionPane.QUESTION_MESSAGE);
+                                            //messaggio di errore
+                                            if((codFiscale == null) || (codFiscale.equalsIgnoreCase(" "))){
+                                                JOptionPane.showMessageDialog(null, "ERRORE! Codice fiscale non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                                            }
+                                        }while((codFiscale == null) || (codFiscale.equalsIgnoreCase(" ")));
+                                        //chiedo numero di cellulare dell'insegnante e lo controllo
+                                        do{
+                                            numCell = JOptionPane.showInputDialog(null, "Inserire il numero di telefono dell'insegnante", "Aggiungi numero di telefono", JOptionPane.QUESTION_MESSAGE);
+                                            //messaggio di errore
+                                            if((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000"))){
+                                                JOptionPane.showMessageDialog(null, "ERRORE! Numero di telefono non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                                            }
+                                        }while((numCell == null) || (numCell.equalsIgnoreCase(" ")) || (numCell.equalsIgnoreCase("0000000000")));
+                                        //chiedo la disciplina insegnata e la controllo
+                                        do{
+                                            corso = JOptionPane.showInputDialog(null, "Inserire la disciplina innsegnata", "Aggiungi disciplina", JOptionPane.QUESTION_MESSAGE);
+                                            if((corso == null) || (corso.equalsIgnoreCase(" "))){
+                                                JOptionPane.showMessageDialog(null, "ERRORE! Disciplina non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+                                            }
+                                        }while((corso == null) || (corso.equalsIgnoreCase(" ")));
+                                        //chiedo stipendio dell'insegnante e lo controllo
+                                        do{
+                                            stipendio = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire lo stipendio all'ora dell'insegnante", "Aggiungi stipendio orario", JOptionPane.QUESTION_MESSAGE));
+                                            //messaggio di errore
+                                            if(stipendio <= 0.0){
+                                                JOptionPane.showMessageDialog(null, "ERRORE! Stipendio non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                                            }
+                                        }while(stipendio <= 0.0);
+                                        //creo insegnante e assegno i valori alle variabili d'istanza
+                                        insegnante = new Insegnante(nome, cognome, email, codFiscale, numCell, corso, stipendio, classe.getNome());
+                                    }
                                     //aggiugno insegnante alla classe
                                     do{
                                         insegnanteOK = classe.addInsegnante(insegnante);
@@ -378,6 +410,39 @@ public class Main{
                         break;
                     }
                     case 2:{
+                        //chiedo il nome del file e lo controllo
+                        do{
+                            pathLeggo = JOptionPane.showInputDialog(null, "Inserire il nome del file da cui leggere le info sulla scuola. NOTA BENE: Il file deve ssere nella stessa directory del programma", "Percorso file", JOptionPane.PLAIN_MESSAGE);
+                            //messaggio di errore
+                            if((pathLeggo == null) || (pathLeggo.equalsIgnoreCase(" ")) || (pathLeggo.equalsIgnoreCase(""))){
+                                JOptionPane.showMessageDialog(null, "ERRORE! Nome non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }while((pathLeggo == null) || (pathLeggo.equalsIgnoreCase(" ")) || (pathLeggo.equalsIgnoreCase("")));
+                        //chiedo quale separatore è stato utilizzato per il file csv da cui leggere
+                        do{
+                            separatore = JOptionPane.showInputDialog(null, "Inserire il separatore utilizzato nel file .csv da cui leggere le info sulla scuola", "Separatore file", JOptionPane.PLAIN_MESSAGE);
+                            //messaggio di errore
+                            if((separatore == null) || (separatore.equalsIgnoreCase(" ")) || (separatore.equalsIgnoreCase(""))){
+                                JOptionPane.showMessageDialog(null, "ERRORE! Separatore non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }while((separatore == null) || (separatore.equalsIgnoreCase(" ")) || (separatore.equalsIgnoreCase("")));
+                        //preparo file da cui leggere le info sulla scuola
+                        File f2 = new File(pathLeggo);
+                        //controllo se il file esiste
+                        if(f2.exists() == false){
+                            JOptionPane.showMessageDialog(null, "ERRORE! File NON presente", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                        FileReader fr = new FileReader(f2);
+                        Scanner leggoScuola = new Scanner(fr);
+                        //
+                        String leggoRiga[];
+                        //leggo file finche ci sono righe
+                        while(leggoScuola.hasNextLine()){
+                            leggoRiga = (leggoScuola.nextLine()).split(separatore);
+
+                        }
+                    }
+                    case 3:{
                         //cerco scuola finchè non si trova una scuola corrispondente al codice meccanografico fornito o finchè l'utente non esce dal ciclo tramite interfaccia grafica
                         do{
                             //inizializzo le variabili utilizzate per la ricerca della scuola tra quelle presenti in lista
