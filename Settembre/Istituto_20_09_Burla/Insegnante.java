@@ -5,22 +5,24 @@
     -Classi[]
     -stipendio
  * 
+ * @author Thomas Burla
+ * @version 2.0
  */
 import java.util.ArrayList;
 public class Insegnante extends Persona{
     //variabili d'istanza
     private String corso;
     private double stipendio;
-    private ArrayList <Classe> classi;
+    private ArrayList <String> classi;
     //costruttore senza parametri
     public Insegnante(){
         super();
         this.corso = "-";
         this.stipendio = 0.0;
-        this.classi = new ArrayList <Classe> ();
+        this.classi = new ArrayList <String> ();
     }
     //costruttore con parametri
-    public Insegnante(String nome, String cognome, String email, String codFiscale, String numCell, String corso, double stipendio, Classe classe){
+    public Insegnante(String nome, String cognome, String email, String codFiscale, String numCell, String corso, double stipendio, String classe){
         //variabili classe Persona
         super(nome, cognome, email, codFiscale, numCell);
         //corso
@@ -32,9 +34,9 @@ public class Insegnante extends Persona{
             this.stipendio = stipendio;
         }
         //classe
-        this.classi = new ArrayList <Classe> ();
-        if(classe != null){
-            this.classi.add(classe);
+        this.classi = new ArrayList <String> ();
+        if((classe != null) && (!(classe.equalsIgnoreCase(" "))) && (!(classe.equalsIgnoreCase("")))){
+            this.classi.add(classe.toUpperCase());
         }
     }
     //set nome
@@ -117,55 +119,37 @@ public class Insegnante extends Persona{
         }
         return false;
     }
+    //get stipendio
     public double getStipendio(){
         return this.stipendio;
     }
     //assegna nuova classe
-    public boolean addClasse(Classe classe){
-        if(classe != null){
-            this.classi.add(classe);
+    public boolean addClasse(String classe){
+        if((classe != null) && (!(classe.equalsIgnoreCase(" "))) && (!(classe.equalsIgnoreCase("")))){
+            this.classi.add(classe.toUpperCase());
             return true;
         }
         return false;
     }
-    //cerca classe tra quelle assegnate e ottieni info toString
-    public String getClasseStringa(String nome){
-        boolean trovato = false;
-        Classe classe = null;
-        int i = 0;
-        while((trovato == false) && (i < this.classi.size())){
-            classe = this.classi.get(i);
-            if((classe.getNome()).equalsIgnoreCase(nome)){
-                trovato = true;
-                return classe.toString();
+    //get classi
+    public String getClassi(){
+        String out = "";
+        for(int i  = 0; i < this.classi.size(); i++){
+            out += this.classi.get(i);
+            if(i < (this.classi.size() - 1)){
+                out += "; ";
             }
-            i++;
         }
-        return "Nessuna classe trovata";
-    }
-    //cerca classe e ottienila come oggetto
-    public Classe getClasse(String nome){
-        boolean trovato = false;
-        Classe classe = null;
-        int i = 0;
-        while((trovato == false) && (i < this.classi.size())){
-            classe = this.classi.get(i);
-            if((classe.getNome()).equalsIgnoreCase(nome)){
-                trovato = true;
-                return classe;
-            }
-            i++;
-        }
-        return null;
+        return out;
     }
     //rimuovi classe
     public boolean rimuoviClasse(String nome){
         boolean trovato = false;
-        Classe classe = null;
+        String classe = null;
         int i = 0;
         while((trovato == false) && (i < this.classi.size())){
             classe = this.classi.get(i);
-            if((classe.getNome()).equalsIgnoreCase(nome)){
+            if(classe.equalsIgnoreCase(nome)){
                 trovato = true;
                 this.classi.remove(i);
                 return true;
@@ -176,7 +160,6 @@ public class Insegnante extends Persona{
     }
     //toString
     public String toString(){
-        Classe classe = null;
         String out = "La persona si chiama " + this.nome + " " +  this.cognome;
         out += ", la sua email è: |" + this.email;
         out += "|, il suo numero di cellulare è: |" + this.numCell;
@@ -185,9 +168,11 @@ public class Insegnante extends Persona{
         out += ", il suo stipendio all'ora è di " + this.stipendio + " euro";
         out += " e insegna nelle seguenti classi:";
         for(int i = 0; i < this.classi.size(); i++){
-            classe = this.classi.get(i);
-            out += " " + classe.getNome();
-        }
-        return out;
-    }   
+            out += this.classi.get(i);
+            if(i < (this.classi.size() - 1)){
+                out += "; ";
+            }
+        } 
+        return out;  
+    }
 }
