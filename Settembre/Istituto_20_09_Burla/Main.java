@@ -79,6 +79,10 @@ public class Main{
             String pathLeggo;
             //separatore file csv di lettura
             String separatore;
+            //variabile che interrompe la lettura da file nel caso in cui si siano problemi 
+            boolean IOError;
+            //riga successiva del file
+            String leggoRiga[];
             //arraylist che contiene tutte le scuole da gestire
             ArrayList <Scuola> scuole = new ArrayList <Scuola> ();
             //chiedo all'utente di digitare un numero a seconda dell'opzione desiderata e ripeto la domanda se digitato un numero non valido
@@ -434,13 +438,21 @@ public class Main{
                         }
                         FileReader fr = new FileReader(f2);
                         Scanner leggoScuola = new Scanner(fr);
-                        //
-                        String leggoRiga[];
+                        //imposto l'errore a falso
+                        IOError = false;
                         //leggo file finche ci sono righe
                         while(leggoScuola.hasNextLine()){
                             leggoRiga = (leggoScuola.nextLine()).split(separatore);
+                            //se la riga ha più di una parola, procedo con l'assegnazione (se ha solo una parola è perchè quest'ultima fa da intestazione)
+                            if((leggoRiga.length > 1) && (IOError == false)){
+                                //leggo nome scuola
+                                nomeScuola = leggoRiga[0];
+                                //controllo se il nome della scuola è accettabile
+                            }
 
                         }
+
+                        break;
                     }
                     case 3:{
                         //cerco scuola finchè non si trova una scuola corrispondente al codice meccanografico fornito o finchè l'utente non esce dal ciclo tramite interfaccia grafica
