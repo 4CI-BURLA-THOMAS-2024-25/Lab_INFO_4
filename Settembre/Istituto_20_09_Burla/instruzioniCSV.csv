@@ -5,23 +5,27 @@ Scuola;;;;;;;
 ;;Studenti;;;;;
 ;;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<matricola>
 ;;;Voti;<materia>;<valoreVoto>;<data, nella forma gg/mm/aaaa>;
-;;;;…;…;…;…
+;;;;ï¿½;ï¿½;ï¿½;ï¿½
 ;;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<matricola>
 ;;;Voti;<materia>;<valoreVoto>;<data, nella forma gg/mm/aaaa>;
-;;;…;…;…;…;…
+;;;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½
 ;;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<matricola>
 ;;;Voti;<materia>;<valoreVoto>;<data, nella forma gg/mm/aaaa>;
-;;;…;…;…;…;…
-;;…;…;…;…;…;…
+;;;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½
+;;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½
 ;;Insegnanti;;;;;
 ;;<nome>;<cognome>;<email>;<codiceFiscale>;<numeroCellulare>;
 ;;<nome>;<cognome>;<email>;<codiceFiscale>;<numeroCellulare>;
-;;…;…;…;…;…;…
+;;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½
 ;<nomeClasse(numero+sezione)>;;;;;;
-;;…;…;…;…;…;…
+;;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½
 ;PersonaleATA;;;;;;
 ;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<stipendio/h>;<piano>
-;;mansioni;…;…;…;;
+;;mansioni;ï¿½;ï¿½;ï¿½;;
 ;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<stipendio/h>;<piano>
-;;mansioni;…;…;…;;
-;…;…;…;…;…;…;…
+;;mansioni;ï¿½;ï¿½;ï¿½;;
+;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½;ï¿½
+;;;;;;;
+Scuola;;;;;;;
+<nomeScuola>;<codiceMeccanografico>;;;;;;
+;â€¦;â€¦;â€¦;â€¦;;;
