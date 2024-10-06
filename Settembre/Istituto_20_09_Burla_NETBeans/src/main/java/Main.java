@@ -698,7 +698,7 @@ public class Main{
                                                                             //aggiungo insegnante alla lista insegnanti
                                                                             insegnanti.add(insegnante);
                                                                             //aggiugno la classe, se non vuota, alla scuola
-                                                                            if((classe.getNumeroInsegnanti () > 0) && (classe.getNumeroStudenti() > 0)){
+                                                                            if((classe.getNumeroInsegnanti() > 0) && (classe.getNumeroStudenti() > 0)){
                                                                                 //provo ad aggiungere la classe alla scuola; se già presente, laa rimuovo e la aggiorno
                                                                                 classeOK = scuola.addClasse(classe);
                                                                                 if(classeOK == false){
@@ -840,6 +840,8 @@ public class Main{
                         }
                         //aggiungo scuola alla lista delle scuole
                         scuole.add(scuola);
+                        //salvoScuola.println(scuola.toString());
+                        System.out.println(scuola.toString());
                         //messaggio di errore
                         if(IOError == true){
                             JOptionPane.showMessageDialog(null, "ERRORE! Parametri non validi", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -893,7 +895,7 @@ public class Main{
                         JOptionPane.showMessageDialog(null, "ERRORE! Opzione non valida", "Errore", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-            }while((opzione != 1) && (opzione != 2) || (menu == JOptionPane.YES_OPTION));
+            }while(((opzione != 1) && (opzione != 2) && (opzione != 3)) || (menu == JOptionPane.YES_OPTION));
             //chiudo file di scrittura
             salvoScuola.close();
         }catch(IOException e){
