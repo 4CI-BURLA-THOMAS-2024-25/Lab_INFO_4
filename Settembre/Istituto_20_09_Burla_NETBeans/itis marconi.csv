@@ -11,7 +11,7 @@ Classe;1IL;;;;;;
 Studente;Matteo;Bianchi;matteo@gmail.com;BIANCHIMATTEO;3265896322;18452;
 Voto;Telecomunicazioni;3;04/10/2024;;;;
 Insegnante;Daniela;Saturnino;daniela@gmail.com;SATURNINODANIELA;3745623254;Informatica;9.88
-PersonaleATA;Leonardo;Bianchi;leonardo@tim.it;BIANCHILEONARDO;3258963266;1,99;-1
+PersonaleATA;Leonardo;Bianchi;leonardo@tim.it;BIANCHILEONARDO;3258963266;1.99;-1
 mansione;spazzino;sorvegliante;;;;;
-PersonaleATA;Lorenzo;Esposito;leorenzo@gmail.com;ESPOSITOLORENZO;3014526988;7,63;0
+PersonaleATA;Lorenzo;Esposito;leorenzo@gmail.com;ESPOSITOLORENZO;3014526988;7.63;0
 mansione;sorvegliante;spazzino;;;;;
