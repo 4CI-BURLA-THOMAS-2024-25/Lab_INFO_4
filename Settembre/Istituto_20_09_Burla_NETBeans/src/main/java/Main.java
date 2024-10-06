@@ -302,6 +302,8 @@ public class Main{
                                         }while(stipendio <= 0.0);
                                         //creo insegnante e assegno i valori alle variabili d'istanza
                                         insegnante = new Insegnante(nome, cognome, email, codFiscale, numCell, corso, stipendio, classe.getNome());
+                                        //aggiungo insegnante alla lista degli insegnanti
+                                        insegnanti.add(insegnante);
                                     }
                                     //aggiugno insegnante alla classe
                                     do{
@@ -420,6 +422,7 @@ public class Main{
                         Classe classe = null;
                         Studente studente = null;
                         Voto voto = null;
+                        insegnante = null;
                         //chiedo il nome del file e lo controllo
                         do{
                             pathLeggo = JOptionPane.showInputDialog(null, "Inserire il nome del file da cui leggere le info sulla scuola. NOTA BENE: Il file deve ssere nella stessa directory del programma", "Percorso file", JOptionPane.PLAIN_MESSAGE);
@@ -592,6 +595,8 @@ public class Main{
                                                                     voto = new Voto(materia, valore, giorno, mese, anno);
                                                                     //assegno voto allo studente
                                                                     studente.addVoto(voto);
+                                                                    //aggiungo lo studente, completo, alla classe
+                                                                    classe.addStudente(studente);
                                                                 //data non valida
                                                                 }else{
                                                                     IOError = true;
@@ -623,6 +628,96 @@ public class Main{
                                     break;
                                 }
                                 case "insegnante":{
+                                    //controllo che siano stati forniti i parametri previsti
+                                    if(leggoRiga.length == 8){
+                                        //controllo primo parametro
+                                        if((leggoRiga[1] != null) && (!(leggoRiga[1].equalsIgnoreCase(" "))) && (!(leggoRiga[1].equalsIgnoreCase("")))){
+                                            nome = leggoRiga[1];
+                                            //controllo secondo parametro
+                                            if((leggoRiga[2] != null) && (!(leggoRiga[2].equalsIgnoreCase(" "))) && (!(leggoRiga[2].equalsIgnoreCase("")))){
+                                                cognome = leggoRiga[2];
+                                                //controllo se l'insegnate è già stato inserito per altre classi
+                                                esisteInsegnante = false;
+                                                insegnanteCerca =  null;
+                                                ins = 0;
+                                                //ciclo che cerca tra gli insegnanti già inseriti
+                                                while((esisteInsegnante == false) && (ins < insegnanti.size())){
+                                                    insegnanteCerca = insegnanti.get(ins);
+                                                    if((insegnanteCerca.getNome().equalsIgnoreCase(nome)) && (insegnanteCerca.getCognome().equalsIgnoreCase(cognome))){
+                                                        esisteInsegnante = true;
+                                                    }else{  
+                                                        ins++;
+                                                    }
+                                                }
+                                                //se l'insegnante esiste gia, aggiungo la classe al suo elenco classi
+                                                if(esisteInsegnante == true){
+                                                    insegnante = insegnanti.get((ins));
+                                                    insegnante.addClasse(classe.getNome());
+                                                //se l'insegnante non esiste ancora, leggo le sue info e lo creo
+                                                }else{
+                                                    //controllo terzo parametro
+                                                    if((leggoRiga[3] != null) && (!(leggoRiga[3].equalsIgnoreCase(" "))) && (!(leggoRiga[3].equalsIgnoreCase("")))){
+                                                        email = leggoRiga[3];
+                                                        //controllo quarto parametro
+                                                        if((leggoRiga[4] != null) && (!(leggoRiga[4].equalsIgnoreCase(" "))) && (!(leggoRiga[4].equalsIgnoreCase("")))){
+                                                            codFiscale = leggoRiga[4];
+                                                            //controllo quinto parametro
+                                                            if((leggoRiga[5] != null) && (!(leggoRiga[5].equalsIgnoreCase(" "))) && (!(leggoRiga[5].equalsIgnoreCase("")))){
+                                                                numCell = leggoRiga[5];
+                                                                //controllo sesto parametro
+                                                                if((leggoRiga[6] != null) && (!(leggoRiga[6].equalsIgnoreCase(" "))) && (!(leggoRiga[6].equalsIgnoreCase("")))){
+                                                                    corso = leggoRiga[6];
+                                                                    //controllo settimo parametro
+                                                                    if((leggoRiga[7] != null) && (!(leggoRiga[7].equalsIgnoreCase(" "))) && (!(leggoRiga[7].equalsIgnoreCase("")))){
+                                                                        //converto stipendio in double, se possibile
+                                                                        try{
+                                                                            stipendio = Double.parseDouble(leggoRiga[7]);
+                                                                            //inizializzo insegnante
+                                                                            insegnante = new Insegnante(nome, cognome, email, codFiscale, numCell, corso, stipendio, classe.getNome());
+                                                                            //aggiungo insegnante alla lista insegnanti
+                                                                            insegnanti.add(insegnante);
+                                                                        //conversione non possibile
+                                                                        }catch(NumberFormatException e){
+                                                                            IOError = true;
+                                                                        }
+                                                                    //parametro non valido
+                                                                    }else{
+                                                                        IOError = true;
+                                                                    }
+                                                                //parametro non valido
+                                                                }else{
+                                                                    IOError = true;
+                                                                }
+                                                            //parametro non valido
+                                                            }else{
+                                                                IOError = true;
+                                                            }
+                                                        //parametro non valido
+                                                        }else{
+                                                            IOError = true;
+                                                        }
+                                                    //parametro non valido
+                                                    }else{
+                                                        IOError = true;
+                                                    }
+                                                }
+                                                //aggiungo insegnante alla classe
+                                                classe.addInsegnante(insegnante);
+                                            //parametro non valido
+                                            }else{
+                                                IOError = true;
+                                            }
+                                        //parametro non valido
+                                        }else{
+                                            IOError = true;
+                                        }
+                                    //non sono stati forniti parametri a sufficienza
+                                    }else{
+                                        IOError = true;
+                                    }
+                                    break;
+                                }
+                                case "personaleata":{
                                     
                                     break;
                                 }
