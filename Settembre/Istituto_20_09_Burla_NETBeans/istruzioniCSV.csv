@@ -14,10 +14,7 @@ Insegnante;<nome>;<cognome>;<email>;<codiceFiscale>;<numeroCellulare>;<corso>;<s
 Insegnante;<nome>;<cognome>;<email>;<codiceFiscale>;<numeroCellulare>;<corso>;<stipendio>
 Insegnante;.;.;.;.;.;.;
 PersonaleATA;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<stipendio/h>;<piano>
-mansione;.;.;.;;;;
+mansioni;.;.;.;;;;
 PersonaleATA;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<stipendio/h>;<piano>
-mansione;.;.;.;.;.;;
+mansioni;.;.;.;.;.;;
 PersonaleATA;.;.;.;.;.;.;.
-;;;;;;;
-Scuola;<nomeScuola>;<codiceMeccanografico>;;;;;
-Classe;.;.;.;.;;;
