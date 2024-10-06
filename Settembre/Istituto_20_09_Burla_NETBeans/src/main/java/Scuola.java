@@ -9,13 +9,13 @@
 import java.util.ArrayList;
 public class Scuola {
     private ArrayList <Classe> classi;
-    private ArrayList <PersonaleATA> personaleATA;
+    private ArrayList <PersonaleATA> personaliATA;
     private String codice;
     private String nome;
     //costruttore senza parametri
     public Scuola(){
         this.classi = new ArrayList <Classe> ();
-        this.personaleATA = new ArrayList <PersonaleATA> ();
+        this.personaliATA = new ArrayList <PersonaleATA> ();
         this.codice = "-";
         this.nome = "-";
     }
@@ -23,14 +23,14 @@ public class Scuola {
     public Scuola(Classe classe, PersonaleATA personaleATA, String codice, String nome){
         //creo liste
         this.classi = new ArrayList <Classe> ();
-        this.personaleATA = new ArrayList <PersonaleATA> ();
+        this.personaliATA = new ArrayList <PersonaleATA> ();
         //classi
         if(classe != null){
             this.classi.add(classe);
         }
         //personale ata
         if(personaleATA != null){
-            this.personaleATA.add(personaleATA);
+            this.personaliATA.add(personaleATA);
         }
         //codice meccanografico
         if((codice != null) && (!(codice.equalsIgnoreCase(" ")))){
@@ -109,15 +109,15 @@ public class Scuola {
         int p = 0;
         boolean esiste = false;
         if(personaleATA != null){
-            while((esiste == false) && (p < this.personaleATA.size())){
-                personaleATACerca = this.personaleATA.get(p);
+            while((esiste == false) && (p < this.personaliATA.size())){
+                personaleATACerca = this.personaliATA.get(p);
                 if((personaleATACerca.getNome() + personaleATACerca.getCognome()).equalsIgnoreCase(personaleATA.getNome() + personaleATA.getCognome())){
                     esiste = true;
                     return false;
                 }
                 p++;
             }
-            this.personaleATA.add(personaleATA);
+            this.personaliATA.add(personaleATA);
             return true;
         }
         return false;
@@ -127,8 +127,8 @@ public class Scuola {
         boolean trovato = false;
         PersonaleATA personaleATA2 = null;
         int i = 0;
-        while((trovato == false) && (i < this.personaleATA.size())){
-            personaleATA2 = this.personaleATA.get(i);
+        while((trovato == false) && (i < this.personaliATA.size())){
+            personaleATA2 = this.personaliATA.get(i);
             if((personaleATA2.getNome() + " " + personaleATA2.getCognome()).equalsIgnoreCase(nome)){
                 trovato = true;
                 return personaleATA2.toString();
@@ -141,8 +141,8 @@ public class Scuola {
         boolean trovato = false;
         PersonaleATA personaleATA2 = null;
         int i = 0;
-        while((trovato == false) && (i < this.personaleATA.size())){
-            personaleATA2 = this.personaleATA.get(i);
+        while((trovato == false) && (i < this.personaliATA.size())){
+            personaleATA2 = this.personaliATA.get(i);
             if((personaleATA2.getNome() + " " + personaleATA2.getCognome()).equalsIgnoreCase(nome)){
                 trovato = true;
                 return personaleATA2;
@@ -155,11 +155,11 @@ public class Scuola {
         boolean trovato = false;
         PersonaleATA personaleATA2 = null;
         int i = 0;
-        while((trovato == false) && (i < this.personaleATA.size())){
-            personaleATA2 = this.personaleATA.get(i);
+        while((trovato == false) && (i < this.personaliATA.size())){
+            personaleATA2 = this.personaliATA.get(i);
             if((personaleATA2.getNome() + " " + personaleATA2.getCognome()).equalsIgnoreCase(nome)){
                 trovato = true;
-                this.personaleATA.remove(i);
+                this.personaliATA.remove(i);
                 return true;
             }
         }
@@ -201,8 +201,8 @@ public class Scuola {
         }
         out += "\n--------------------------------------------------------------------------------";
         out += "\nInoltre, vi sono le seguenti persone che fanno parte del Personale ATA:";
-        for(int t = 0; t < this.personaleATA.size(); t++){
-            personaleATA2 = this.personaleATA.get(t);
+        for(int t = 0; t < this.personaliATA.size(); t++){
+            personaleATA2 = this.personaliATA.get(t);
             out += "\n" + personaleATA2.toString();
         }
         return out;

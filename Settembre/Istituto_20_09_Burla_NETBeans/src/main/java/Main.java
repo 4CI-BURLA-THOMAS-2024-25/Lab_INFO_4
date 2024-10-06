@@ -409,7 +409,7 @@ public class Main{
                                 JOptionPane.showMessageDialog(null, "Sto creando il file su cui salvare i dati della scuola...", "Creo file", JOptionPane.WARNING_MESSAGE);
                             }
                             //scrivo su file
-                            salvoScuola.println(scuola.toString());
+                            salvoScuola.println(scuola.toString() + "\n");
                             salvoScuola.flush();
                             //chiedo se l'utente vuole aggiungere altre scuole
                             aggiungiScuole = JOptionPane.showConfirmDialog(null, "Vuoi aggiungere un'altra scuola?", "Aggiungi scuola", JOptionPane.YES_NO_OPTION);
@@ -470,7 +470,7 @@ public class Main{
                                                 //assegno codice meccanografico
                                                 codiceMeccanografico = leggoRiga[2];
                                                 //inizializzo scuola
-                                                scuola = new Scuola(null, null, nomeScuola, codiceMeccanografico);
+                                                scuola = new Scuola(null, null, codiceMeccanografico, nomeScuola);
                                             }else{
                                                 //parametro non valido
                                                 IOError = true;
@@ -823,7 +823,7 @@ public class Main{
                                 }
                                 case "mansioni":{
                                     //aggiungo al personaleata le mansioni
-                                    for(int m = 0; (m < leggoRiga.length) && (IOError == false); m++){
+                                    for(int m = 1; (m < leggoRiga.length) && (IOError == false); m++){
                                         //verifico mansione
                                         if((leggoRiga[m] != null) && (!(leggoRiga[m].equalsIgnoreCase(" "))) && (!(leggoRiga[m].equalsIgnoreCase("")))){
                                             //aggiungo mansione
@@ -835,12 +835,13 @@ public class Main{
                                     }
                                     //aggiungo personaleata alla scuola
                                     scuola.addPersonaleATA(personaleATA);
+                                    break;
                                 }
                             }
                         }
                         //aggiungo scuola alla lista delle scuole
                         scuole.add(scuola);
-                        salvoScuola.println(scuola.toString());
+                        salvoScuola.println(scuola.toString() + "\n");
                         salvoScuola.flush();
                         //messaggio di errore
                         if(IOError == true){
@@ -848,6 +849,8 @@ public class Main{
                         }
                         //chiudo file di scrittura
                         leggoScuola.close();
+                        //chiedo se l'utente vuole tornare al menù
+                        menu = JOptionPane.showConfirmDialog(null, "Tornare al menu?", "Torna al menu", JOptionPane.YES_NO_OPTION);
                         break;
                     }
                     case 3:{
