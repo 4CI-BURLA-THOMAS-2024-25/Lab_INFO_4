@@ -840,8 +840,8 @@ public class Main{
                         }
                         //aggiungo scuola alla lista delle scuole
                         scuole.add(scuola);
-                        //salvoScuola.println(scuola.toString());
-                        System.out.println(scuola.toString());
+                        salvoScuola.println(scuola.toString());
+                        salvoScuola.flush();
                         //messaggio di errore
                         if(IOError == true){
                             JOptionPane.showMessageDialog(null, "ERRORE! Parametri non validi", "Errore", JOptionPane.ERROR_MESSAGE);
