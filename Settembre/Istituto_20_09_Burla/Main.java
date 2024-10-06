@@ -46,16 +46,19 @@ public class Main{
             int piano;
             //matricola dello studente da aggiungere alla classe
             int matricola;
-            //variabili di un voto da aggiungere allo student
+            //variabili di un voto da aggiungere allo studente
             String materia;
             double valore;
             int giorno, mese,anno;
+            String data[];
             //variabile utilizzata per il controllo della data
             boolean dataOK;
             //variabile per verificare che l'aggiunta del voto sia andata a buon fine
             boolean votoOK;
             //variabile per verificare che l'aggiunta dello studente alla classe sia andata a buon fine
             boolean studenteOK;
+            //variabile per verificare che l'aggiunta della classe alla scuola sia andata a buon fine
+            boolean classeOK;
             //disciplina insegnata dall'insegnante
             String corso;
             //lista degli insegnanti
@@ -301,6 +304,8 @@ public class Main{
                                         }while(stipendio <= 0.0);
                                         //creo insegnante e assegno i valori alle variabili d'istanza
                                         insegnante = new Insegnante(nome, cognome, email, codFiscale, numCell, corso, stipendio, classe.getNome());
+                                        //aggiungo insegnante alla lista degli insegnanti
+                                        insegnanti.add(insegnante);
                                     }
                                     //aggiugno insegnante alla classe
                                     do{
@@ -414,6 +419,13 @@ public class Main{
                         break;
                     }
                     case 2:{
+                        //creo puntatori degli oggetti e li inizializzo vuoti, così che siano visibili in tutti i rami della switch-case
+                        Scuola scuola = null;
+                        Classe classe = null;
+                        Studente studente = null;
+                        Voto voto = null;
+                        insegnante = null;
+                        PersonaleATA personaleATA = null;
                         //chiedo il nome del file e lo controllo
                         do{
                             pathLeggo = JOptionPane.showInputDialog(null, "Inserire il nome del file da cui leggere le info sulla scuola. NOTA BENE: Il file deve ssere nella stessa directory del programma", "Percorso file", JOptionPane.PLAIN_MESSAGE);
@@ -434,24 +446,406 @@ public class Main{
                         File f2 = new File(pathLeggo);
                         //controllo se il file esiste
                         if(f2.exists() == false){
-                            JOptionPane.showMessageDialog(null, "ERRORE! File NON presente", "Errore", JOptionPane.ERROR_MESSAGE);
+                           JOptionPane.showMessageDialog(null, "ERRORE! File NON presente", "Errore", JOptionPane.ERROR_MESSAGE);
                         }
                         FileReader fr = new FileReader(f2);
                         Scanner leggoScuola = new Scanner(fr);
                         //imposto l'errore a falso
                         IOError = false;
-                        //leggo file finche ci sono righe
-                        while(leggoScuola.hasNextLine()){
+                        //leggo file finche ci sono righe e finchè non ci sono errori
+                        while((leggoScuola.hasNextLine()) && (IOError == false)){
                             leggoRiga = (leggoScuola.nextLine()).split(separatore);
-                            //se la riga ha più di una parola, procedo con l'assegnazione (se ha solo una parola è perchè quest'ultima fa da intestazione)
-                            if((leggoRiga.length > 1) && (IOError == false)){
-                                //leggo nome scuola
-                                nomeScuola = leggoRiga[0];
-                                //controllo se il nome della scuola è accettabile
+                            //in base alla prima parola della riga, il programma capisce come procedere
+                            switch(leggoRiga[0].toLowerCase()){
+                                //caso in cui la prima parola sia scuola
+                                case "scuola":{
+                                    //controllo che siano stati forniti i parametri previsti
+                                    if(leggoRiga.length == 3){
+                                        //controllo primo parametro
+                                        if((leggoRiga[1] != null) && (!(leggoRiga[1].equalsIgnoreCase(" "))) && (!(leggoRiga[1].equalsIgnoreCase("")))){
+                                            //assegno nome scuola
+                                            nomeScuola = leggoRiga[1];
+                                            //controllo secondo parametro
+                                            if((leggoRiga[2] != null) && (!(leggoRiga[2].equalsIgnoreCase(" "))) && (!(leggoRiga[2].equalsIgnoreCase("")))){
+                                                //assegno codice meccanografico
+                                                codiceMeccanografico = leggoRiga[2];
+                                                //inizializzo scuola
+                                                scuola = new Scuola(null, null, nomeScuola, codiceMeccanografico);
+                                            }else{
+                                                //parametro non valido
+                                                IOError = true;
+                                            }
+                                        //parametro non valido
+                                        }else{
+                                            IOError = true;
+                                        }
+                                    //non sono stati forniti parametri a sufficienza
+                                    }else {
+                                        IOError = true;
+                                    }
+                                    break;
+                                }
+                                //caso in cui la prima parola sia classe (si presuppone di aver già creato una scuola, non ancora completata)
+                                case "classe":{
+                                    //controllo che siano stati forniti i parametri previsti
+                                    if(leggoRiga.length == 2){
+                                        //controllo parametro
+                                        if((leggoRiga[1] != null) && (!(leggoRiga[1].equalsIgnoreCase(" "))) && (!(leggoRiga[1].equalsIgnoreCase("")))){
+                                            nome = leggoRiga[1];
+                                            //inizializzo classe
+                                            classe = new Classe(null, null, nome);
+                                        //parametro non valido
+                                        }else{
+                                            IOError = true;
+                                        }
+                                    //non sono stati forniti parametri a sufficienza
+                                    }else{
+                                        IOError = true;
+                                    }
+                                    break;
+                                }
+                                //caso in cui la prima parola sia studente (si presuppone di aver già creato una scuola e una classe, non ancora completati)
+                                case "studente":{
+                                    //controllo che siano stati forniti i parametri previsti
+                                    if(leggoRiga.length == 7){
+                                        //controllo primo parametro
+                                        if((leggoRiga[1] != null) && (!(leggoRiga[1].equalsIgnoreCase(" "))) && (!(leggoRiga[1].equalsIgnoreCase("")))){
+                                            nome = leggoRiga[1];
+                                            //controllo secondo parametro
+                                            if((leggoRiga[2] != null) && (!(leggoRiga[2].equalsIgnoreCase(" "))) && (!(leggoRiga[2].equalsIgnoreCase("")))){
+                                                cognome = leggoRiga[2];
+                                                //controllo terzo parametro
+                                                if((leggoRiga[3] != null) && (!(leggoRiga[3].equalsIgnoreCase(" "))) && (!(leggoRiga[3].equalsIgnoreCase("")))){
+                                                    email = leggoRiga[3];
+                                                    //controllo quarto parametro
+                                                    if((leggoRiga[4] != null) && (!(leggoRiga[4].equalsIgnoreCase(" "))) && (!(leggoRiga[4].equalsIgnoreCase("")))){
+                                                        codFiscale = leggoRiga[4];
+                                                        //controllo quinto parametro
+                                                        if((leggoRiga[5] != null) && (!(leggoRiga[5].equalsIgnoreCase(" "))) && (!(leggoRiga[5].equalsIgnoreCase("")))){
+                                                            numCell = leggoRiga[5];
+                                                            //controllo sesto parametro
+                                                            if((leggoRiga[6] != null) && (!(leggoRiga[6].equalsIgnoreCase(" "))) && (!(leggoRiga[6].equalsIgnoreCase("")))){
+                                                                //controllo che la matricola sia un numero convertibile in intero
+                                                                try{
+                                                                    matricola = Integer.parseInt(leggoRiga[6]);
+                                                                    //inizializzo studente
+                                                                    studente = new Studente(nome, cognome, email, codFiscale, numCell, matricola, null);
+                                                                //caso in cui la matricola non sia un numero intero
+                                                                }catch(NumberFormatException e){
+                                                                    IOError = true;
+                                                                }
+                                                            //parametro non valido
+                                                            }else{
+                                                                IOError = true;
+                                                            }
+                                                        //parametro non valido
+                                                        }else{
+                                                            IOError = true;
+                                                        }
+                                                    //parametro non valido
+                                                    }else{
+                                                        IOError = true;
+                                                    }
+                                                //parametro non valido
+                                                }else{
+                                                    IOError = true;
+                                                }
+                                            //parametro non valido
+                                            }else{
+                                                IOError = true;
+                                            }
+                                        //parametro non valido
+                                        }else{
+                                            IOError = true;
+                                        }
+                                    //non sono stati forniti parametri a sufficienza
+                                    }else{
+                                        IOError = true;
+                                    }
+                                    break;
+                                }
+                                //caso in cui la prima parola sia voto (si presuppone di aver già creato una scuola, una classe e uno studente,non ancora completati)
+                                case "voto":{
+                                    //controllo che siano stati forniti i parametri previsti
+                                    if(leggoRiga.length == 4){
+                                        //controllo primo parametro
+                                        if((leggoRiga[1] != null) && (!(leggoRiga[1].equalsIgnoreCase(" "))) && (!(leggoRiga[1].equalsIgnoreCase("")))){
+                                            materia = leggoRiga[1];
+                                            //controllo secondo parametro
+                                            if((leggoRiga[2] != null) && (!(leggoRiga[2].equalsIgnoreCase(" "))) && (!(leggoRiga[2].equalsIgnoreCase("")))){
+                                                //controllo che il valore del voto sia convertibile in double
+                                                try{
+                                                    valore = Double.parseDouble(leggoRiga[2]);
+                                                    //verifico che il voto sia compreso tra 1 e 10, altrimenti errore
+                                                    if(valore < 1 || valore > 10){
+                                                        IOError = true;
+                                                    }else{
+                                                        //controllo terzo parametro
+                                                        if((leggoRiga[3] != null) && (!(leggoRiga[3].equalsIgnoreCase(" "))) && (!(leggoRiga[3].equalsIgnoreCase("")))){
+                                                            //divido in un array il giorno, il mese e l'anno del voto, usando / come separatore
+                                                            data = leggoRiga[3].split("/");
+                                                            //effettuo la conversione dei valori ottenuti in interi, se possibile
+                                                            try{
+                                                                giorno = Integer.parseInt(data[0]);
+                                                                mese = Integer.parseInt(data[1]);
+                                                                anno = Integer.parseInt(data[2]);
+                                                                //creo oggetto e invoco metodo per controllare la data
+                                                                ControlloData controlloData = new ControlloData(giorno, mese, anno);
+                                                                dataOK = controlloData.controllaData();
+                                                                //controllo se la data è stata verificata
+                                                                if(dataOK = true){
+                                                                    //inizializzo Voto
+                                                                    voto = new Voto(materia, valore, giorno, mese, anno);
+                                                                    //assegno voto allo studente
+                                                                    studente.addVoto(voto);
+                                                                    //aggiungo lo studente, completo, alla classe: se esiste già, lo aggiorno rimuovendo quello vecchio e inserendo quello con i voti aggiornati
+                                                                    studenteOK = classe.addStudente(studente);
+                                                                    //caso di studente gia aggiunto, quindi da aggiornare
+                                                                    if(studenteOK == false){
+                                                                        //rimuovo studente "vecchio"
+                                                                        classe.rimuoviStudente(studente.getNome() + " " + studente.getCognome());
+                                                                        //aggiungo lo stesso studente, ma con i voti aggiornati
+                                                                        classe.addStudente(studente);
+                                                                    }
+                                                                    //aggiugno la classe, se non vuota, alla scuola
+                                                                    if((classe.getNumeroInsegnanti () > 0) && (classe.getNumeroStudenti() > 0)){
+                                                                        //provo ad aggiungere la classe alla scuola; se già presente, laa rimuovo e la aggiorno
+                                                                        classeOK = scuola.addClasse(classe);
+                                                                        if(classeOK == false){
+                                                                            //rimuovo "vecchia" classe
+                                                                            scuola.rimuoviClasse(classe.getNome());
+                                                                            //aggiungo la stessa classe, ma con insegnenti e studenti aggiornati
+                                                                            scuola.addClasse(classe);
+                                                                        }
+                                                                    }
+                                                                //data non valida
+                                                                }else{
+                                                                    IOError = true;
+                                                                }
+                                                            //conversione non possibile
+                                                            }catch(NumberFormatException e){
+                                                                IOError = true;
+                                                            }
+                                                        //parametro non valido
+                                                        }else{
+                                                            IOError = true;
+                                                        }
+                                                    }
+                                                }catch(NumberFormatException e){
+                                                    IOError = true;
+                                                }
+                                            //parametro non valido
+                                            }else{
+                                                IOError = true;
+                                            }
+                                        //parametro non valido
+                                        }else{
+                                            IOError = true;
+                                        }
+                                    //non sono stati forniti parametri a sufficienza
+                                    }else{
+                                        IOError = true;
+                                    }
+                                    break;
+                                }
+                                case "insegnante":{
+                                    //controllo che siano stati forniti i parametri previsti
+                                    if(leggoRiga.length == 8){
+                                        //controllo primo parametro
+                                        if((leggoRiga[1] != null) && (!(leggoRiga[1].equalsIgnoreCase(" "))) && (!(leggoRiga[1].equalsIgnoreCase("")))){
+                                            nome = leggoRiga[1];
+                                            //controllo secondo parametro
+                                            if((leggoRiga[2] != null) && (!(leggoRiga[2].equalsIgnoreCase(" "))) && (!(leggoRiga[2].equalsIgnoreCase("")))){
+                                                cognome = leggoRiga[2];
+                                                //controllo se l'insegnate è già stato inserito per altre classi
+                                                esisteInsegnante = false;
+                                                insegnanteCerca =  null;
+                                                ins = 0;
+                                                //ciclo che cerca tra gli insegnanti già inseriti
+                                                while((esisteInsegnante == false) && (ins < insegnanti.size())){
+                                                    insegnanteCerca = insegnanti.get(ins);
+                                                    if((insegnanteCerca.getNome().equalsIgnoreCase(nome)) && (insegnanteCerca.getCognome().equalsIgnoreCase(cognome))){
+                                                        esisteInsegnante = true;
+                                                    }else{  
+                                                        ins++;
+                                                    }
+                                                }
+                                                //se l'insegnante esiste gia, aggiungo la classe al suo elenco classi
+                                                if(esisteInsegnante == true){
+                                                    insegnante = insegnanti.get((ins));
+                                                    insegnante.addClasse(classe.getNome());
+                                                //se l'insegnante non esiste ancora, leggo le sue info e lo creo
+                                                }else{
+                                                    //controllo terzo parametro
+                                                    if((leggoRiga[3] != null) && (!(leggoRiga[3].equalsIgnoreCase(" "))) && (!(leggoRiga[3].equalsIgnoreCase("")))){
+                                                        email = leggoRiga[3];
+                                                        //controllo quarto parametro
+                                                        if((leggoRiga[4] != null) && (!(leggoRiga[4].equalsIgnoreCase(" "))) && (!(leggoRiga[4].equalsIgnoreCase("")))){
+                                                            codFiscale = leggoRiga[4];
+                                                            //controllo quinto parametro
+                                                            if((leggoRiga[5] != null) && (!(leggoRiga[5].equalsIgnoreCase(" "))) && (!(leggoRiga[5].equalsIgnoreCase("")))){
+                                                                numCell = leggoRiga[5];
+                                                                //controllo sesto parametro
+                                                                if((leggoRiga[6] != null) && (!(leggoRiga[6].equalsIgnoreCase(" "))) && (!(leggoRiga[6].equalsIgnoreCase("")))){
+                                                                    corso = leggoRiga[6];
+                                                                    //controllo settimo parametro
+                                                                    if((leggoRiga[7] != null) && (!(leggoRiga[7].equalsIgnoreCase(" "))) && (!(leggoRiga[7].equalsIgnoreCase("")))){
+                                                                        //converto stipendio in double, se possibile
+                                                                        try{
+                                                                            stipendio = Double.parseDouble(leggoRiga[7]);
+                                                                            //inizializzo insegnante
+                                                                            insegnante = new Insegnante(nome, cognome, email, codFiscale, numCell, corso, stipendio, classe.getNome());
+                                                                            //aggiungo insegnante alla lista insegnanti
+                                                                            insegnanti.add(insegnante);
+                                                                            //aggiugno la classe, se non vuota, alla scuola
+                                                                            if((classe.getNumeroInsegnanti () > 0) && (classe.getNumeroStudenti() > 0)){
+                                                                                //provo ad aggiungere la classe alla scuola; se già presente, laa rimuovo e la aggiorno
+                                                                                classeOK = scuola.addClasse(classe);
+                                                                                if(classeOK == false){
+                                                                                    //rimuovo "vecchia" classe
+                                                                                    scuola.rimuoviClasse(classe.getNome());
+                                                                                    //aggiungo la stessa classe, ma con insegnenti e studenti aggiornati
+                                                                                    scuola.addClasse(classe);
+                                                                                }
+                                                                            }
+                                                                        //conversione non possibile
+                                                                        }catch(NumberFormatException e){
+                                                                            IOError = true;
+                                                                        }
+                                                                    //parametro non valido
+                                                                    }else{
+                                                                        IOError = true;
+                                                                    }
+                                                                //parametro non valido
+                                                                }else{
+                                                                    IOError = true;
+                                                                }
+                                                            //parametro non valido
+                                                            }else{
+                                                                IOError = true;
+                                                            }
+                                                        //parametro non valido
+                                                        }else{
+                                                            IOError = true;
+                                                        }
+                                                    //parametro non valido
+                                                    }else{
+                                                        IOError = true;
+                                                    }
+                                                }
+                                                //aggiungo insegnante alla classe
+                                                classe.addInsegnante(insegnante);
+                                            //parametro non valido
+                                            }else{
+                                                IOError = true;
+                                            }
+                                        //parametro non valido
+                                        }else{
+                                            IOError = true;
+                                        }
+                                    //non sono stati forniti parametri a sufficienza
+                                    }else{
+                                        IOError = true;
+                                    }
+                                    break;
+                                }
+                                case "personaleata":{
+                                    //controllo che siano stati forniti i parametri previsti
+                                    if(leggoRiga.length == 8){
+                                        //controllo primo parametro
+                                        if((leggoRiga[1] != null) && (!(leggoRiga[1].equalsIgnoreCase(" "))) && (!(leggoRiga[1].equalsIgnoreCase("")))){
+                                            nome = leggoRiga[1];
+                                            //controllo secondo parametro
+                                            if((leggoRiga[2] != null) && (!(leggoRiga[2].equalsIgnoreCase(" "))) && (!(leggoRiga[2].equalsIgnoreCase("")))){
+                                                cognome = leggoRiga[2];
+                                                //controllo terzo parametro
+                                                if((leggoRiga[3] != null) && (!(leggoRiga[3].equalsIgnoreCase(" "))) && (!(leggoRiga[3].equalsIgnoreCase("")))){
+                                                    email = leggoRiga[3];
+                                                    //controllo quarto parametro
+                                                    if((leggoRiga[4] != null) && (!(leggoRiga[4].equalsIgnoreCase(" "))) && (!(leggoRiga[4].equalsIgnoreCase("")))){
+                                                        codFiscale = leggoRiga[4];
+                                                        //controllo quinto parametro
+                                                        if((leggoRiga[5] != null) && (!(leggoRiga[5].equalsIgnoreCase(" "))) && (!(leggoRiga[5].equalsIgnoreCase("")))){
+                                                            numCell = leggoRiga[5];
+                                                            //controllo sesto parametro
+                                                            if((leggoRiga[6] != null) && (!(leggoRiga[6].equalsIgnoreCase(" "))) && (!(leggoRiga[6].equalsIgnoreCase("")))){
+                                                                //controllo che lo stipendio sia un numero convertibile in intero
+                                                                try{
+                                                                    stipendio = Double.parseDouble(leggoRiga[6]);
+                                                                    //controllo settimo parametro
+                                                                    if((leggoRiga[7] != null) && (!(leggoRiga[7].equalsIgnoreCase(" "))) && (!(leggoRiga[7].equalsIgnoreCase("")))){
+                                                                        //controllo che il numero del piano sia convertibile in intero
+                                                                        try{
+                                                                            piano = Integer.parseInt(leggoRiga[7]);
+                                                                            //inizializzo personaleata
+                                                                            personaleATA = new PersonaleATA(nome, cognome, email, codFiscale, numCell, piano, stipendio, null);
+                                                                            //caso in cui il numero del piano non sia convertibile in intero
+                                                                        }catch(NumberFormatException e){
+                                                                            IOError = true;
+                                                                        }
+                                                                    //parametro non valido
+                                                                    }else{
+                                                                        IOError = true;
+                                                                    }
+                                                                //caso in cui lo stipendio non sia un numero intero
+                                                                }catch(NumberFormatException e){
+                                                                    IOError = true;
+                                                                }
+                                                            //parametro non valido
+                                                            }else{
+                                                                IOError = true;
+                                                            }
+                                                        //parametro non valido
+                                                        }else{
+                                                            IOError = true;
+                                                        }
+                                                    //parametro non valido
+                                                    }else{
+                                                        IOError = true;
+                                                    }
+                                                //parametro non valido
+                                                }else{
+                                                    IOError = true;
+                                                }
+                                            //parametro non valido
+                                            }else{
+                                                IOError = true;
+                                            }
+                                        //parametro non valido
+                                        }else{
+                                            IOError = true;
+                                        }
+                                    //non sono stati forniti parametri a sufficienza
+                                    }else{
+                                        IOError = true;
+                                    }
+                                    break;
+                                }
+                                case "mansioni":{
+                                    //aggiungo al personaleata le mansioni
+                                    for(int m = 0; (m < leggoRiga.length) && (IOError == false); m++){
+                                        //verifico mansione
+                                        if((leggoRiga[m] != null) && (!(leggoRiga[m].equalsIgnoreCase(" "))) && (!(leggoRiga[m].equalsIgnoreCase("")))){
+                                            //aggiungo mansione
+                                            personaleATA.addMansione(leggoRiga[m]);
+                                        //mansione non valida
+                                        }else{
+                                            IOError = true;
+                                        }
+                                    }
+                                    //aggiungo personaleata alla scuola
+                                    scuola.addPersonaleATA(personaleATA);
+                                }
                             }
-
                         }
-
+                        //aggiungo scuola alla lista delle scuole
+                        scuole.add(scuola);
+                        //messaggio di errore
+                        if(IOError == true){
+                            JOptionPane.showMessageDialog(null, "ERRORE! Parametri non validi", "Errore", JOptionPane.ERROR_MESSAGE);
+                        }
+                        //chiudo file di scrittura
+                        leggoScuola.close();
                         break;
                     }
                     case 3:{

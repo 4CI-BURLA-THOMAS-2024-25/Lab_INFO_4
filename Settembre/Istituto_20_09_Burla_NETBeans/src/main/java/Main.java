@@ -844,6 +844,8 @@ public class Main{
                         if(IOError == true){
                             JOptionPane.showMessageDialog(null, "ERRORE! Parametri non validi", "Errore", JOptionPane.ERROR_MESSAGE);
                         }
+                        //chiudo file di scrittura
+                        leggoScuola.close();
                         break;
                     }
                     case 3:{

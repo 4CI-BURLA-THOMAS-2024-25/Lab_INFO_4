@@ -1,0 +1,20 @@
+Scuola;<nomeScuola>;<codiceMeccanografico>;;;;;
+Classe;<nomeClasse(numero+sezione)>;;;;;;
+Studente;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<matricola>;
+Voto;<materia>;<valoreVoto>;<data nella forma gg/mm/aaaa> ;;;;
+Voto;.;.;.;.;;;
+Studente;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<matricola>;
+Voto;<materia>;<valoreVoto>;<data nella forma gg/mm/aaaa> ;;;;
+Voto;.;.;.;.;.;;
+Studente;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<matricola>;
+Voto;<materia>;<valoreVoto>;<data; nella forma gg/mm/aaaa>;;;
+Voto;.;.;.;.;.;;
+Studente;.;.;.;.;.;.;
+Insegnante;<nome>;<cognome>;<email>;<codiceFiscale>;<numeroCellulare>;<corso>;<stipendio>
+Insegnante;<nome>;<cognome>;<email>;<codiceFiscale>;<numeroCellulare>;<corso>;<stipendio>
+Insegnante;.;.;.;.;.;.;
+PersonaleATA;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<stipendio/h>;<piano>
+mansioni;.;.;.;;;;
+PersonaleATA;<nome>;<cognome>;<email>;<codiceFiscale>;<nuneroCellulare>;<stipendio/h>;<piano>
+mansioni;.;.;.;.;.;;
+PersonaleATA;.;.;.;.;.;.;.

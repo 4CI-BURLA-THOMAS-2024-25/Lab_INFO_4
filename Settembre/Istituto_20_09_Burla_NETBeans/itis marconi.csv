@@ -1,0 +1,18 @@
+Scuola;Scuola;ITIS Marconi;VRTF3000V;;;;
+Classe;Classe;4CI;;;;;
+Studente;Studente;Thomas;thomas@gmail.com;BURLATHOMAS;3804983275;20164;
+Voto;Voto;Informatica;05/02/2023;;;;
+Voto;Voto;Matematica;25/05/2024;;;;
+Studente;Studente;Alessio;alessio@outlook.it;ROSSIALESSIO;3459623556;19523;
+Voto;Voto;Sistemi e reti;06/03/2021;;;;
+Insegnante;Insegnante;Cinzia;cinzia@marconiverona.edu.ir;MARCHESINICINZIA;3206559658;Informatica;9.88
+Insegnante;Insegnante;Andrea;andrea@hotmail.com;PIZZEGHELLAANDREA;3965230255;Matematica;5.99
+Classe;Classe;1IL;;;;;
+Studente;Studente;Matteo;matteo@gmail.com;BIANCHIMATTEO;3265896322;18452;
+Voto;Voto;Telecomunicazioni;04/10/2024;;;;
+Insegnante;Insegnante;Daniela;daniela@gmail.com;SATURNINODANIELA;3745623254;Informatica;9.88
+;PersonaleATA;Leonardo;leonardo@tim.it;BIANCHILEONARDO;3258963266;1,99;-1
+PersonaleATA;mansione;spazzino;sorvegliante;;;;
+mansioni;PersonaleATA;Lorenzo;leorenzo@gmail.com;ESPOSITOLORENZO;3014526988;7,63;0
+PersonaleATA;mansione;sorvegliante;spazzino;;;;
+mansioni;;;;;;;
