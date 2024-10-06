@@ -57,6 +57,8 @@ public class Main{
             boolean votoOK;
             //variabile per verificare che l'aggiunta dello studente alla classe sia andata a buon fine
             boolean studenteOK;
+            //variabile per verificare che l'aggiunta della classe alla scuola sia andata a buon fine
+            boolean classeOK;
             //disciplina insegnata dall'insegnante
             String corso;
             //lista degli insegnanti
@@ -423,6 +425,7 @@ public class Main{
                         Studente studente = null;
                         Voto voto = null;
                         insegnante = null;
+                        PersonaleATA personaleATA = null;
                         //chiedo il nome del file e lo controllo
                         do{
                             pathLeggo = JOptionPane.showInputDialog(null, "Inserire il nome del file da cui leggere le info sulla scuola. NOTA BENE: Il file deve ssere nella stessa directory del programma", "Percorso file", JOptionPane.PLAIN_MESSAGE);
@@ -595,8 +598,26 @@ public class Main{
                                                                     voto = new Voto(materia, valore, giorno, mese, anno);
                                                                     //assegno voto allo studente
                                                                     studente.addVoto(voto);
-                                                                    //aggiungo lo studente, completo, alla classe
-                                                                    classe.addStudente(studente);
+                                                                    //aggiungo lo studente, completo, alla classe: se esiste già, lo aggiorno rimuovendo quello vecchio e inserendo quello con i voti aggiornati
+                                                                    studenteOK = classe.addStudente(studente);
+                                                                    //caso di studente gia aggiunto, quindi da aggiornare
+                                                                    if(studenteOK == false){
+                                                                        //rimuovo studente "vecchio"
+                                                                        classe.rimuoviStudente(studente.getNome() + " " + studente.getCognome());
+                                                                        //aggiungo lo stesso studente, ma con i voti aggiornati
+                                                                        classe.addStudente(studente);
+                                                                    }
+                                                                    //aggiugno la classe, se non vuota, alla scuola
+                                                                    if((classe.getNumeroInsegnanti () > 0) && (classe.getNumeroStudenti() > 0)){
+                                                                        //provo ad aggiungere la classe alla scuola; se già presente, laa rimuovo e la aggiorno
+                                                                        classeOK = scuola.addClasse(classe);
+                                                                        if(classeOK == false){
+                                                                            //rimuovo "vecchia" classe
+                                                                            scuola.rimuoviClasse(classe.getNome());
+                                                                            //aggiungo la stessa classe, ma con insegnenti e studenti aggiornati
+                                                                            scuola.addClasse(classe);
+                                                                        }
+                                                                    }
                                                                 //data non valida
                                                                 }else{
                                                                     IOError = true;
@@ -676,6 +697,17 @@ public class Main{
                                                                             insegnante = new Insegnante(nome, cognome, email, codFiscale, numCell, corso, stipendio, classe.getNome());
                                                                             //aggiungo insegnante alla lista insegnanti
                                                                             insegnanti.add(insegnante);
+                                                                            //aggiugno la classe, se non vuota, alla scuola
+                                                                            if((classe.getNumeroInsegnanti () > 0) && (classe.getNumeroStudenti() > 0)){
+                                                                                //provo ad aggiungere la classe alla scuola; se già presente, laa rimuovo e la aggiorno
+                                                                                classeOK = scuola.addClasse(classe);
+                                                                                if(classeOK == false){
+                                                                                    //rimuovo "vecchia" classe
+                                                                                    scuola.rimuoviClasse(classe.getNome());
+                                                                                    //aggiungo la stessa classe, ma con insegnenti e studenti aggiornati
+                                                                                    scuola.addClasse(classe);
+                                                                                }
+                                                                            }
                                                                         //conversione non possibile
                                                                         }catch(NumberFormatException e){
                                                                             IOError = true;
@@ -718,13 +750,96 @@ public class Main{
                                     break;
                                 }
                                 case "personaleata":{
-                                    
+                                    //controllo che siano stati forniti i parametri previsti
+                                    if(leggoRiga.length == 8){
+                                        //controllo primo parametro
+                                        if((leggoRiga[1] != null) && (!(leggoRiga[1].equalsIgnoreCase(" "))) && (!(leggoRiga[1].equalsIgnoreCase("")))){
+                                            nome = leggoRiga[1];
+                                            //controllo secondo parametro
+                                            if((leggoRiga[2] != null) && (!(leggoRiga[2].equalsIgnoreCase(" "))) && (!(leggoRiga[2].equalsIgnoreCase("")))){
+                                                cognome = leggoRiga[2];
+                                                //controllo terzo parametro
+                                                if((leggoRiga[3] != null) && (!(leggoRiga[3].equalsIgnoreCase(" "))) && (!(leggoRiga[3].equalsIgnoreCase("")))){
+                                                    email = leggoRiga[3];
+                                                    //controllo quarto parametro
+                                                    if((leggoRiga[4] != null) && (!(leggoRiga[4].equalsIgnoreCase(" "))) && (!(leggoRiga[4].equalsIgnoreCase("")))){
+                                                        codFiscale = leggoRiga[4];
+                                                        //controllo quinto parametro
+                                                        if((leggoRiga[5] != null) && (!(leggoRiga[5].equalsIgnoreCase(" "))) && (!(leggoRiga[5].equalsIgnoreCase("")))){
+                                                            numCell = leggoRiga[5];
+                                                            //controllo sesto parametro
+                                                            if((leggoRiga[6] != null) && (!(leggoRiga[6].equalsIgnoreCase(" "))) && (!(leggoRiga[6].equalsIgnoreCase("")))){
+                                                                //controllo che lo stipendio sia un numero convertibile in intero
+                                                                try{
+                                                                    stipendio = Double.parseDouble(leggoRiga[6]);
+                                                                    //controllo settimo parametro
+                                                                    if((leggoRiga[7] != null) && (!(leggoRiga[7].equalsIgnoreCase(" "))) && (!(leggoRiga[7].equalsIgnoreCase("")))){
+                                                                        //controllo che il numero del piano sia convertibile in intero
+                                                                        try{
+                                                                            piano = Integer.parseInt(leggoRiga[7]);
+                                                                            //inizializzo personaleata
+                                                                            personaleATA = new PersonaleATA(nome, cognome, email, codFiscale, numCell, piano, stipendio, null);
+                                                                            //caso in cui il numero del piano non sia convertibile in intero
+                                                                        }catch(NumberFormatException e){
+                                                                            IOError = true;
+                                                                        }
+                                                                    //parametro non valido
+                                                                    }else{
+                                                                        IOError = true;
+                                                                    }
+                                                                //caso in cui lo stipendio non sia un numero intero
+                                                                }catch(NumberFormatException e){
+                                                                    IOError = true;
+                                                                }
+                                                            //parametro non valido
+                                                            }else{
+                                                                IOError = true;
+                                                            }
+                                                        //parametro non valido
+                                                        }else{
+                                                            IOError = true;
+                                                        }
+                                                    //parametro non valido
+                                                    }else{
+                                                        IOError = true;
+                                                    }
+                                                //parametro non valido
+                                                }else{
+                                                    IOError = true;
+                                                }
+                                            //parametro non valido
+                                            }else{
+                                                IOError = true;
+                                            }
+                                        //parametro non valido
+                                        }else{
+                                            IOError = true;
+                                        }
+                                    //non sono stati forniti parametri a sufficienza
+                                    }else{
+                                        IOError = true;
+                                    }
                                     break;
+                                }
+                                case "mansioni":{
+                                    //aggiungo al personaleata le mansioni
+                                    for(int m = 0; (m < leggoRiga.length) && (IOError == false); m++){
+                                        //verifico mansione
+                                        if((leggoRiga[m] != null) && (!(leggoRiga[m].equalsIgnoreCase(" "))) && (!(leggoRiga[m].equalsIgnoreCase("")))){
+                                            //aggiungo mansione
+                                            personaleATA.addMansione(leggoRiga[m]);
+                                        //mansione non valida
+                                        }else{
+                                            IOError = true;
+                                        }
+                                    }
+                                    //aggiungo personaleata alla scuola
+                                    scuola.addPersonaleATA(personaleATA);
                                 }
                             }
                         }
-
-
+                        //aggiungo scuola alla lista delle scuole
+                        scuole.add(scuola);
                         //messaggio di errore
                         if(IOError == true){
                             JOptionPane.showMessageDialog(null, "ERRORE! Parametri non validi", "Errore", JOptionPane.ERROR_MESSAGE);
