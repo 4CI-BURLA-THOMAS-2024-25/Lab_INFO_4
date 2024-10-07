@@ -1,0 +1,13 @@
+Studiare:
+
+https://www.html.it/pag/51820/classi-astratte-in-java/
+
+Creare il progetto Progetto_07_10_ClassiAstratte
+
+Implementare le classi previste nella lezione:
+
+https://pages.di.unipi.it/corradini/Didattica/LIP-07/Ereditarieta/ClassiAstratte/main.html
+
+aggiungere le classi Cilindro e Cono
+
+Creare la classe Test con il main e un menu di scelta che propone alcuni calcoli relativi al solido selezionato e visualizzare i risultati. Uscire dal menu quando si digita 0.
