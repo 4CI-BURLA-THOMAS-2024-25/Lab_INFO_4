@@ -21,9 +21,11 @@ public class Main {
         //variabile impostata a true nel caso in cui si inserisca un tipo di dato non atteso
         boolean incompatibile;
         //raggio, chiesto solo se necessario per i calcoli sul solido scelto
-        double raggio = 0;
+        double raggio = 0.0;
         //altezza, chiesta solo se necessaria per i calcoli sul solido scelto
-        double altezza = 0;
+        double altezza = 0.0;
+        //
+        double lato = 0.0;
         //peso specifico, chiesto in tutti i solidi
         double pesoSpecifico = 0.0;
         //ciclo per aggiungere solidi finchè l'utente lo desidera
@@ -147,7 +149,58 @@ public class Main {
                 }
                 //caso cubo
                 case 3:{
-                    
+                    //leggo e controllo lato
+                    do{
+                        //variabile impostata a true nel caso in cui si inserisca un tipo di dato non atteso, di base impostata a false
+                        incompatibile = false;
+                        //verifico che l'utente inserisca un double
+                        try{
+                            //leggo lato
+                            lato = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire il lato del solido" , "Inserisci lato", JOptionPane.QUESTION_MESSAGE));
+                            //messaggio di errore in caso di valore non valido
+                            if(lato <= 0.0){
+                                JOptionPane.showMessageDialog(null, "ERRORE! Valore non valido" , "Errore" , JOptionPane.ERROR_MESSAGE);
+                            }
+                        }catch(NumberFormatException e){
+                            incompatibile = true; 
+                            JOptionPane.showMessageDialog(null, "ERRORE! Tipo di dato incompatibile", "Dato non compatibile", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((lato <= 0.0) || (incompatibile == true));
+                    //creo oggeto Cubo
+                    Cubo cubo = new Cubo(pesoSpecifico, lato);
+                    //stampo info e calcoli
+                    System.out.println(cubo.toString());
+                    //salvo cubo nella lista dei solidi
+                    solidi.add(cubo);
+                    break;
+                }
+                //caso sfera
+                case 4:{
+                    //leggo e controllo raggio
+                    do{
+                        //variabile impostata a true nel caso in cui si inserisca un tipo di dato non atteso, di base impostata a false
+                        incompatibile = false;
+                        //verifico che l'utente inserisca un double
+                        try{
+                            //leggo raggio
+                            raggio = Double.parseDouble(JOptionPane.showInputDialog(null, "Inserire il raggio della base del solido", "Inserisci raggio", JOptionPane.QUESTION_MESSAGE));
+                            //messaggio di errore in caso di valore non valido
+                            if(raggio <= 0.0){
+                                JOptionPane.showMessageDialog(null, "ERRORE! Valore non valido" , "Errore" , JOptionPane.ERROR_MESSAGE);
+                            }
+                        //caso in cui l'utente non digiti un double
+                        }catch(NumberFormatException e){
+                            incompatibile = true; 
+                            JOptionPane.showMessageDialog(null, "ERRORE! Tipo di dato incompatibile", "Dato non compatibile", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }while((raggio <= 0.0) || (incompatibile == true));
+                    //creo oggeto sfera
+                    Sfera sfera = new Sfera(pesoSpecifico, raggio);
+                    //stampo info e calcoli
+                    System.out.println(sfera.toString());
+                    //salvo sfera nella lista dei solidi
+                    solidi.add(sfera);
+                    break;
                 }
                 default:{
                     JOptionPane.showMessageDialog(null, "ERRORE! Opzione inesistente", "Errore", JOptionPane.ERROR_MESSAGE);
