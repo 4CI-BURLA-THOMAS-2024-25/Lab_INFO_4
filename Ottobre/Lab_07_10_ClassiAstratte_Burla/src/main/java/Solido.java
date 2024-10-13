@@ -17,6 +17,18 @@ public abstract class Solido {
             this.pesoSpecifico = pesoSpecifico;
         }
     }
+    //set pesoSpecifico
+    public boolean setPesoSpecifico(double pesoSpecifico){
+        if(pesoSpecifico > 0.0){
+            this.pesoSpecifico = pesoSpecifico;
+            return true;
+        }
+        return false;
+    }
+    //get pesoSpecifico
+    public double getPesoSpecifico(){
+        return this.pesoSpecifico;
+    }
     //calcolo peso
     public double calcoloPeso(){
         return volume() * pesoSpecifico;
