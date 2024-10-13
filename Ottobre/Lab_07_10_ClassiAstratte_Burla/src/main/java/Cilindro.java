@@ -67,4 +67,13 @@ public class Cilindro extends Solido{
         }
         return -1;
     }
+    //toString
+    @Override
+    public String toString(){
+        String out = "Il raggio della faccia del cilindro è: " + this.raggio;
+        out += "m;\nl'altezza del cilindro è: " + this.altezza;
+        out += "m;\nla faccia ha superficie: " + Math.PI * Math.pow(this.raggio, 2);
+        out += "m^2;\nil volume del solido è: " + Math.PI * Math.pow(this.raggio, 2) * this.altezza + "cm^3";
+        return out;
+    }
 }
