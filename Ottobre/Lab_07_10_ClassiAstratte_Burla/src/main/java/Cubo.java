@@ -55,7 +55,7 @@ public class Cubo extends Solido{
         if(this.lato > 0.0){
             String out = "Il lato del cubo misura: " + this.lato;
             out += "m;\nla superificie del solido è: " + 6 * (Math.pow(this.lato, 2));
-            out += "m^2\nil volume del solido è: " + Math.pow(this.lato, 3);
+            out += "m^2;\nil volume del solido è: " + Math.pow(this.lato, 3) + "m^3";
             return out;
         }
         return "Dati NON validi";
