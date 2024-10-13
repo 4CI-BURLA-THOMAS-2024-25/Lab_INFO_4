@@ -31,10 +31,15 @@ public abstract class Solido {
     }
     //calcolo peso
     public double calcoloPeso(){
-        return volume() * pesoSpecifico;
+        if(this.pesoSpecifico > 0.0){
+            return volume() * pesoSpecifico;
+        }
+        return -1;
     }
     //calcolo volume
     public abstract double volume();
     //calcolo superficie
     public abstract double superficie();
+    //toString
+    public abstract String toString();
 }
