@@ -54,7 +54,7 @@ public class Cilindro extends Solido{
     //calcolo superficie
     @Override
     public double superficie(){
-        if(raggio > 0){
+        if(this.raggio > 0){
             return Math.PI * Math.pow(this.raggio, 2);
         }
         return -1;
@@ -62,7 +62,7 @@ public class Cilindro extends Solido{
     //calcolo volume
     @Override
     public double volume(){
-        if(raggio > 0){
+        if((this.raggio > 0) && (this.altezza > 0.0)){
             return Math.PI * Math.pow(this.raggio, 2) * this.altezza;
         }
         return -1;
