@@ -33,8 +33,8 @@ public abstract class Solido {
     public double calcoloPeso(){
         return volume() * pesoSpecifico;
     }
-    //calcolo perimetro
+    //calcolo volume
     public abstract double volume();
-    //calcolo area
+    //calcolo superficie
     public abstract double superficie();
 }
