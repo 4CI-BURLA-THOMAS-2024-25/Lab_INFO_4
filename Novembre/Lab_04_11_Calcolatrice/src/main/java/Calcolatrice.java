@@ -26,6 +26,11 @@ public class Calcolatrice extends JFrame{
     public Calcolatrice(String nome){
         //invoco costruttore della finestra
         super(nome);
+        //azzero le variabili destinate a mostrare il risultato del calcolo
+        operatore = "";
+        numero1 = 0;
+        numero2 = 0;
+        risultato = 0;
         //alloco arraylist
         bottoni = new ArrayList <JButton> ();
         //assegno al contenitore il contenitore della finestra JFrame
@@ -96,16 +101,35 @@ public class Calcolatrice extends JFrame{
         public void actionPerformed(ActionEvent e){
             //ottengo testo del bottone così da sapere quale numero è stato cliccato
             String comando = e.getActionCommand();
+            //se viene cliccato il tasto di una delle 4 operazioni, significa che è stato digitato il primo numero per intero
             if((comando.equals("+")) || (comando.equals("-")) || (comando.equals("*")) || (comando.equals("/"))){
-                //assegno al primo numero il valolre visualizzato sul display
+                //assegno al primo numero il valore visualizzato sul display
                 numero1 = Double.parseDouble(display);
+                //salvo operatore
                 operatore = comando;
                 //aggiorno testo associato al display
                 display += comando;
                 //aggiorno testo visualizzato sul display
                 testo.setText(display);
             }
-            else if((comando.equals("=")) && (numero2 != 0)){
+            else if((comando.equals("="))){
+                //se clicco uguale, significa che il secondo numero è stato interamente digitato, e sul display si trova a seguito dell'operatore
+                //creo una variabile locale inizializzata a false, ma che diventerà true nel momento in cui il prossimo carattere sul display sarà l'operatore, così da tenere traccia dell'inizio del secondo numero
+                boolean inizio = false;
+                //creo variabile locale in cui salvo il numero2 estratto dal display, che poi sarà convertito in double
+                String estraggoNumero2 = "";
+                for(int i = 0; i < display.length(); i++){
+                    if((display.charAt(i) + "").equals(operatore)){
+                        inizio = true;
+                    }else if(inizio == true){
+                        estraggoNumero2 += display.charAt(i);
+                    }
+                }
+                //converto il numero2 estratto dal diplay in double, se è stato effettivamente inserito
+                if(!(estraggoNumero2.isEmpty())){
+                    numero2 = Double.parseDouble(estraggoNumero2);
+                }
+
                 switch(operatore){
                     case "+":{
                         risultato = numero1 + numero2;
@@ -124,11 +148,11 @@ public class Calcolatrice extends JFrame{
                         break;
                     }
                 }
+
                 //aggiorno testo associato al display
-                display = Double.toString(risultato);
+                display = "=" + Double.toString(risultato);
                 //aggiorno testo visualizzato sul display
                 testo.setText(display);
-                
             }
         }
     }
