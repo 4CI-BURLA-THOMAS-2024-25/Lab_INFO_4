@@ -114,6 +114,7 @@ public class Calcolatrice extends JFrame{
         }
     }
     public class AscoltatoreOperatori implements ActionListener{
+        //creo variabile statica (identica per tutte le istanze) in cui salvo l'indice di inizio del numero2
         private static int inizioNumero2;
         //implemento metodo
         public void actionPerformed(ActionEvent e){
@@ -121,8 +122,13 @@ public class Calcolatrice extends JFrame{
             String comando = e.getActionCommand();
             //se viene cliccato il tasto di una delle 4 operazioni, significa che è stato digitato il primo numero per intero
             if((comando.equals("+")) || (comando.equals("-")) || (comando.equals("*")) || (comando.equals("/")) || (comando.equals("^")) || (comando.equals("root"))){
-                //assegno al primo numero il valore visualizzato sul display
-                numero1 = Double.parseDouble(display);
+                //assegno al primo numero il valore visualizzato sul display, se è stato inserito un valore; altriemnti assegno 0
+                if(display.length() > 0){
+                    numero1 = Double.parseDouble(display);
+                }else{
+                    numero1 = 0.0;
+                }
+        
                 //salvo operatore
                 operatore = comando;
                 //aggiorno testo associato al display
@@ -133,6 +139,8 @@ public class Calcolatrice extends JFrame{
                 testo.setText(display);
             }
             else if((comando.equals("="))){
+                //variabile locale per gestire il caso in cui si divida per 0 o si indichi 0 come indice della radice
+                boolean errore = false;
                 //se clicco uguale, significa che il secondo numero è stato interamente digitato, e sul display si trova a seguito dell'operatore
                 //creo variabile locale in cui salvo il numero2 estratto dal display, che poi sarà convertito in double
                 String estraggoNumero2 = "";
@@ -145,39 +153,51 @@ public class Calcolatrice extends JFrame{
                     numero2 = Double.parseDouble(estraggoNumero2);
                 }
 
-                //se il numero2 è vuoto, come risultato restituisco il numero1, altrimenti faccio il calcolo
-                if(numero2 != 0){
-                    switch(operatore){
-                        case "+":{
-                            risultato = numero1 + numero2;
-                            break;
-                        }
-                        case "-":{
-                            risultato = numero1 - numero2;
-                            break;
-                        }
-                        case "*":{
-                            risultato = numero1 * numero2;
-                            break;
-                        }
-                        case "/":{
+                //calcolo risultato
+                switch(operatore){
+                    case "+":{
+                        risultato = numero1 + numero2;
+                        break;
+                    }
+                    case "-":{
+                        risultato = numero1 - numero2;
+                        break;
+                    }
+                    case "*":{
+                        risultato = numero1 * numero2;
+                        break;
+                    }
+                    case "/":{
+                        //gestisco caso di divisione per 0
+                        if(numero2 == 0){
+                            errore = true;
+                        }else{
                             risultato = numero1 / numero2;
-                            break;
                         }
-                        case "^":{
-                            risultato = Math.pow(numero1, numero2);
-                            break;
-                        }
-                        case "root":{
+                        break;
+                    }
+                    case "^":{
+                        risultato = Math.pow(numero1, numero2);
+                        break;
+                    }
+                    case "root":{
+                        //gestisco caso di radice con indice 0
+                        if(numero2 == 0){
+                            errore = true;
+                        }else{
                             risultato = Math.pow(numero1, 1.0 / numero2);
                         }
+                        break;
                     }
-                }else{
-                    risultato = numero1;
                 }
                 
-                //aggiorno testo associato al display
-                display = Double.toString(risultato);
+                //aggiorno testo associato al display, gestendo il caso di errore
+                if(errore == false){
+                    display = Double.toString(risultato);
+                }else{
+                    display = "ERRORE matematico! Controlla di aver inserito i valori e gli operatori correttamente";
+                }
+                
                 //aggiorno testo visualizzato sul display
                 testo.setText(display);
             }
