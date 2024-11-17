@@ -16,12 +16,14 @@ public class Calcolatrice extends JFrame{
     private JPanel pannelloMain;
     private JPanel pannelloNumeri;
     private JPanel pannelloOperatori;
+    private JPanel pannelloIntestazione;
     private String display = "";
     private ArrayList <JButton> bottoni;
     private double numero1;
     private double numero2;
     private String operatore;
     private double risultato;
+    private JComboBox <String> angoli;
     //costruttore, con nome della finestra
     public Calcolatrice(String nome){
         //invoco costruttore della finestra
@@ -39,10 +41,12 @@ public class Calcolatrice extends JFrame{
         contenitore = this.getContentPane();
         //creo pannello principale con BorderLayout
         pannelloMain = new JPanel(new BorderLayout(5, 5));
+        //creo pannello intestazione con GridLayout
+        pannelloIntestazione = new JPanel(new GridLayout(0, 2, 5, 5));
         //creo pannello secondario dei numeri con GridLayout
         pannelloNumeri = new JPanel(new GridLayout(0, 2, 5 , 5));
         //creo pannello secondario degli operatori con GridLayout
-        pannelloOperatori = new JPanel(new GridLayout(0, 1, 5, 5));
+        pannelloOperatori = new JPanel(new GridLayout(0, 2, 5, 5));
 
         //ciclo per creare i bottoni con i numeri e aggiungerli al pannello
         for(int i = 0; i <= 9; i++){
@@ -57,7 +61,7 @@ public class Calcolatrice extends JFrame{
         }
 
         //creo array di stringhe per gli operatori
-        String operatori[] = {"+", "-", "*", "/", "^", "root", "CANC", ".", "="};
+        String operatori[] = {"+", "-", "*", "/", "^", "root", "sin", "cos", "tan", "arcsin", "arccos", "arctan", "CANC", ".", "="};
         //creo bottoni con gli operatori e li aggiungo al loro pannello
         for(int i = 0; i < operatori.length; i++){
             //creo bottone
@@ -80,12 +84,20 @@ public class Calcolatrice extends JFrame{
         //rendo la casella di testo non modificabile dall'utente essendo che deve servire solo a mostrare i pulsanti cliccati
         testo.setEditable(false);
         //aggiungo casella di testo al pannello
-        pannelloMain.add(testo, BorderLayout.NORTH);
+        pannelloIntestazione.add(testo, BorderLayout.NORTH);
+
+        //creo combobox per far scegliere all'utente l'unità di misura degli angoli
+        String unitaMisura[] = {"gradi", "radianti"};
+        angoli = new JComboBox <String> (unitaMisura);
+        //aggiungo combobox al pannello principale
+        pannelloIntestazione.add(angoli, BorderLayout.NORTH);
 
         //aggiungo il pannello dei numeri con GridLayout al pannello principale, al centro
         pannelloMain.add(pannelloNumeri, BorderLayout.CENTER);
         //aggiungo il pannello degli operatori con GridLayout al pannello principale, a destra
         pannelloMain.add(pannelloOperatori, BorderLayout.EAST);
+        //aggiungo il pannello intestazione con GridLayout al pannello principale, in alto
+        pannelloMain.add(pannelloIntestazione, BorderLayout.NORTH);
         //aggiungo pannello al contenitore
         contenitore.add(pannelloMain);
 
@@ -137,8 +149,18 @@ public class Calcolatrice extends JFrame{
                 inizioNumero2 = display.length();
                 //aggiorno testo visualizzato sul display
                 testo.setText(display);
-            }
-            else if((comando.equals("="))){
+
+            //caso in cui si vuole cancellare l'ultimo carattere
+            }else if(comando.equals("CANC")){
+                //creo nuova stringa, senza l'ultimo carattere del display, che viene cancellato
+                String stringaAggiornata = display.substring(0, (display.length() - 1));
+                //aggiorno testo associato al display
+                display = stringaAggiornata;
+                //aggiorno testo visualizzato sul display
+                testo.setText(display);
+
+            //caso in cui si clicca uguale per ottenere il risultato
+            }else if((comando.equals("="))){
                 //variabile locale per gestire il caso in cui si divida per 0 o si indichi 0 come indice della radice
                 boolean errore = false;
                 //se clicco uguale, significa che il secondo numero è stato interamente digitato, e sul display si trova a seguito dell'operatore
