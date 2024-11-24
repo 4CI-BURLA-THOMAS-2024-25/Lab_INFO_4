@@ -168,7 +168,7 @@ public class Navigator extends javax.swing.JFrame {
             lista.remove(indice);
             testo.setText("Elemento rimosso correttamente");
         }catch(NumberFormatException e){
-            testo.setText("ERRORE! Scorrere nella lista pèer eliminare un valore");
+            testo.setText("ERRORE! Scorrere nella lista per eliminare un valore");
         }
     }//GEN-LAST:event_cancellaActionPerformed
 
