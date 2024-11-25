@@ -8,7 +8,7 @@ import java.awt.*;
 import javax.swing.*;
 public class GraficaAscoltatori extends JFrame implements ActionListener{
     private JButton bottone;
-    private JLabel etichetta;
+    private JLabel etichetta; 
     private JPanel pannello;
     private Container contenitore;
     private String stringa = "";
