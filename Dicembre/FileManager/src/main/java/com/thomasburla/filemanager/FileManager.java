@@ -61,9 +61,9 @@ public class FileManager{
                             listaFiles.setListData(vuota);
                         }
                         
-                        
+                    //directory non accessibile    
                     }else{
-                        JOptionPane.showMessageDialog(finestra, "ERRORE! Directory vuota o non accessibile", "Errore", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(finestra, "ERRORE! Directory non accessibile", "Errore", JOptionPane.ERROR_MESSAGE);
                     }
                     
                 //il path non indica una directory    
@@ -91,7 +91,6 @@ public class FileManager{
         ImageIcon immagine = new ImageIcon("icona.png");
         Image icona = immagine.getImage();
         finestra.setIconImage(icona);
-        
     }
     
 }
