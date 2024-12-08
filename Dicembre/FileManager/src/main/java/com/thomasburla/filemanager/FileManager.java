@@ -18,7 +18,6 @@ import java.io.*;
 public class FileManager{
     public static void main(String args[]){
         
-        
         //creo finestra
         JFrame finestra = new JFrame("File Manager");
         //imposto dimensione finestra
@@ -49,10 +48,18 @@ public class FileManager{
                     //array che conterrà i files della directory da visualizzare
                     String[] files = directory.list();
                     
-                    //controllo che la directory non sia vuota (e quindi che contenga files) e che non vi siano stati errori di I/O (altrimenti l'array avrebbe riferimento null)
-                    if((files != null) && (files.length != 0)){
-                        //assegno array dei files a jlist per la visualizzazione grafica del contenuto della directory
-                        listaFiles.setListData(files);
+                    //controllo che non vi siano stati errori di I/O (altrimenti l'array avrebbe riferimento null)
+                    if(files != null){
+                        
+                        //gestisco caso di directory vuota
+                        if(files.length != 0){
+                            //assegno array dei files a jlist per la visualizzazione grafica del contenuto della directory
+                            listaFiles.setListData(files);
+                        }else{
+                            String[] vuota = {"Nessun file nella directory"};
+                            listaFiles.setListData(vuota);
+                        }
+                        
                     }else{
                         JOptionPane.showMessageDialog(finestra, "ERRORE! Directory vuota o non accessibile", "Errore", JOptionPane.ERROR_MESSAGE);
                     }
