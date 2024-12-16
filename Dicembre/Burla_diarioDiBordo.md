@@ -27,4 +27,14 @@
 
 ## 2. **2 Dicembre 2024**
    - **Ordine del giorno**: Perfeziono quanto scritto precedentemente nel diario di bordo, inserendo una tabella che riassume i principali marcatori markdown.
-   
+   Inizio a scrivere le basi del software da sviluppare: ho realizzato un file manager "elementare" che, dato un path inserito nella casella di testo apposita (di default impostato sulla cartella dell'utente), quando si clicca sul bottone "Vai" visualizza il contenuto della directory specificata. Ovviamente, viene fatto un controllo sul path e viene gestito il caso in cui la directory sia vuota.
+   Inizio a considerare una possibile implementazione del software con JavaFX
+   - **Sitografia**: [File Java API](https://docs.oracle.com/javase/8/docs/api/java/io/File.html), [JList Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JList.html), [JButton Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JButton.html).
+
+## 3. **9 Dicembre 2024**
+   - **Ordine del giorno**: mi cimento nello studio degli ascoltatori per il mouse (MouseListener e MouseAdapter, che consente di implemetare selettivamente solo alcuni metodi di MouseListener) per poter aprire una directory (o un file) una volta che viene cliccato nella GUI.
+   Ovviamente, studio anche i MouseEvent per gestire i comportamenti del mouse.
+   Innanzitutto, faccio in modo di prelevare il nome del file che viene selezionato dalla JList con il puntatore del mouse, aggiornando così il path da visualizzare; per fare ciò, dò uno sguardo a ListModel.
+   Studio poi la classe Desktop, che permette di aprire i file con l'app predefinita.
+   - **Sitografia**: [MouseAdapter Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/event/MouseAdapter.html), [MouseEvent Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/event/MouseEvent.html), [ListModel](https://docs.oracle.com/javase/8/docs/api/javax/swing/ListModel.html), [Desktop Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html)
+   - **DA RISOLVERE**: problema legato al path che, una volta clicatta con il mouse una directory dalla lista, on aggiorna correttamente il path (rif. riga 78).
