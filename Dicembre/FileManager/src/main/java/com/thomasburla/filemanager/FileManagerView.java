@@ -51,27 +51,27 @@ public class FileManagerView extends JFrame{
     }
 
     //metodo per ottenere path nella casella di testo
-    public JTextField getPathField(){
+    public JTextField getPath(){
         return path;
     }
 
     //metodo per ottenere jlist di stringhe con i nomi dei files
-    public JList<String> getFileList(){
+    public JList<String> getListaFiles(){
         return listaFiles;
     }
 
     //metodo per ottnere bottone per caricare contenuto
-    public JButton getLoadButton(){
+    public JButton getCaricaDirectory(){
         return caricaDirectory;
     }
 
     //metodo per visualizzare un errore a schermo, passando il messaggio
-    public void showError(String message) {
+    public void mostraErrore(String message) {
         JOptionPane.showMessageDialog(this, message, "Errore", JOptionPane.ERROR_MESSAGE);
     }
 
     //metodo per aggiornare jlist con una nuova lista di files
-    public void updateFileList(String[] files){
+    public void aggiornaListaFiles(String[] files){
         //imposta nuova lista
         listaFiles.setListData(files);
         //imposta selezione singola degli elementi della lista visualizzata
@@ -79,7 +79,7 @@ public class FileManagerView extends JFrame{
     }
 
     //metodo per otrtnere la finestra
-    public JFrame getFrame(){
+    public JFrame getFinestra(){
         return this;
     }
 }
