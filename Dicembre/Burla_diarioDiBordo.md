@@ -38,3 +38,7 @@
    Studio poi la classe Desktop, che permette di aprire i file con l'app predefinita.
    - **Sitografia**: [MouseAdapter Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/event/MouseAdapter.html), [MouseEvent Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/event/MouseEvent.html), [ListModel](https://docs.oracle.com/javase/8/docs/api/javax/swing/ListModel.html), [Desktop Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html)
    - **DA RISOLVERE**: problema legato al path che, una volta clicatta con il mouse una directory dalla lista, on aggiorna correttamente il path (rif. riga 78).
+
+## 4. **16 Dicembre 2024**
+   - **Ordine del giorno**: studio come utilizzare il _throw exception_ per generare eccezioni differenziate in base alla situazione aiutandomi anche con la spiegazione di IA. 
+   - **Sitografia**: [throw and throws in Java](https://www.geeksforgeeks.org/throw-throws-java/), [How to Throw Exceptions Java](https://docs.oracle.com/javase/tutorial/essential/exceptions/throwing.html)
