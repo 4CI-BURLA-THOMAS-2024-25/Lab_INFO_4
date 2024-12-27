@@ -21,11 +21,12 @@ public class FileManagerModel{
         if (!directory.isDirectory()) {
             throw new IOException("Il percorso non indica una directory valida.");
         }
+        
         //creo array di stringhe con i nomi dei files
         String[] files = directory.list();
         //se l'array ha puntatorer nullo (e quindi non è stato possibile crearlo), lancio eccezione
         if (files == null) {
-            throw new IOException("Errore di accesso alla directory o directory vuota.");
+            throw new IOException("Errore di accesso alla directory.");
         }
         
         //se l'array è vuoto, e cioè la directory non contiene elementi, restituisco array con messaggio
@@ -34,8 +35,9 @@ public class FileManagerModel{
         }
         return files;
     }
+    
     //metodo per aprire i files, in grado di lanciare IOException
-    public void openFile(String path) throws IOException {
+    public void apriFile(String path) throws IOException {
         //creo oggetto file con il path ricevuto come parametro
         File file = new File(path);
         
@@ -43,7 +45,7 @@ public class FileManagerModel{
         if (Desktop.isDesktopSupported()) {
             //apro file
             Desktop.getDesktop().open(file);
-        //lancio eccezione
+        //se non lo è, lancio eccezione
         } else {
             throw new IOException("Desktop non supportato o programma non disponibile.");
         }
