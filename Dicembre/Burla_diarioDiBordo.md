@@ -42,3 +42,6 @@
 ## 4. **16 Dicembre 2024**
    - **Ordine del giorno**: studio come utilizzare il _throw exception_ per generare eccezioni differenziate in base alla situazione aiutandomi anche con la spiegazione di IA. In particolare, si noti come la parola chaiave _throw_ venga utilizzata per lanciare un'eccezione, mentre la parola chiave _throws_ viene utilizzata per indicare che un metodo può lanciare una determinata eccezione durante la sua esecuzione. Faccio ordine nel codice e lo riorganizzo secondo il pattern MVC, in precedenza era considerabile come insieme di appunti e non un programma ordinato.
    - **Sitografia**: [throw and throws in Java](https://www.geeksforgeeks.org/throw-throws-java/), [How to Throw Exceptions Java](https://docs.oracle.com/javase/tutorial/essential/exceptions/throwing.html)
+
+## 5. **27 Dicembre 2024**
+   - **Ordine del giorno**: sistemo codice inserendo tutti i commenti necessari per una comprensione agevolata.
