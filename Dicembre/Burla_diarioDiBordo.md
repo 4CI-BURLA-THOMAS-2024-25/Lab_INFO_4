@@ -37,11 +37,15 @@
    Innanzitutto, faccio in modo di prelevare il nome del file che viene selezionato dalla JList con il puntatore del mouse, aggiornando così il path da visualizzare; per fare ciò, dò uno sguardo a ListModel.
    Studio poi la classe Desktop, che permette di aprire i file con l'app predefinita.
    - **Sitografia**: [MouseAdapter Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/event/MouseAdapter.html), [MouseEvent Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/event/MouseEvent.html), [ListModel](https://docs.oracle.com/javase/8/docs/api/javax/swing/ListModel.html), [Desktop Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html)
-   - **DA RISOLVERE**: problema legato al path che, una volta clicatta con il mouse una directory dalla lista, on aggiorna correttamente il path (rif. riga 78).
+   - **DA RISOLVERE**: problema legato al path che, una volta clicatta con il mouse una directory dalla lista, non aggiorna correttamente il path (rif. riga 78).
 
 ## 4. **16 Dicembre 2024**
-   - **Ordine del giorno**: studio come utilizzare il _throw exception_ per generare eccezioni differenziate in base alla situazione aiutandomi anche con la spiegazione di IA. In particolare, si noti come la parola chaiave _throw_ venga utilizzata per lanciare un'eccezione, mentre la parola chiave _throws_ viene utilizzata per indicare che un metodo può lanciare una determinata eccezione durante la sua esecuzione. Faccio ordine nel codice e lo riorganizzo secondo il pattern MVC, in precedenza era considerabile come insieme di appunti e non un programma ordinato.
+   - **Ordine del giorno**: innanzitutto, risolvo il problema segnalato al passo precedente creando un oggetto di classe File, che indica il file selezionato da GUI, a partire da un indirizzo relativo (path della directory e nome del file), di cui poi ottengo il percorso assoluto che, nel caso di una directory, verrà impostato come nuovo path del campo di testo (il metodo della concatenazione utilizzato in precedenza creava problemi). Studio come utilizzare il _throw exception_ per generare eccezioni differenziate in base alla situazione aiutandomi anche con la spiegazione di IA. In particolare, si noti come la parola chaiave _throw_ venga utilizzata per lanciare un'eccezione, mentre la parola chiave _throws_ viene utilizzata per indicare che un metodo può lanciare una determinata eccezione durante la sua esecuzione. Faccio ordine nel codice e lo riorganizzo secondo il pattern MVC, in precedenza era considerabile come insieme di appunti e non un programma ordinato.
    - **Sitografia**: [throw and throws in Java](https://www.geeksforgeeks.org/throw-throws-java/), [How to Throw Exceptions Java](https://docs.oracle.com/javase/tutorial/essential/exceptions/throwing.html)
 
 ## 5. **27 Dicembre 2024**
    - **Ordine del giorno**: sistemo codice inserendo tutti i commenti necessari per una comprensione agevolata.
+
+## 6. **29 Dicembre 2024**
+   - **Ordine del giorno**: implemetare la possibilità di visualizzare un file o il contenuto di una directory premendo il tasto _INVIO_ della tastiera anzichè cliccare necessariamente il bottone che sta in basso nella GUI. Per fare ciò, utilizzo la classe KeyAdapter di Java che mi consente di scrivere solo i metodi necessari anziché tutti i metodi di KeyListener.
+   - **Sitografia**: [KeyAdapter Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyAdapter.html)
