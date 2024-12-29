@@ -12,7 +12,6 @@ import java.io.*;
 //importo liberia per usare desktop
 import java.awt.Desktop;
 public class FileManagerModel{
-
     //metodo per ottenere l'array con i nomi dei files, in grado di lanciare eccezioni IOException
     public String[] ottieniFiles(String path) throws IOException {
         //associo parametro path a una nuova directory

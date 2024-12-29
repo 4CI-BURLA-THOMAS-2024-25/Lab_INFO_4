@@ -24,11 +24,11 @@ public class FileManager {
         this.view = view;
         
         //evoco metodo per inizializzare l'oggetto
-        initialize();
+        this.inizializza();
     }
 
     //metodo che inizializza l'istanza di file manager
-    private void initialize() {
+    private void inizializza() {
         //assegno ascoltatore al bottone per visualizzare il contenuto della directory di cui è indicato il path e chiamo metodo per caricare directory
         view.getCaricaDirectory().addActionListener(e -> caricaDirectory());
 
@@ -44,9 +44,9 @@ public class FileManager {
                     //controllo che l'indice sia un numero accettabile, ovvero che il doppio click sia avvenuto su un elemento della lista
                     if (indice != -1) {
                         //prelevo l'elemento di indice indicato dal modello di dati della JList, che contiene tutti i dati di tale lista
-                        String oggettoSelezionato = ((view.getListaFiles()).getModel()).getElementAt(indice);
+                        String elementoSelezionato = ((view.getListaFiles()).getModel()).getElementAt(indice);
                         //chiamo metodo della classe controller che si occupa di gestire le operazioni da effettuare con il file selezionato
-                        gestisciFileSelezionato(oggettoSelezionato);
+                        gestisciFileSelezionato(elementoSelezionato);
                     }
                 }
             }
@@ -101,8 +101,13 @@ public class FileManager {
 
     //metodo main, che crea model e view e le assegna al controller per la gestione
     public static void main(String[] args) {
+        //creo oggetto di classe Model
         FileManagerModel model = new FileManagerModel();
+        
+        //creo oggetto di classe View
         FileManagerView view = new FileManagerView();
+        
+        //creo oggetto di classe Controller che unisce i primi due
         new FileManager(model, view);
     }
 }
