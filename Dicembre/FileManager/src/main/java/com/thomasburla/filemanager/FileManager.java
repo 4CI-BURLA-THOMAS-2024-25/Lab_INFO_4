@@ -8,6 +8,7 @@ package com.thomasburla.filemanager;
 
 //importo gestore eventi
 import java.awt.event.*;
+import java.awt.Point;
 import java.io.*;
 
 public class FileManager {
@@ -29,17 +30,19 @@ public class FileManager {
 
     //metodo che inizializza l'istanza di file manager
     private void inizializza() {
+        //opggetto utilizzato per passare la posizione del mouse registrata da MouseAdapter al KyeAdapter, nel caso di un singolo click
+        Point posizioneMouse  = new Point();
         //assegno ascoltatore al bottone per visualizzare il contenuto della directory di cui è indicato il path e chiamo metodo per caricare directory
         view.getCaricaDirectory().addActionListener(e -> caricaDirectory());
 
         //assegno alla lista dei files l'ascoltatore MouseAdapter, che non richiede l'implementazione di tutti i metodi di MuoseListener, 
         view.getListaFiles().addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent clickMouse) {
                 //controllo che il contatore dei click effettuati sia pari a 2
-                if (e.getClickCount() == 2) {
+                if (clickMouse.getClickCount() == 2) {
                     //ottengo le coordinate del punto cliccato e le trasformo in un intero, corrispondente all'indice dell'elemento della lista selezionato
-                    int indice = view.getListaFiles().locationToIndex(e.getPoint());
+                    int indice = view.getListaFiles().locationToIndex(clickMouse.getPoint());
                     
                     //controllo che l'indice sia un numero accettabile, ovvero che il doppio click sia avvenuto su un elemento della lista
                     if (indice != -1) {
@@ -48,6 +51,12 @@ public class FileManager {
                         //chiamo metodo della classe controller che si occupa di gestire le operazioni da effettuare con il file selezionato
                         gestisciFileSelezionato(elementoSelezionato);
                     }
+                //quando viene effettuato un click singolo su un elemento, assegno il focus della alla lista così da poter aprire il file/directory selezionato con il tasto INVIO
+                }else if (clickMouse.getClickCount() == 1){
+                    //richiedo che venga passato il focus alla lista dei files
+                    view.getListaFiles().requestFocus();
+                    //salvo posizione del mouse, utilizzata poi per ottenere l'indice della lista
+                    posizioneMouse.setLocation(clickMouse.getX(), clickMouse.getY());
                 }
             }
         });
@@ -64,7 +73,32 @@ public class FileManager {
             }
         });
         
-        
+        //assegno alla lista dei files l'ascoltatore KeyAdapter per aprire il file/la directory selezionato alla pressione del tasto INVIO sulla tastiera
+        view.getListaFiles().addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent e){
+                //verifiuco che la stastiera abbia il focus per poter reagire alla pressione dei tasti
+                if(view.getListaFiles().hasFocus()){
+                    
+                    //controllo che sia stato premuto il tasto invio
+                    if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                        //ottengo le coordinate del punto cliccato e le trasformo in un intero, corrispondente all'indice dell'elemento della lista selezionato
+                        int indice = view.getListaFiles().locationToIndex(posizioneMouse);
+
+                        //controllo che l'indice sia un numero accettabile, ovvero che il doppio click sia avvenuto su un elemento della lista
+                        if (indice != -1) {
+                            //prelevo l'elemento di indice indicato dal modello di dati della JList, che contiene tutti i dati di tale lista
+                            String elementoSelezionato = ((view.getListaFiles()).getModel()).getElementAt(indice);
+                            //chiamo metodo della classe controller che si occupa di gestire le operazioni da effettuare con il file selezionato
+                            gestisciFileSelezionato(elementoSelezionato);
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+        });
     }
 
     

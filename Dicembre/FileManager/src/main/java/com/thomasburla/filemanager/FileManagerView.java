@@ -35,6 +35,8 @@ public class FileManagerView extends JFrame{
         path = new JTextField(System.getProperty("user.home"));
         //creo jlist, utilizzata poi per visualizzare in finestra l'elenco dei file della directory
         listaFiles = new JList<>();
+        //attivo la lista alla ricezione del focus (utilizzato per il corretto funzionamento del KeyAdapter del Control)
+        listaFiles.setFocusable(true);
         //creo bottone per caricare il contenuto
         caricaDirectory = new JButton("Vai");
 
