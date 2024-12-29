@@ -29,7 +29,7 @@
    - **Ordine del giorno**: Perfeziono quanto scritto precedentemente nel diario di bordo, inserendo una tabella che riassume i principali marcatori markdown.
    Inizio a scrivere le basi del software da sviluppare: ho realizzato un file manager "elementare" che, dato un path inserito nella casella di testo apposita (di default impostato sulla cartella dell'utente), quando si clicca sul bottone "Vai" visualizza il contenuto della directory specificata. Ovviamente, viene fatto un controllo sul path e viene gestito il caso in cui la directory sia vuota.
    Inizio a considerare una possibile implementazione del software con JavaFX
-   - **Sitografia**: [File Java API](https://docs.oracle.com/javase/8/docs/api/java/io/File.html), [JList Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JList.html), [JButton Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JButton.html).
+   - **Sitografia**: [File Java API](https://docs.oracle.com/javase/8/docs/api/java/io/File.html), [JList Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JList.html), [JButton Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JButton.html), [JTextField Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JTextField.html).
 
 ## 3. **9 Dicembre 2024**
    - **Ordine del giorno**: mi cimento nello studio degli ascoltatori per il mouse (MouseListener e MouseAdapter, che consente di implemetare selettivamente solo alcuni metodi di MouseListener) per poter aprire una directory (o un file) una volta che viene cliccato nella GUI.
@@ -47,5 +47,5 @@
    - **Ordine del giorno**: sistemo codice inserendo tutti i commenti necessari per una comprensione agevolata.
 
 ## 6. **29 Dicembre 2024**
-   - **Ordine del giorno**: implemetare la possibilità di visualizzare un file o il contenuto di una directory premendo il tasto _INVIO_ della tastiera anzichè cliccare necessariamente il bottone che sta in basso nella GUI. Per fare ciò, utilizzo la classe KeyAdapter di Java che mi consente di scrivere solo i metodi necessari anziché tutti i metodi di KeyListener.
+   - **Ordine del giorno**: implemetare la possibilità di visualizzare un file o il contenuto di una directory premendo il tasto _INVIO_ della tastiera anzichè cliccare necessariamente il bottone che sta in basso nella GUI quando il campo di testo è selezionato. Per fare ciò, utilizzo la classe KeyAdapter di Java che mi consente di scrivere solo i metodi necessari anziché tutti i metodi di KeyListener.
    - **Sitografia**: [KeyAdapter Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyAdapter.html)

@@ -51,6 +51,20 @@ public class FileManager {
                 }
             }
         });
+        
+        //assegno al campo di testo del path l'ascoltatore KeyAdapter per caricare il contenuto di una directory o visualizzare un file quando viene premuto il tasto INVIO sulla tastiera e il campo di testo è selezionato
+        view.getPath().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e){
+                //controllo che sia stato premuto il tasto invio
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    //chiamo metodo per visualizzare la nuova directory/il nuovo file
+                    caricaDirectory();
+                }
+            }
+        });
+        
+        
     }
 
     
