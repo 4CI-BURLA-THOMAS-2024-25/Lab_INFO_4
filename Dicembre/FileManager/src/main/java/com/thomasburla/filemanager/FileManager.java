@@ -99,6 +99,16 @@ public class FileManager {
                 
             }
         });
+        
+        //assegno all'etichetta che contiene il tasto indietro il suo ascoltatore
+        view.getIndietroIcona().addActionListener(click -> {
+            //creo oggetto File che rtappresenta la directory attuale
+            File directoryAttuale = new File(view.getPath().getText());
+            //aggiorno path della GUI con quello della directory superiore
+            view.getPath().setText(directoryAttuale.getParent());
+            //chaimo metodo per visualizzare la directory superiore
+            caricaDirectory();
+        });
     }
 
     
