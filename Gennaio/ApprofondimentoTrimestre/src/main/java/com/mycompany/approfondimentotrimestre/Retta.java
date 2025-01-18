@@ -50,7 +50,7 @@ public class Retta {
             //calcolo determinante del coefficiente angolare m della retta
             determinanteM = coefficienti[0][0] * coefficienti[1][2] - (coefficienti[1][0] * coefficienti[0][2]);
             //calcolo determinante di q della retta
-            determinanteQ = coefficienti[0][1] * coefficienti[0][0] - (coefficienti[1][1] * coefficienti[1][0]);
+            determinanteQ = coefficienti[0][1] * coefficienti[1][0] - (coefficienti[1][1] * coefficienti[0][0]);
             //calcolo m e q
             this.m = determinanteM / determinanteSistema;
             this.q = determinanteQ / determinanteSistema;
@@ -69,7 +69,8 @@ public class Retta {
     
     //metodo per calcolare la distanza di un punto da una retta
     public double distanzaPuntoRetta(Punto p){
-        return (Math.abs((this.a * p.getX()) + (this.b * p.getY()) + this.c)) / (Math.sqrt(Math.pow(this.a, 2) + Math.pow(this.b, 2)));
+        double distanza = (Math.abs((this.a * p.getX()) + (this.b * p.getY()) + this.c)) / (Math.sqrt(Math.pow(this.a, 2) + Math.pow(this.b, 2)));
+        return distanza;
     }
     
 }
