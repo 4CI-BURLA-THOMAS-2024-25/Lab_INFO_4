@@ -72,5 +72,4 @@ public class Retta {
         double distanza = (Math.abs((this.a * p.getX()) + (this.b * p.getY()) + this.c)) / (Math.sqrt(Math.pow(this.a, 2) + Math.pow(this.b, 2)));
         return distanza;
     }
-    
 }
