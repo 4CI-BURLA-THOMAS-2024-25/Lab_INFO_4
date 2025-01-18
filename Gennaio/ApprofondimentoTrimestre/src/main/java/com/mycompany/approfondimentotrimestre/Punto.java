@@ -41,6 +41,25 @@ public class Punto {
     public double getY(){
         return this.y;
     }
+    
+    //distanza tra 2 punti
+    public static double distanzaTraPunti(Punto p1, Punto p2){
+        double lunghezza, diffX, diffY;
+        if((p1 != null) && (p2 != null)){
+            //differenza x dei punti
+            diffX = p1.getX() - p2.getY();
+            //quadrato differenza X
+            diffX = Math.pow(diffX, 2);
+            //differenza y dei punti
+            diffY = p1.getY() - p2.getY();
+            //quadrato differenza Y
+            diffY = Math.pow(diffY, 2);
+            //calcolo lunghezza mediante la radice quadrata
+            lunghezza = Math.sqrt(diffX + diffY);
+            return lunghezza;
+        }
+        return -1;
+    }
     //toString
     public String toString(){
         return "P(" + this.x + "; " + this.y + ")";
