@@ -47,7 +47,7 @@ public class Punto {
         double lunghezza, diffX, diffY;
         if((p1 != null) && (p2 != null)){
             //differenza x dei punti
-            diffX = p1.getX() - p2.getY();
+            diffX = p1.getX() - p2.getX();
             //quadrato differenza X
             diffX = Math.pow(diffX, 2);
             //differenza y dei punti
