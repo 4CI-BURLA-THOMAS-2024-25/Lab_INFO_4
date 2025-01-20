@@ -1,5 +1,3 @@
-package com.mycompany.approfondimentotrimestre;
-
 /**
  *
  * @author Thomas Burla

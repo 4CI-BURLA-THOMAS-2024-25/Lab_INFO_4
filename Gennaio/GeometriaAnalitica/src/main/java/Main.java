@@ -1,11 +1,9 @@
-package com.mycompany.approfondimentotrimestre;
-
 /**
  *
  * @author Thomas Burla
  * @version 1.0
  */
-public class ApprofondimentoTrimestre {
+public class Main {
     public static void main(String[] args) {
         Punto p1 = new Punto(5, 7);
         Punto p2 = new Punto(-4, 3);
