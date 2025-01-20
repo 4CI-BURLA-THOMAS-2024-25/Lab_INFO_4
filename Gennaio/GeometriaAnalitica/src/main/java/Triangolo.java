@@ -26,19 +26,19 @@ public class Triangolo {
         if((p1 != null) && (p2 != null) && (p3 != null)){
             //controllo che i punti non coincidano
             //p1 e p2 non coincidono
-            //if((p1.getX() != p2.getX()) && (p1.getY() != p2.getY())){
+            if(!((p1.getX() == p2.getX()) && (p1.getY() == p2.getY()))){
                 //p2 e p3 non coincidono
-                //if((p3.getX() != p2.getX()) && (p3.getY() != p2.getY())){
+                if(!((p3.getX() == p2.getX()) && (p3.getY() == p2.getY()))){
                     //p1 e p3 non coincidono
-                    //if((p1.getX() != p3.getX()) && (p1.getY() != p3.getY())){
+                    if(!((p1.getX() == p3.getX()) && (p1.getY() == p3.getY()))){
                         //punti non coincidenti
                         vertici.add(p1);
                         vertici.add(p2);
                         vertici.add(p3);
                         return true;
-                    //}
-                //}
-            //}
+                    }
+                }
+            }
         }
         return false;
     }
