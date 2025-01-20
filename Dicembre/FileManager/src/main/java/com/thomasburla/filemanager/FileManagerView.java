@@ -42,7 +42,7 @@ public class FileManagerView extends JFrame{
         listaFiles.setFocusable(true);
         
         //imposto icona indietro
-        ImageIcon iconaOriginale = new ImageIcon("indietro_icona.png");
+        ImageIcon iconaOriginale = new ImageIcon("cartellaSuperiore.png");
         //creo immagine scalando l'immagine dell'icona
         Image immagineScalata = (iconaOriginale.getImage()).getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         //creo icona con immagine scalata
