@@ -2,7 +2,8 @@ package com.thomasburla.filemanager;
 
 /**
  * classe View, che gestisce la GUI del filemanager
- * @author 20164
+ * @author Thomas Burla
+ * @version 2.0
  */
 
 //importo classi per la grafica
