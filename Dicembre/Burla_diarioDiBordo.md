@@ -49,6 +49,9 @@
 ## 6. **29 Dicembre 2024**
    - **Ordine del giorno**: implemetare la possibilità di visualizzare un file o il contenuto di una directory premendo il tasto _INVIO_ della tastiera anzichè cliccare necessariamente il bottone che sta in basso nella GUI quando il campo di testo è selezionato. Per fare ciò, utilizzo la classe KeyAdapter di Java che mi consente di scrivere solo i metodi necessari anziché tutti i metodi di KeyListener.
    Sempre con l'ausilio dell'interfaccia KeyAdapter, aggiungo la possibilità di aprire un file o una directory premendo il tasto _INVIO_ dopo aver selezionato il file o la directory in questione dalla GUI. A tal proposito, quando un elemento sarà cliccato due volte di fila verrà aperto (come implementato in precedenza), mentre quando sarà cliccato solo una volta verrà passato il focus della tastiera alla JList dei files. A tal proposito, le interfacce MouseAdapter e KeyAdapter associate a JList condividono un oggeto di classe _Point_, cosicché l'ascoltatore del mouse possa comunicare all'ascoltatore della tastiera il punto in cui è avvenuto il singolo click e quest'ultimo possa così ottenere l'indice dell'elemento selezionato.
-   Inizio a implemetare il tasto _indietro_ che consente di andare alla directory superiore: utilizzo la classe Jlabel per l'icona e, per posizionare l'immagine, creo un pannello con BorderLayout che conterrà la JLabel dell'icona e il JTextField del path e che sarà contenuto nel pannello principale in alto.
+   Inizio a implemetare il tasto _indietro_ che consente di andare alla directory superiore: utilizzo la classe JButton che conterrà l'icona e, per posizionare l'immagine, creo un pannello con BorderLayout che conterrà il JButton dell'icona e il JTextField del path e che sarà contenuto nel pannello principale in alto.
    Si presenta anche la necessità di scalare l'icona orginiale per inserirla nel sottopannello.
-   - **Sitografia**: [KeyAdapter Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyAdapter.html), [JLabel Java API]()
+   - **Sitografia**: [KeyAdapter Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyAdapter.html)
+
+## 7. **20 Gennaio 2025**
+   - **Ordine del giorno**: preparo l'icona personalizzata per il tasto directory superiore mediante il software di fotoritocco GIMP.
