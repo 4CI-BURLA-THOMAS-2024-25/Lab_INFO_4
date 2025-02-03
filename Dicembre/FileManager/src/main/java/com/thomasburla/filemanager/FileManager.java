@@ -165,6 +165,6 @@ public class FileManager {
         FileManagerView view = new FileManagerView();
         
         //creo oggetto di classe Controller che unisce i primi due
-        new FileManager(model, view);
+        FileManager controller = new FileManager(model, view);
     }
 }
