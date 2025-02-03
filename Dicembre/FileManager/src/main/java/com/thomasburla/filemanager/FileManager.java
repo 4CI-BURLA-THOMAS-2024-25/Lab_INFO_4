@@ -4,6 +4,7 @@ package com.thomasburla.filemanager;
  * classe Controller che "collega" tra loro classe view e model
  * 
  * @author Thomas Burla
+ * @version 2.0
  */
 
 //importo gestore eventi
@@ -32,8 +33,6 @@ public class FileManager {
     private void inizializza() {
         //opggetto utilizzato per passare la posizione del mouse registrata da MouseAdapter al KyeAdapter, nel caso di un singolo click
         Point posizioneMouse  = new Point();
-        //assegno ascoltatore al bottone per visualizzare il contenuto della directory di cui è indicato il path e chiamo metodo per caricare directory
-        view.getCaricaDirectory().addActionListener(e -> caricaDirectory());
 
         //assegno alla lista dei files l'ascoltatore MouseAdapter, che non richiede l'implementazione di tutti i metodi di MuoseListener, 
         view.getListaFiles().addMouseListener(new MouseAdapter() {
@@ -111,7 +110,6 @@ public class FileManager {
         });
     }
 
-    
     private void caricaDirectory() {
         //prelevo path
         String path = view.getPath().getText();
@@ -144,6 +142,7 @@ public class FileManager {
             this.caricaDirectory();
         //se invece si è selezionato un file...
         }else{
+            
             //gestisco errori di I/O
             try {
                 //chiamo metodo del model per aprire il file

@@ -2,7 +2,8 @@ package com.thomasburla.filemanager;
 
 /**
  * classe View, che gestisce la GUI del filemanager
- * @author 20164
+ * @author Thomas Burla
+ * @version 2.0
  */
 
 //importo classi per la grafica
@@ -12,7 +13,6 @@ import javax.swing.*;
 public class FileManagerView extends JFrame{
     private JTextField path;
     private JList<String> listaFiles;
-    private JButton caricaDirectory;
     private JButton indietroIcona;
     private JPanel pannelloMain;
     private JPanel pannelloAlto;
@@ -50,9 +50,6 @@ public class FileManagerView extends JFrame{
         //creo etichetta che conterrà l'icona scalata che permette all'utente di andare nella directory di livello superiore a quella attuale
         indietroIcona = new JButton(iconaScalata);
         
-        //creo bottone per caricare il contenuto
-        caricaDirectory = new JButton("Vai");
-        
         //creo pannello per gestire la parte alta della GUI, con BorderLayout
         pannelloAlto = new JPanel(new BorderLayout());
         //aggiungo casella path al pannello in alto
@@ -64,8 +61,6 @@ public class FileManagerView extends JFrame{
         pannelloMain.add(this.pannelloAlto, BorderLayout.NORTH);
         //aggiungo al centro del pannello la jlist per visualizzare il contenuto della directory, associandovi le barre di scorrimento
         pannelloMain.add(new JScrollPane(listaFiles), BorderLayout.CENTER);
-        //aggiungo al pannello, in basso, il bottone per caricare il contenuto
-        pannelloMain.add(caricaDirectory, BorderLayout.SOUTH);
         
         //pannello al contenitore
         contenitore.add(pannelloMain);
@@ -80,11 +75,6 @@ public class FileManagerView extends JFrame{
     //metodo per ottenere jlist di stringhe con i nomi dei files
     public JList<String> getListaFiles(){
         return listaFiles;
-    }
-
-    //metodo per ottenere bottone per caricare contenuto
-    public JButton getCaricaDirectory(){
-        return caricaDirectory;
     }
     
     //metodo per ottenere l'etichetta che contiene il tasto indietro

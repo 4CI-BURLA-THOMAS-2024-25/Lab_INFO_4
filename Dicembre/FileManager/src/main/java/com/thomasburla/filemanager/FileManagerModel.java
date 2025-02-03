@@ -4,7 +4,7 @@ package com.thomasburla.filemanager;
  * classe Model del filemanager
  * 
  * @author Thomas Burla
- * @version 1.0
+ * @version 2.0
  */
  
 //importo libreria per usare i file
