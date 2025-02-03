@@ -11,6 +11,11 @@ package com.thomasburla.filemanager;
 import java.io.*;
 //importo liberia per usare desktop
 import java.awt.Desktop;
+//importo libreria per creare la lista delle iconje dei files di una directory
+import javax.swing.Icon;
+//importo package per ottenere l'icona dell'app predefinita associata a ciascun file
+import javax.swing.filechooser.*;
+
 public class FileManagerModel{
     //metodo per ottenere l'array con i nomi dei files, in grado di lanciare eccezioni IOException
     public String[] ottieniFiles(String path) throws IOException {
@@ -33,6 +38,19 @@ public class FileManagerModel{
             return new String[]{"Nessun file nella directory"};
         }
         return files;
+    }
+    
+    //metodo per ottenere un array con le icone di tutti i files di una determinata directory
+    public Icon[] ottieniIconeFiles(String path) throws IOException{
+        //ottengo l'elenco di tutti i files di un path
+        String[] listaFiles = ottieniFiles(path);
+        //elenco delle icone dei files
+        Icon[] listaIconeFiles = new Icon[listaFiles.length];
+        //ciclo per ottenere l'icona di ogni file
+        for(int i = 0; i < listaFiles.length; i++){
+            //metodo per ottenere l'oggetto Icon associato allo specifico file, applicato sull'istanza FileSystemView ottenuta dal metodo statico che permette di accedere alle informazioni sul file system
+            listaIconeFiles[i] = FileSystemView.getFileSystemView().getSystemIcon(new File(listaFiles[i]));
+        }
     }
     
     //metodo per aprire i files, in grado di lanciare IOException

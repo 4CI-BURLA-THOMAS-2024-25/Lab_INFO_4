@@ -13,6 +13,7 @@ import javax.swing.*;
 public class FileManagerView extends JFrame{
     private JTextField path;
     private JList<String> listaFiles;
+    private JList<ImageIcon> listaIcone;
     private JButton indietroIcona;
     private JPanel pannelloMain;
     private JPanel pannelloAlto;
@@ -40,6 +41,11 @@ public class FileManagerView extends JFrame{
         listaFiles = new JList<>();
         //attivo la lista alla ricezione del focus (utilizzato per il corretto funzionamento del KeyAdapter del Control)
         listaFiles.setFocusable(true);
+        
+        //creo jlist per contenere le icone dei files della directory visualizzati
+        listaIcone = new JList<>();
+        //attivo la lista alla ricezione del focus (utilizzato per il corretto funzionamento del KeyAdapter del Control)
+        listaIcone.setFocusable(true);
         
         //imposto icona indietro
         ImageIcon iconaOriginale = new ImageIcon("cartellaSuperiore.png");

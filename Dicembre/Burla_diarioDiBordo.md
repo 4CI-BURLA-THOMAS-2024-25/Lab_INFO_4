@@ -59,4 +59,4 @@
 
 ## 8. **3 Febbraio 2025**
    - **Ordine del giorno**: per una migliore distinzione tra i diversi tipi di files e le directory all'interno del file system, cerco informazioni online per capire se è possibile affiancare ad ogni elemento di ciascuna directory la sua icona: nel caso di una directory, comparirà l'icona di una cartella, nel caso di un file comparirà l'icona del programma predefinito dell'OS per aprire tale tipo di file. Considero l'utilizzo di due JList (una per le icone, l'altra già esistente per i files) affiancate con barre di scorrimento sincronizzate. Per le icone dei files/directory, studio FileSystemView.
-   - **Sitografia**: [FileSystemView Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/filechooser/FileSystemView.html), [JScrollPane Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JScrollPane.html)
+   - **Sitografia**: [FileSystemView Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/filechooser/FileSystemView.html), [JScrollPane Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JScrollPane.html), [Icon Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/Icon.html)
