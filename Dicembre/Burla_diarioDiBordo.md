@@ -28,7 +28,8 @@
 ## 2. **2 Dicembre 2024**
    - **Ordine del giorno**: Perfeziono quanto scritto precedentemente nel diario di bordo, inserendo una tabella che riassume i principali marcatori markdown.
    Inizio a scrivere le basi del software da sviluppare: ho realizzato un file manager "elementare" che, dato un path inserito nella casella di testo apposita (di default impostato sulla cartella dell'utente), quando si clicca sul bottone "Vai" visualizza il contenuto della directory specificata. Ovviamente, viene fatto un controllo sul path e viene gestito il caso in cui la directory sia vuota.
-   Inizio a considerare una possibile implementazione del software con JavaFX
+   Inizio a considerare una possibile implementazione del software con JavaFX.
+   Mi avvalgo delle cosiddette _lambda expressions_, ovvero di definizioni di metodi degli ascolatoti all'interno del campo riservato ai parametri (per comodità risulta accettabile; potrebbe essere una schifezza da vedere, a questo si penserà in altro momento).
    - **Sitografia**: [File Java API](https://docs.oracle.com/javase/8/docs/api/java/io/File.html), [JList Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JList.html), [JButton Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JButton.html), [JTextField Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JTextField.html), [BorderLayout Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/BorderLayout.html).
 
 ## 3. **9 Dicembre 2024**
