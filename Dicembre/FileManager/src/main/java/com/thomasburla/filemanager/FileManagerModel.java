@@ -4,14 +4,14 @@ package com.thomasburla.filemanager;
  * classe Model del filemanager
  * 
  * @author Thomas Burla
- * @version 2.0
+ * @version 3.0
  */
  
 //importo libreria per usare i file
 import java.io.*;
 //importo liberia per usare desktop
 import java.awt.Desktop;
-//importo libreria per creare la lista delle iconje dei files di una directory
+//importo libreria per creare la lista delle icone dei files di una directory
 import javax.swing.Icon;
 //importo package per ottenere l'icona dell'app predefinita associata a ciascun file
 import javax.swing.filechooser.*;
@@ -51,6 +51,8 @@ public class FileManagerModel{
             //metodo per ottenere l'oggetto Icon associato allo specifico file, applicato sull'istanza FileSystemView ottenuta dal metodo statico che permette di accedere alle informazioni sul file system
             listaIconeFiles[i] = FileSystemView.getFileSystemView().getSystemIcon(new File(listaFiles[i]));
         }
+        //restituisco array delle icone dei files
+        return listaIconeFiles;
     }
     
     //metodo per aprire i files, in grado di lanciare IOException
