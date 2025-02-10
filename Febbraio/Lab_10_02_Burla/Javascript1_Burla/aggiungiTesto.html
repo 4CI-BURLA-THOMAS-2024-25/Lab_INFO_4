@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <!-- aggiungi testo -> legge del testo da un form e lo visualizza in un paragrafo vuoto -->
+<html>
+    <head>
+        <title>Aggiungi testo</title>
+    </head>
 
-<head>
-    <title>Aggiungi testo</title>
-</head>
+    <body>
+        <form id="form">
+            <input type="text" value=""><br>
+            <button onclick="visualizzaTesto()">CLICCAMI!</button>
+        </form>
 
-<body>
-    <form id="form">
-        <input type="text" value=""><br>
-        <button onclick="visualizzaTesto()">CLICCAMI!</button>
-    </form>
-
-    <p id="testo"></p>
-    
-    <script>
-        function visualizzaTesto(){
-            // evita il refresh automatico della pagina
-            event.preventDefault();
-            const x = document.forms["form"];
-            let paragrafo = "";
-            for(let i = 0; i < x.length; i++){
-                paragrafo += x.elements[i].value + "<br>";
+        <p id="testo"></p>
+        
+        <script>
+            function visualizzaTesto(){
+                // evita il refresh automatico della pagina
+                event.preventDefault();
+                const x = document.forms["form"];
+                let paragrafo = "";
+                for(let i = 0; i < x.length; i++){
+                    paragrafo += x.elements[i].value + "<br>";
+                }
+                document.getElementById("testo").innerHTML = paragrafo;
             }
-            document.getElementById("testo").innerHTML = paragrafo;
-        }
-    </script>
-</body>
+        </script>
+    </body>
+</html>

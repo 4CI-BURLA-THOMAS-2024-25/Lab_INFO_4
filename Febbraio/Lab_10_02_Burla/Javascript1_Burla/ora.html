@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- ora -> legge l'ora e visualizza "Buongiorno", "Buon pomeriggio", "Buonasera" o "Buonanotte" -->
+
+<html>
+    <head>
+        <title>Ora</title>
+    </head>
+
+    <body>
+        <form id="form">
+            Saluto in base all'ora: <input type="button" value="Clicca qui!" onclick="visualizzaOra()"><br>
+        </form>
+
+        <p id="output"></p>
+
+        <script>
+            function visualizzaOra(){
+                // evita il refresh automatico della pagina
+                event.preventDefault();
+                const data = new Date();
+                document.getElementById("output").innerHTML = data.toString();
+            }
+            
+        </script>
+    </body>
+</html>
