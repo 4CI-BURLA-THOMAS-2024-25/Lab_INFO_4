@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- form -> legge il cognome il nome e l'età e scrive "Buongiorno ........, sei maggiorenne/minorenne" -->
+
+<head>
+    <title>Form</title>
+</head>
+
+<body>
+    <form id="form">
+        Il tuo nome: <input type="text" value=""><br>
+        Il tuo cognome: <input type="text" value=""><br>
+        La tua età: <input type="text" value=""><br>
+        <input type="submit" value="CLICCAMI!" onclick="saluta()">
+    </form>
+
+    <p id="output"></p>
+
+    <script>
+        function saluta(){
+            // evita il refresh automatico della pagina
+            event.preventDefault();
+            let testo = "Buongiorno, sei ";
+            const leggoForm = document.forms["form"];
+            if(leggoForm.elements[2].value == 0){
+                testo = "Valore non valido";
+            }
+            else if(leggoForm.elements[2].value >= 18){
+                testo += "maggiorenne";
+            }else{
+                testo += "minorenne";
+            }
+            document.getElementById("output").innerHTML = testo;
+        }
+    </script>
+</body>
