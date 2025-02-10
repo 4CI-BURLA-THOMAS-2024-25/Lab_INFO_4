@@ -1,0 +1,16 @@
+Creare le seguenti pagine:
+
+aggiungi testo -> legge del testo da un form e lo visualizza in un paragrafo vuoto
+form -> legge il cognome il nome e l'età e scrive "Buongiorno ........, sei maggiorenne/minorenne"
+ora -> legge l'ora e visualizza "Buongiorno", "Buon pomeriggio", "Buonasera" o "Buonanotte"
+tav_pitagorica -> visualizza la tavola pitagorica utilizzando i cicli opportuni
+celsius fahrenheit -> legge da un form la temperatura e, se corretta, la converte da C a F e viceversa
+Salvare tutto nella cartella Javascript1_cognome e consegnare.
+
+link utili:
+
+https://www.w3schools.com/js/js_htmldom.asp
+
+https://www.w3schools.com/js/default.asp
+
+https://www.w3schools.com/js/js_dates.asp
