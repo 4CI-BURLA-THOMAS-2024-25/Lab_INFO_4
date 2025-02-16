@@ -1,4 +1,4 @@
-package com.thomasburla.filemanager;
+
 
 import model.FileManagerModel;
 import view.FileManagerView;
