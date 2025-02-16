@@ -4,21 +4,22 @@ package model;
  * classe Model del filemanager
  * 
  * @author Thomas Burla
- * @version 3.0
+ * @version 4.0
  */
  
 //importo libreria per usare i file
 import java.io.*;
 //importo liberia per usare desktop
 import java.awt.Desktop;
-//importo libreria per creare la lista delle icone dei files di una directory
-import javax.swing.Icon;
-//importo package per ottenere l'icona dell'app predefinita associata a ciascun file
+//importo libreria grafica
+import javax.swing.*;
+//importo package per gestire le icone dei files
 import javax.swing.filechooser.*;
 
 public class FileManagerModel{
-    //metodo per ottenere l'array con i nomi dei files, in grado di lanciare eccezioni IOException
-    public String[] ottieniFiles(String path) throws IOException {
+    //metodo per ottenere array di Label con i nomi dei files e le rispettive icone, in grado di lanciare eccezioni IOException
+    public JLabel[] ottieniFiles(String path) throws IOException {
+        Icon iconaFile;
         //associo parametro path a una nuova directory
         File directory = new File(path);
         //controllo che la directory sia tale, altrimenti lancio eccezione
@@ -26,8 +27,10 @@ public class FileManagerModel{
             throw new IOException("Il percorso non indica una directory valida.");
         }
         
-        //creo array di stringhe con i nomi dei files
-        String[] files = directory.list();
+        //creo array con i files della directory
+        File[] files = directory.listFiles();
+        //creo lista delle Label per l'output
+        JLabel[] filesIcone = new JLabel[files.length];
         //se l'array ha puntatorer nullo (e quindi non è stato possibile crearlo), lancio eccezione
         if (files == null) {
             throw new IOException("Errore di accesso alla directory.");
@@ -35,24 +38,17 @@ public class FileManagerModel{
         
         //se l'array è vuoto, e cioè la directory non contiene elementi, restituisco array con messaggio
         if(files.length == 0){
-            return new String[]{"Nessun file nella directory"};
+            //
         }
-        return files;
-    }
-    
-    //metodo per ottenere un array con le icone di tutti i files di una determinata directory
-    public Icon[] ottieniIconeFiles(String path) throws IOException{
-        //ottengo l'elenco di tutti i files di un path
-        String[] listaFiles = ottieniFiles(path);
-        //elenco delle icone dei files
-        Icon[] listaIconeFiles = new Icon[listaFiles.length];
-        //ciclo per ottenere l'icona di ogni file
-        for(int i = 0; i < listaFiles.length; i++){
+        
+        //per ogni file, creo una Label che contiene il suo nome e la sua icona
+        for(int i = 0; i < filesIcone.length; i++){
             //metodo per ottenere l'oggetto Icon associato allo specifico file, applicato sull'istanza FileSystemView ottenuta dal metodo statico che permette di accedere alle informazioni sul file system
-            listaIconeFiles[i] = FileSystemView.getFileSystemView().getSystemIcon(new File(listaFiles[i]));
+            iconaFile = FileSystemView.getFileSystemView().getSystemIcon(files[i]);
+            //creo Label con nome del file e icona, allineati a sinistra
+            filesIcone[i] = new JLabel(files[i].getName(), iconaFile, JLabel.LEFT);
         }
-        //restituisco array delle icone dei files
-        return listaIconeFiles;
+        return filesIcone;
     }
     
     //metodo per aprire i files, in grado di lanciare IOException

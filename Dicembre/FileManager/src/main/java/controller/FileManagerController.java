@@ -14,6 +14,9 @@ import java.awt.event.*;
 import java.awt.Point;
 import java.io.*;
 
+//importo etichette per gestire i files di una directory
+import javax.swing.JLabel;
+
 public class FileManagerController {
     //creo oggetto model
     private FileManagerModel model;
@@ -47,8 +50,8 @@ public class FileManagerController {
                     
                     //controllo che l'indice sia un numero accettabile, ovvero che il doppio click sia avvenuto su un elemento della lista
                     if (indice != -1) {
-                        //prelevo l'elemento di indice indicato dal modello di dati della JList, che contiene tutti i dati di tale lista
-                        String elementoSelezionato = ((view.getListaFiles()).getModel()).getElementAt(indice);
+                        //prelevo l'elemento di indice indicato dal modello di dati della JList, che contiene tutti i dati di tale lista; prelevo testo della Label
+                            String elementoSelezionato = (((view.getListaFiles()).getModel()).getElementAt(indice)).getText();
                         //chiamo metodo della classe controller che si occupa di gestire le operazioni da effettuare con il file selezionato
                         gestisciFileSelezionato(elementoSelezionato);
                     }
@@ -88,8 +91,8 @@ public class FileManagerController {
 
                         //controllo che l'indice sia un numero accettabile, ovvero che il doppio click sia avvenuto su un elemento della lista
                         if (indice != -1) {
-                            //prelevo l'elemento di indice indicato dal modello di dati della JList, che contiene tutti i dati di tale lista
-                            String elementoSelezionato = ((view.getListaFiles()).getModel()).getElementAt(indice);
+                            //prelevo l'elemento di indice indicato dal modello di dati della JList, che contiene tutti i dati di tale lista; prelevo testo della Label
+                            String elementoSelezionato = (((view.getListaFiles()).getModel()).getElementAt(indice)).getText();
                             //chiamo metodo della classe controller che si occupa di gestire le operazioni da effettuare con il file selezionato
                             gestisciFileSelezionato(elementoSelezionato);
                         }
@@ -118,8 +121,8 @@ public class FileManagerController {
         
         //gestisco errori di I/O
         try {
-            //ottengo dalla classe model l'array che contiene i nomi dei files della directory da visualizzare
-            String[] files = model.ottieniFiles(path);
+            //ottengo dalla classe model l'array che contiene i nomi dei files della directory da visualizzare e le rispettive icone
+            JLabel[] files = model.ottieniFiles(path);
             //chiamo metodo della classe grafica per aggiornare la lista dei files visualizzati
             view.aggiornaListaFiles(files);
         //in caso di errori di I/O, "passo" il testo dell'errore al metodo della classe grafica che si occuperà di visualizzarlo

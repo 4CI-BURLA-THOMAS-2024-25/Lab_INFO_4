@@ -12,8 +12,7 @@ import javax.swing.*;
 
 public class FileManagerView extends JFrame{
     private JTextField path;
-    private JList<String> listaFiles;
-    private JList<ImageIcon> listaIcone;
+    private JList<JLabel> listaFiles;
     private JButton indietroIcona;
     private JPanel pannelloMain;
     private JPanel pannelloAlto;
@@ -39,13 +38,28 @@ public class FileManagerView extends JFrame{
         path = new JTextField(System.getProperty("user.home"));
         //creo jlist, utilizzata poi per visualizzare in finestra l'elenco dei file della directory
         listaFiles = new JList<>();
+        
+        //imposto render personalizzato (Component che decide come visualizzare gli elementi della lista) per visualizzare il contenuto della JList correttamente; creo classe anonima
+        listaFiles.setCellRenderer(new ListCellRenderer<JLabel>() {
+            //metodo chiamato automaticamente da JList ogni volta che un elemento della lista deve essere disegnato; fornisco lista dell'elemento, elemento da disegnare, posizione nella lista, selezionato si/no, ha focus SI/NO (a noi non interessa)
+            @Override
+            public Component getListCellRendererComponent(JList<? extends JLabel> lista, JLabel nuovaEtichetta, int indiceLista, boolean selezionata, boolean haFocus) {
+                //imposto sfondo opaco, così da poterlo visualizzare
+                nuovaEtichetta.setOpaque(true);
+
+                //se la cella è selezionata, sfondo grigio chiaro, altrimenti bianco
+                if (selezionata) {
+                    nuovaEtichetta.setBackground(Color.LIGHT_GRAY);
+                } else {
+                    nuovaEtichetta.setBackground(Color.WHITE);
+                }
+
+                //restituisco la nuova etichetta
+                return nuovaEtichetta;
+            }
+        });
         //attivo la lista alla ricezione del focus (utilizzato per il corretto funzionamento del KeyAdapter del Control)
         listaFiles.setFocusable(true);
-        
-        //creo jlist per contenere le icone dei files della directory visualizzati
-        listaIcone = new JList<>();
-        //attivo la lista alla ricezione del focus (utilizzato per il corretto funzionamento del KeyAdapter del Control)
-        listaIcone.setFocusable(true);
         
         //imposto icona indietro
         ImageIcon iconaOriginale = new ImageIcon("cartellaSuperiore.png");
@@ -79,7 +93,7 @@ public class FileManagerView extends JFrame{
     }
 
     //metodo per ottenere jlist di stringhe con i nomi dei files
-    public JList<String> getListaFiles(){
+    public JList<JLabel> getListaFiles(){
         return listaFiles;
     }
     
@@ -94,11 +108,12 @@ public class FileManagerView extends JFrame{
     }
 
     //metodo per aggiornare jlist con una nuova lista di files
-    public void aggiornaListaFiles(String[] files){
+    public void aggiornaListaFiles(JLabel[] files){
         //imposta nuova lista
         listaFiles.setListData(files);
         //imposta selezione singola degli elementi della lista visualizzata
         listaFiles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
     }
 
     //metodo per otrtnere la finestra
