@@ -85,6 +85,11 @@ public class FileManagerView extends JFrame{
         //pannello al contenitore
         contenitore.add(pannelloMain);
         
+        //forzo aggiornamento layout
+        this.revalidate();
+        //ridimensiono finestra
+        this.repaint();
+        
     }
 
     //metodo per ottenere path nella casella di testo
