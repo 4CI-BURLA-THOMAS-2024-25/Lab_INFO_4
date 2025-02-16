@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- tav_pitagorica -> visualizza la tavola pitagorica utilizzando i cicli opportuni -->
+
+<html>
+    <head>
+        <title>Tavola Pitagorica</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 50%;
+                margin: 20px auto;
+                text-align: center;
+            }
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+            th {
+                background-color: lightgray;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <h2 style="text-align: center;">Tavola Pitagorica</h2>
+        <!-- creo contenitore generico per inserirvi la tabella della tavola pitagorica; imposto il contenitore come flessibile e allineo il contenuto al centro -->
+        <div id="tabella" style="display: flex; justify-content: center;"></div>
+
+        <script>
+            //genero tavola pitagorica, di solito 10x10
+            generaTavolaPitagorica(10);
+
+            function generaTavolaPitagorica(dimensione) {
+                //creo tabella e apro prima riga; creo prima cella
+                let tabellaOutput = "<table><tr><th>*</th>";
+                
+                //intestazione colonne
+                for (let i = 0; i <= dimensione; i++) {
+                    // ad ogni giro, aggiungo intestazione th che contiene il valore di i
+                    tabellaOutput += `<th>${i}</th>`;
+                }
+                //chiudo riga
+                tabellaOutput += "</tr>";
+
+                //generazione righe
+                for (let i = 0; i <= dimensione; i++) {
+                    //creo intestazione della riga
+                    tabellaOutput += `<tr><th>${i}</th>`; 
+                    
+                    //calcolo prodotti
+                    for (let ii = 0; ii <= dimensione; ii++) {
+                        tabellaOutput += `<td>${i * ii}</td>`;
+                    }
+
+                    //chiudo riga
+                    tabellaOutput += "</tr>";
+                }
+                
+                //chiudo tabella
+                tabellaOutput += "</table>";
+                //output
+                document.getElementById("tabella").innerHTML = tabellaOutput;
+            }
+
+        </script>
+
+    </body>
+</html>

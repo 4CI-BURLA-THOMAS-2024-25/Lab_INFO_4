@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- celsius fahrenheit -> legge da un form la temperatura e, se corretta, la converte da C a F e viceversa -->
+
+<html>
+    <head>
+        <title>Convertitore di Temperatura</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 50px;
+            }
+            input, select, button {
+                padding: 10px;
+                margin: 5px;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    
+    <body>
+    
+        <h2>Convertitore di Temperatura</h2>
+    
+        <form id="formTemperatura">
+            <!-- creo campo di testo con testo default, che scomparirà quando l'utente digita; obbligo la compilazione del campo -->
+            <input type="number" id="temperatura" placeholder="Inserisci temperatura" required>
+            <!-- menu a tendina per scegliere la conversione -->
+            <select id="unita">
+                <option value="C">Celsius → Fahrenheit</option>
+                <option value="F">Fahrenheit → Celsius</option>
+            </select>
+            <!-- bottone che chiama la funzione di conversione -->
+            <button type="button" onclick="convertiTemperatura()">Converti</button>
+        </form>
+    
+        <h3 id="risultato"></h3>
+    
+        <script>
+            function convertiTemperatura() {
+                let temp = document.getElementById("temperatura").value;
+                let unita = document.getElementById("unita").value;
+                let risultato = document.getElementById("risultato");
+    
+                // controllo che sia stata inserita una temperatura
+                if (temp === "") {
+                    risultato.textContent = "Inserisci un valore valido!";
+                    return;
+                }
+    
+                // converto temperatura in numero
+                temp = parseFloat(temp);
+    
+                // verifico che il numero sia valido
+                if (isNaN(temp)) {
+                    risultato.textContent = "Temperatura non valida!";
+                    // interrompo esecuzione
+                    return;
+                }
+    
+                let tempConvertita;
+                let simbolo;
+    
+                if (unita === "C") {
+                    tempConvertita = (temp * 9/5) + 32; // C → F
+                    simbolo = "°F";
+                } else {
+                    tempConvertita = (temp - 32) * 5/9; // F → C
+                    simbolo = "°C";
+                }
+    
+                // includo nelal stringa di output il valore di variabili; limito la temperatura ad un massimo di 2 decimali
+                risultato.textContent = `Temperatura convertita: ${tempConvertita.toFixed(2)} ${simbolo}`;
+            }
+        </script>
+    
+    </body>
+</html>

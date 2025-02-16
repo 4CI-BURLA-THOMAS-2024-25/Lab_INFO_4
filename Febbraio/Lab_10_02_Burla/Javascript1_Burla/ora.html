@@ -17,8 +17,43 @@
             function visualizzaOra(){
                 // evita il refresh automatico della pagina
                 event.preventDefault();
+                //creo oggetto con data e ora locali
                 const data = new Date();
-                document.getElementById("output").innerHTML = data.toString();
+                //preparo saluto
+                var saluto;
+                //prelevo ora
+                const ora = data.getHours();
+                //saluto in base all'ora
+                switch(ora){
+                    //mattina
+                    case (ora >= 8 && ora < 13):{
+                        saluto = "Buongiorno";
+                        break;
+                    }
+
+                    // pomeriggio
+                    case (ora >= 13 && ora < 18):{
+                        saluto = "Buon pomeriggio";
+                        break;
+                    }
+
+                    // sera
+                    case (ora >= 18 && ora < 23):{
+                        saluto = "Buonasera";
+                        break;
+                    }
+
+                    // notte
+                    case (ora >= 23 && ora < 8):{
+                        saluto = "Buonanotte";
+                        break;
+                    }
+
+                    default:{
+                        saluto = "ciao";
+                    }
+                }
+                document.getElementById("output").innerHTML = saluto;
             }
             
         </script>
