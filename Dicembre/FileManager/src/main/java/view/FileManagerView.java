@@ -1,4 +1,4 @@
-package com.thomasburla.filemanager;
+package view;
 
 /**
  * classe View, che gestisce la GUI del filemanager

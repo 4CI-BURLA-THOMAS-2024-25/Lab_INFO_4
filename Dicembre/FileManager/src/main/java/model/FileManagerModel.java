@@ -1,4 +1,4 @@
-package com.thomasburla.filemanager;
+package model;
 
 /**
  * classe Model del filemanager
