@@ -26,7 +26,7 @@ public class FileManagerController {
     //creo oggetto view
     private final FileManagerView view;
     //opggetto utilizzato per passare la posizione del mouse registrata da MouseAdapter al KyeAdapter, nel caso di un singolo click
-    Point posizioneMouse  = new Point();
+    private Point posizioneMouse  = new Point();
     
     //costruttore che assegna classe model e classe view all'istanza di filemanager avviata
     public FileManagerController(FileManagerModel model, FileManagerView view){
