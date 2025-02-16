@@ -66,7 +66,8 @@
    Sostituisco le lambda expression utilizzate per definire il comportamento degli ascoltatori con delle classi private all'interno del controller.
    Implemento un bottone per tornare alla directory visitata precedentemente e gestisco caso in cui non vi siano directory visualizzate in precedenza.
    Organizzo i due bottoni nella parte alta del frame in un pannello con FlowLayout, che poi sarà contenuto a sua volta nel apnnello con BorderLayout che gestisce i componenti della parte alta dell'interfaccia.
-   - **Sitografia**: [JLabel Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html), [ListCellRenderer Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/ListCellRenderer.html), [FlowLayout Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/FlowLayout.html)
+   Realizzo diagramma UML del software.
+   - **Sitografia**: [JLabel Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html), [ListCellRenderer Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/ListCellRenderer.html), [FlowLayout Java API](https://docs.oracle.com/javase/8/docs/api/java/awt/FlowLayout.html), [creatore diagrammi UML](https://lucid.app/)
 
 ## 3. **Design dell'Architettura**
    - **Design dell'Architettura**: linguaggio Java per produrre un software desktop.
