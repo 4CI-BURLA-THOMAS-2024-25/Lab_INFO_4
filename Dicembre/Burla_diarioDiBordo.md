@@ -63,6 +63,7 @@
    - **Ordine del giorno**: implemento le icone accanto a ciascun file visualizzato nel FS come descritto al punto precedente.
    Per realizzare ciò, abbandono l'idea delle JList affiancate con scorrimento parallelo, non è la soluzione ottimale: sostituisco la JList di stringhe che visualizzava i soli nomi dei files con una JList di JLabel che mostra etichette con ognuna il nome del file e la rispettiva icona.
    Si pone un problema: di base, la JList effettua il toString di ciascuna JLabel per visualizzarne il contenuto senza però ottenere il risultato da me desiderato. Per correggere ciò, devo avvalermi di un render personalizzato così da indicare personalmente alla JList di trattare le JLabel direttamente come componenti grafici.
+   Sostituisco le lambda expression utilizzate per definire il comportamento degli ascoltatori con delle classi private all'interno del controller.
    - **Sitografia**: [JLabel Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html), [ListCellRenderer Java API](https://docs.oracle.com/javase/8/docs/api/javax/swing/ListCellRenderer.html)
 
 ## 3. **Design dell'Architettura**
