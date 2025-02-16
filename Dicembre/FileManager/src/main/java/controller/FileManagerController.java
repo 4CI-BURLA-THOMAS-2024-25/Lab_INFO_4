@@ -149,7 +149,7 @@ public class FileManagerController {
         }
     }
     
-    //metodo per caricare il contenuto di una directory quando si digita il path nel campo e si preme invio
+    //ascoltatore per caricare il contenuto di una directory quando si digita il path nel campo e si preme invio
     private class TastieraCaricaPath extends KeyAdapter{
         @Override
         public void keyPressed(KeyEvent e){
@@ -161,7 +161,7 @@ public class FileManagerController {
         }
     }
     
-    //
+    //ascoltatore per andare alla directory superiore 
     private class CaricaDirectorySuperiore implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e){
