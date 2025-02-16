@@ -1,8 +1,10 @@
+controller\FileManagerController$CaricaDirectorySuperiore.class
+controller\FileManagerController$CaricaDirectoryPrecedente.class
 controller\FileManagerController.class
 view\FileManagerView.class
 view\FileManagerView$1.class
 model\FileManagerModel.class
-com\thomasburla\filemanager\FileManager.class
+FileManager.class
 controller\FileManagerController$TastieraApriFile.class
 controller\FileManagerController$TastieraCaricaPath.class
 controller\FileManagerController$MouseApriFile.class

@@ -13,9 +13,11 @@ import javax.swing.*;
 public class FileManagerView extends JFrame{
     private JTextField path;
     private JList<JLabel> listaFiles;
-    private JButton indietroIcona;
+    private JButton directorySuperiore;
+    private JButton pathPrecedente;
     private JPanel pannelloMain;
     private JPanel pannelloAlto;
+    private JPanel pannelloPulsanti;
 
     public FileManagerView(){
         //imposto titolo finestra
@@ -61,21 +63,35 @@ public class FileManagerView extends JFrame{
         //attivo la lista alla ricezione del focus (utilizzato per il corretto funzionamento del KeyAdapter del Control)
         listaFiles.setFocusable(true);
         
-        //imposto icona indietro
+        //imposto icona directory superiore
         ImageIcon iconaOriginale = new ImageIcon("cartellaSuperiore.png");
         //creo immagine scalando l'immagine dell'icona
         Image immagineScalata = (iconaOriginale.getImage()).getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         //creo icona con immagine scalata
         ImageIcon iconaScalata = new ImageIcon(immagineScalata);
-        //creo etichetta che conterrà l'icona scalata che permette all'utente di andare nella directory di livello superiore a quella attuale
-        indietroIcona = new JButton(iconaScalata);
+        //creo bottone che conterrà l'icona scalata che permette all'utente di andare nella directory di livello superiore a quella attuale
+        directorySuperiore = new JButton(iconaScalata);
+        
+        //imposto icona path precedente
+        iconaOriginale = new ImageIcon("frecciaIndietro.png");
+        //creo immagine scalando l'immagine dell'icona
+        immagineScalata = (iconaOriginale.getImage()).getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        //creo icona con immagine scalata
+        iconaScalata = new ImageIcon(immagineScalata);
+        //creo bottone per tornare alla directory precedente
+        pathPrecedente = new JButton(iconaScalata);
+        
+        //creo pannello con flowlayout per i bottoni
+        pannelloPulsanti = new JPanel(new FlowLayout());
+        pannelloPulsanti.add(this.directorySuperiore, FlowLayout.LEFT);
+        pannelloPulsanti.add(this.pathPrecedente, FlowLayout.LEFT);
         
         //creo pannello per gestire la parte alta della GUI, con BorderLayout
         pannelloAlto = new JPanel(new BorderLayout());
         //aggiungo casella path al pannello in alto
         pannelloAlto.add(this.path);
-        //aggiungo tasto indietro al pannello in alto
-        pannelloAlto.add(this.indietroIcona, BorderLayout.WEST);
+        //aggiungo tasto directory superiore al pannello in alto
+        pannelloAlto.add(pannelloPulsanti, BorderLayout.WEST);
 
         //aggiungo in alto nel pannello il sottopannello per gestire la parte alta della GUI
         pannelloMain.add(this.pannelloAlto, BorderLayout.NORTH);
@@ -102,9 +118,14 @@ public class FileManagerView extends JFrame{
         return listaFiles;
     }
     
-    //metodo per ottenere l'etichetta che contiene il tasto indietro
-    public JButton getIndietroIcona(){
-        return indietroIcona;
+    //metodo per ottenere il bottone che contiene il tasto indietro
+    public JButton getSuperioreBottone(){
+        return directorySuperiore;
+    }
+    
+    //
+    public JButton getIndietroBottone(){
+        return this.pathPrecedente;
     }
 
     //metodo per visualizzare un errore a schermo, passando il messaggio
@@ -121,7 +142,7 @@ public class FileManagerView extends JFrame{
         
     }
 
-    //metodo per otrtnere la finestra
+    //metodo per ottenere la finestra
     public JFrame getFinestra(){
         return this;
     }

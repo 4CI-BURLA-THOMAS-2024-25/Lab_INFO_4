@@ -14,8 +14,11 @@ import java.awt.event.*;
 import java.awt.Point;
 import java.io.*;
 
-//importo etichette per gestire i files di una directory
-import javax.swing.JLabel;
+//importo elibreria grafica
+import javax.swing.*;
+
+//
+import java.util.ArrayList;
 
 public class FileManagerController {
     //creo oggetto model
@@ -36,7 +39,7 @@ public class FileManagerController {
         this.inizializza();
     }
 
-    //metodo che inizializza l'istanza di file manager
+    //metodo che inizializza l'istanza di file manager e assegna ascoltatori
     private void inizializza() {
 
         //assegno alla lista dei files l'ascoltatore MouseAdapter, che non richiede l'implementazione di tutti i metodi di MuoseListener, 
@@ -48,18 +51,24 @@ public class FileManagerController {
         //assegno alla lista dei files l'ascoltatore KeyAdapter per aprire il file/la directory selezionato alla pressione del tasto INVIO sulla tastiera
         view.getListaFiles().addKeyListener(new TastieraApriFile());
         
-        //assegno all'etichetta che contiene il tasto indietro il suo ascoltatore
-        view.getIndietroIcona().addActionListener(new CaricaDirectorySuperiore());
+        //assegno al bottone directory superiore il suo ascoltatore
+        view.getSuperioreBottone().addActionListener(new CaricaDirectorySuperiore());
+        
+        //assegno al bottone path precedente il suo ascoltatore
+        view.getIndietroBottone().addActionListener(new CaricaDirectoryPrecedente());
     }
 
     private void caricaDirectory() {
         //prelevo path
         String path = view.getPath().getText();
         
+        //salvo path nella cronologia
+        model.getCronologia().add(path);
+        
         //gestisco errori di I/O
         try {
             //ottengo dalla classe model l'array che contiene i nomi dei files della directory da visualizzare e le rispettive icone
-            JLabel[] files = model.ottieniFiles(path);
+            JLabel[] files = FileManagerModel.ottieniFiles(path);
             //chiamo metodo della classe grafica per aggiornare la lista dei files visualizzati
             view.aggiornaListaFiles(files);
         //in caso di errori di I/O, "passo" il testo dell'errore al metodo della classe grafica che si occuperà di visualizzarlo
@@ -88,7 +97,7 @@ public class FileManagerController {
             //gestisco errori di I/O
             try {
                 //chiamo metodo del model per aprire il file
-                model.apriFile(fileSelezionato.getAbsolutePath());
+                FileManagerModel.apriFile(fileSelezionato.getAbsolutePath());
             //in caso di errore di I/O, "passo" il testo dell'errore al metodo della classe grafica che si occuperà di visualizzarlo
             } catch (IOException ex) {
                 view.mostraErrore("Impossibile aprire il file: " + ex.getMessage());
@@ -169,8 +178,27 @@ public class FileManagerController {
             File directoryAttuale = new File(view.getPath().getText());
             //aggiorno path della GUI con quello della directory superiore
             view.getPath().setText(directoryAttuale.getParent());
-            //chaimo metodo per visualizzare la directory superiore
+            //chiamo metodo per visualizzare la directory superiore
             caricaDirectory();
+        }
+    }
+    
+    //ascoltatore del bottone per andare nella directory precedentemente visitata
+    private class CaricaDirectoryPrecedente implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            //gestisco caso in cui non vi siano directory visitate in precedenza
+            try{
+                //salvo puntatore cronologia
+                ArrayList <String> cronologia = model.getCronologia();
+                //salvo puntatore campo path
+                JTextField path = view.getPath();
+                //aggiorno campo path con percorso precedente, reperendolo dalla lista dei path
+                path.setText(cronologia.get(cronologia.indexOf(path.getText()) - 1));
+
+                //chiamo metodo per visualizzare la directory precedente
+                caricaDirectory();
+            }catch(IndexOutOfBoundsException eccezione){}
         }
     }
 }

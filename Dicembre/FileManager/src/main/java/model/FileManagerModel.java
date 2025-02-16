@@ -15,10 +15,24 @@ import java.awt.Desktop;
 import javax.swing.*;
 //importo package per gestire le icone dei files
 import javax.swing.filechooser.*;
+//importo arraylist per memorizzare la cronologia dei percorsi visitati
+import java.util.ArrayList;
 
 public class FileManagerModel{
+    private ArrayList<String> cronologia;
+    
+    //costruttore
+    public FileManagerModel(){
+        this.cronologia = new ArrayList<String>();
+    }
+    
+    //get cronologia
+    public ArrayList<String> getCronologia(){
+        return this.cronologia;
+    }
+    
     //metodo per ottenere array di Label con i nomi dei files e le rispettive icone, in grado di lanciare eccezioni IOException
-    public JLabel[] ottieniFiles(String path) throws IOException {
+    public static JLabel[] ottieniFiles(String path) throws IOException {
         Icon iconaFile;
         //associo parametro path a una nuova directory
         File directory = new File(path);
@@ -52,7 +66,7 @@ public class FileManagerModel{
     }
     
     //metodo per aprire i files, in grado di lanciare IOException
-    public void apriFile(String path) throws IOException {
+    public static void apriFile(String path) throws IOException {
         //creo oggetto file con il path ricevuto come parametro
         File file = new File(path);
         
