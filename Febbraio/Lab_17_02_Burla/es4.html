@@ -1,0 +1,57 @@
+<!-- Esercizio 4: Rimozione Elemento da un Array
+Crea un array di nomi e un form che permette all'utente di rimuovere un nome dall'array. Visualizza l'array aggiornato
+dopo la rimozione. -->
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rimozione Nome da Array</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Rimuovi un Nome dalla Lista</h2>
+    
+    <input type="text" id="nomeInput" placeholder="Inserisci un nome">
+    <button onclick="rimuoviNome()">Rimuovi</button>
+
+    <h3>Lista Nomi:</h3>
+    <ul id="listaNomi"></ul>
+
+    <script src="es4.js"></script>
+
+</body>
+</html>

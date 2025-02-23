@@ -1,0 +1,41 @@
+<!-- Esercizio 3: Conteggio Caratteri
+Crea un form con un campo di testo. Quando l'utente scrive nel campo, conteggia il numero di caratteri e visualizzalo in
+tempo reale -->
+
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Conteggio Caratteri</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 50px;
+            }
+            textarea {
+                width: 300px;
+                height: 100px;
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            p {
+                font-size: 18px;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <h2>Conteggio Caratteri</h2>
+        <textarea id="testo" placeholder="Scrivi qui..." oninput="contaCaratteri()"></textarea>
+        <p id="contatore">Caratteri: 0</p>
+
+        <script src="es3.js"></script>
+
+    </body>
+</html>

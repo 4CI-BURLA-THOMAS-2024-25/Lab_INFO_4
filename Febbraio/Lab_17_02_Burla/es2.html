@@ -1,0 +1,66 @@
+<!-- Esercizio 2: Lista della Spesa
+Crea un form che permette all'utente di aggiungere elementi a una lista della spesa. Gli elementi devono essere
+memorizzati in un array e visualizzati in una lista non ordinata (ul) sotto il form -->
+
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista della Spesa</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 50px;
+            }
+            input, button {
+                padding: 10px;
+                font-size: 16px;
+                margin: 5px;
+            }
+            button {
+                background-color: #ff8f10;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #cb4aaf;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            li {
+                background-color: #f2f2f2;
+                padding: 10px;
+                margin: 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 5px;
+            }
+            .remove-button {
+                background-color: red;
+                color: white;
+                border: none;
+                padding: 5px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <h2>Lista della Spesa</h2>
+        
+        <input type="text" id="item" placeholder="Inserisci un elemento">
+        <button onclick="aggiungiElemento()">Aggiungi</button>
+
+        <ul id="listaSpesa"></ul>
+
+        <script src="es2.js"></script>
+
+    </body>
+</html>
