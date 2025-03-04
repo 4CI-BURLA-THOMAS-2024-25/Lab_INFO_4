@@ -9,6 +9,48 @@ Comincia un giocatore scelto dal gioco. -->
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dadi</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/png" href="favicon.png">
     </head>
+
+    <body>
+        <div id="container">
+            <div id="esecuzione">
+                <button id="bottoneRegole">Visualizza le regole del gioco</button>
+
+                <div id="sorteggio">
+                    <form id="nomiGiocatori">
+                        <p>Nome primo giocatore: </p><input type="text" required><br>
+                        <p>Nome secondo giocatore: </p><input type="text" required>
+                    </form>
+    
+                    <button id="bottoneSorteggio">SORTEGGIA</button>
+                </div>
+                
+                <div id="containerImmagini">
+                    <img id="dado1" class="immaginiDadi" src="1.svg" alt="Primo dado">
+                    <img id="dado2" class="immaginiDadi" src="2.svg" alt="Secondo dado">
+                </div>
+    
+                <div id="bottoniAzione">
+                    <button id="bottoneGira">Lancia i dadi</button>
+                    <button id="bottoneFerma">Ferma i dadi</button>
+                </div>
+            </div>
+            
+            <div id="tabellaOutput">
+                <table id="risultati">
+                    <tr>
+                        <th>Nome giocatore</th>
+                        <th>Somma dadi</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
 </html>

@@ -1,0 +1,46 @@
+.immaginiDadi {
+    width: 49%;
+}
+
+table {
+    width: 100%;
+}
+
+th, td {
+    border: 2px solid blueviolet;
+    padding: 5px;
+    text-align: center;
+}
+
+#container {
+    padding: 5px;
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+
+#esecuzione {
+    width: 50%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#tabellaOutput {
+    width: 50%;
+}
+
+#nomiGiocatori {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#bottoneSorteggio {
+    width: 100%;
+}
+
+#bottoneGira, #bottoneFerma {
+    width: 49%;
+}

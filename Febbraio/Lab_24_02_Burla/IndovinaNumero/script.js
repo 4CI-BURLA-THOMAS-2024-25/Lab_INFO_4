@@ -1,4 +1,3 @@
-var numeroGenerato = generaNumero();
 var tentativi = 0;
 
 function visualizzaRegole(){
@@ -35,4 +34,4 @@ function verificaNumero(){
 }
 
 //genero il numero casuale al primo avvio o al refresh della pagina
-console.log(numeroGenerato);
+var numeroGenerato = generaNumero();
