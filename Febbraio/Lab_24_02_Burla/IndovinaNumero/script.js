@@ -13,7 +13,6 @@ function generaNumero(){
 function verificaNumero(){
     let numeroInserito = document.getElementById("casellaNumero").value;
 
-    //
     console.log(numeroInserito);
     if((!numeroInserito == "") && (tentativi <= 10)){
         if(numeroInserito == numeroGenerato){
@@ -23,13 +22,16 @@ function verificaNumero(){
 
         }else if(numeroInserito > numeroGenerato){
             alert("Il numero da indovinare è più piccolo");
+            tentativi++;
 
         }else{
             alert("Il numero da indovinare è più grande");
+            tentativi++;
         }
     }else{
         alert("Numero massimi di tentativi raggiunto o numero non valido");
     }
+    console.log(tentativi);
 }
 
 //genero il numero casuale al primo avvio o al refresh della pagina

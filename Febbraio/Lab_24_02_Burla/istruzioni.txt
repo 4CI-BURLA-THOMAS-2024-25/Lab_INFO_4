@@ -13,3 +13,11 @@ Viene fatta la somma dei due dadi e vince chi ha fatto il punteggio maggiore.
 Comincia un giocatore scelto dal gioco.
 
 3) Tris grafico
+
+https://www.w3schools.com/js/js_htmldom.asp
+
+https://www.w3schools.com/js/default.asp
+
+https://developer.mozilla.org/en-US/docs/Web/HTML
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript 

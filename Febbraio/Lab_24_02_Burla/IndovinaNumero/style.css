@@ -1,0 +1,35 @@
+#container {
+    display: flex;
+    background-color: darkorange;
+    width: 50%;
+    height: 50%;
+    /* Centra gli elementi orizzontalmente */
+    align-content: center;
+    /* Dispone gli elementi in colonna  */
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Occupa tutta altezza finestra */
+    height: 100vh;
+}
+
+#bottone {
+    background-color: cyan;
+    align-self: center;
+}
+
+#gioca {
+    display: flex;
+    /* Dispone gli elementi in colonna  */
+    flex-direction: column;
+    /* Centra gli elementi orizzontalmente */
+    align-items: center;
+    /* Spazio tra gli elementi */
+    gap: 10px;
+    /* Spazio a margine */
+    padding: 20px;
+}
