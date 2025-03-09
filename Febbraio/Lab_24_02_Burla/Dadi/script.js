@@ -34,13 +34,13 @@ function sorteggiaNome(){
         if(inizia == 1){
             window.alert("Inizia il giocatore " + `${formNomi.elements[0].value}`);
         }else{
-            window.alert("Inizia il giocatore " + `${formNomi.elements[0].value}`)
+            window.alert("Inizia il giocatore " + `${formNomi.elements[1].value}`);
         }
 
         //blocco bottone sorteggia
         document.getElementById("bottoneSorteggio").setAttribute("disabled", true);
         //chi inizia, è anche colui che lancia
-        lanciando = formNomi.elements[inizia].value;
+        lanciando = formNomi.elements[inizia - 1].value;
     }else{
         window.alert("Inserire nomi giocatori!");
     }
@@ -142,12 +142,15 @@ function fermaDadi(){
         //salva esito del lancio
         salvaEsito();
 
-        //cambio nome del giocatore che sta lanciando
-        if(lanciando == formNomi.elements[0].value){
-            lanciando = formNomi.elements[1].value;
-        }else{
-            lanciando = formNomi.elements[0].value;
+        //cambio nome del giocatore che sta lanciando, se non è il primo turno
+        if(!(document.getElementById("risultati").rows.value == 1)){
+            if(lanciando == formNomi.elements[0].value){
+                lanciando = formNomi.elements[1].value;
+            }else{
+                lanciando = formNomi.elements[0].value;
+            }
         }
+        
     }else{
         window.alert("Lanciare prima i dadi!");
     }
