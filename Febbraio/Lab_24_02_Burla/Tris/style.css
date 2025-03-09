@@ -1,0 +1,56 @@
+h1 {
+    font-size: 100px;
+    color: teal;
+    margin: 0; /* rimuove il margine predefinito dell'h1 */
+    text-align: center;
+}
+
+#container {
+    display: flex;
+    flex-direction: column; 
+    width: 100vw; 
+    height: 100vh; 
+    box-sizing: border-box; /* Include bordi e padding nell'altezza */ 
+}
+
+#gioco {
+    display: flex;
+    flex-direction: row;
+}
+
+#azione {
+    width: 50%;
+    /* background-color: aqua; */
+}
+
+#comunicazioni {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: aquamarine; */
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* imposto l'altezza del body e html al 100% della finestra */
+    display: flex;
+}
+
+#griglia {
+    width: 100%;
+}
+
+
+#simboloPosizionando {
+    height: 1000px;
+    width: 1000px
+}
+
+p {
+    font-size: 50px;
+}
+
+td {
+    border: 2px solid black;
+}
