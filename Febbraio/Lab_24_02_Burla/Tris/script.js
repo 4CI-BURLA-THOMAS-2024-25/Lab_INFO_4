@@ -1,5 +1,7 @@
 // simbolo da posizionare
 const simbolo = document.getElementById("simboloPosizionando");
+//tabella della griglia
+const griglia = document.getElementById("griglia");
 
 function posizionaSimbolo(){
     var cellaCliccata = event.target;
@@ -18,13 +20,3 @@ function posizionaSimbolo(){
     }
 }
 
-//associo ascoltatore del click ad ogni cella della tabella
-document.getElementById("0,0").addEventListener("click", posizionaSimbolo);
-document.getElementById("0,1").addEventListener("click", posizionaSimbolo);
-document.getElementById("0,2").addEventListener("click", posizionaSimbolo);
-document.getElementById("1,0").addEventListener("click", posizionaSimbolo);
-document.getElementById("1,1").addEventListener("click", posizionaSimbolo);
-document.getElementById("1,2").addEventListener("click", posizionaSimbolo);
-document.getElementById("2,0").addEventListener("click", posizionaSimbolo);
-document.getElementById("2,1").addEventListener("click", posizionaSimbolo);
-document.getElementById("2,2").addEventListener("click", posizionaSimbolo);
