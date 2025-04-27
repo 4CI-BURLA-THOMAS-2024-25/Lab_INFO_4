@@ -1,0 +1,20 @@
+Implementare il database libreria come svolto in laboratorio la settimana scorsa
+
+Entità:
+
+libro
+casa_editrice
+autore
+Associazioni
+
+libro m<--->n autore 
+libro m<--->1 casa_editrice
+Creare  e popolare le tabelle (sono quattro)
+
+Implementare le seguenti query:
+
+I titoli di tutti i libri che costano meno di 15 euro
+I titoli dei libri con meno di 150 pagine
+Tutti i libri (titoli) scritti da "Valerie Perrin"
+Tutti i libri della casa editrice Mondadori
+Titolo, autore e casa editrice dei libri scritti prima del 2000
