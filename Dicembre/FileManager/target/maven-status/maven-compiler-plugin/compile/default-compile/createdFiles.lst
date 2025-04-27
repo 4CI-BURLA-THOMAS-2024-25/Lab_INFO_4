@@ -1,5 +1,5 @@
-controller\FileManagerController$CaricaDirectoryPrecedente.class
 controller\FileManagerController$CaricaDirectorySuperiore.class
+controller\FileManagerController$CaricaDirectoryPrecedente.class
 controller\FileManagerController.class
 view\FileManagerView.class
 view\FileManagerView$1.class
